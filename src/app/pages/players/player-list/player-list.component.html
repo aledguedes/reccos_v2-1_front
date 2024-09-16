@@ -1,7 +1,11 @@
 <div class="container py-3">
   <div class="uk-grid uk-flex-right uk-padding-small uk-margin-small-bottom">
     <div class="uk-width-auto">
-      <a class="uk-button uk-button-primary uk-text-uppercase" href="#create">
+      <a
+        [routerLink]="['player-edit']"
+        [queryParams]="{ action: 'create' }"
+        class="uk-button uk-button-primary uk-text-uppercase"
+      >
         <span uk-icon="icon: plus"></span> Novo atleta
       </a>
     </div>
