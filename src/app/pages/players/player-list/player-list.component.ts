@@ -15,7 +15,7 @@ export class PlayerListComponent implements OnInit {
   baseUrl = '';
   players: Player[] = [];
 
-  page = 0;
+  page = 1;
   perPage = 12;
 
   constructor(private playerService: PlayerService) {}
@@ -28,7 +28,7 @@ export class PlayerListComponent implements OnInit {
     this.playerService.getAllPlayers(this.page, this.perPage).subscribe({
       next: (data) => {
         this.players = data;
-        console.log('PLAYERS ALL', data);
+        console.log('PLAYERS ALL', this.players);
       },
       error: (err) => {
         console.log('PLAYERS ALL ERR', err);

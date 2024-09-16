@@ -1,50 +1,47 @@
-<div class="uk-container">
+<div class="container py-3">
   <div class="uk-grid uk-flex-right uk-padding-small uk-margin-small-bottom">
     <div class="uk-width-auto">
-      <a class="uk-button uk-button-primary uk-text-uppercase" href="#create">
-        <span uk-icon="icon: plus"></span> Adicionar árbitro
+      <a
+        [routerLink]="['player-edit']"
+        [queryParams]="{ action: 'create' }"
+        class="uk-button uk-button-primary uk-text-uppercase"
+      >
+        <span uk-icon="icon: plus"></span> Novo atleta
       </a>
     </div>
   </div>
 
-  <div
-    class="uk-grid uk-child-width-1-1@s uk-child-width-1-2@m uk-child-width-1-4@l uk-margin-top"
-  >
+  <div class="row g-3">
     @if (players.length > 0) {
-      <div
-        *ngFor="let player of players; let idx = index"
-        class="uk-card uk-card-default uk-card-body uk-card-hover uk-margin-small-top uk-padding-small"
-        [ngClass]="['status-' + player.cod_status]"
-      >
-        <div class="uk-flex uk-flex-middle uk-flex-between">
-          <div
-            class="uk-background-cover uk-background-center-center uk-border-circle"
-            [style.background-image]="
-              'url(' + baseUrl + player?.picture_profile + ')'
-            "
-            style="width: 80px; height: 80px"
-          ></div>
-          <div class="uk-text-right">
-            <button
-              class="uk-button uk-button-danger uk-button-small"
-              (click)="removePlayer(+player.id)"
-            >
-              <span uk-icon="icon: trash"></span>
-            </button>
-            <a
-              class="uk-button uk-button-primary uk-button-small"
-              [routerLink]="['update', player.id]"
-            >
-              <span uk-icon="icon: pencil"></span>
-            </a>
+      @for (player of players; track $index) {
+        <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+          <div class="uk-card uk-card-default rounded-3">
+            <div class="uk-card-media-top text-center p-2">
+              <img src="./images/default/players.jpg" width="180" alt="" />
+            </div>
+            <div class="uk-card-body px-3 py-4">
+              <h3 class="uk-card-title text-center">{{ player.surname }}</h3>
+              <div class="uk-text-center my-1" style="height: 55px">
+                {{ player.name }}
+              </div>
+              <div class="uk-flex">
+                <button
+                  class="uk-button uk-button-default"
+                  (click)="removePlayer(+player.id)"
+                >
+                  Excluir
+                </button>
+                <a
+                  class="uk-button uk-button-primary"
+                  [routerLink]="['update', player.id]"
+                >
+                  Editar
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="uk-text-right uk-margin-small-top">
-          <small class="uk-text-meta">{{ player.name }}</small
-          ><br />
-          <small class="uk-text-meta">{{ player.surname }}</small>
-        </div>
-      </div>
+      }
     } @else {
       <div class="uk-alert-warning uk-margin-top" uk-alert>
         <p class="uk-margin-remove">

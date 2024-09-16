@@ -1,0 +1,65 @@
+<form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
+  @for (field of fields; track $index) {
+    @if (field.typeComponent === "input") {
+      <div class="uk-margin">
+        <label class="uk-form-label" [for]="field.inputFieldId">{{
+          field.label
+        }}</label>
+        <div class="uk-form-controls">
+          <input
+            [id]="field.inputFieldId"
+            [formControlName]="field.inputFieldName"
+            [type]="field.inputType"
+            [placeholder]="field.placeholder"
+            [accept]="field.accept"
+            class="uk-input"
+          />
+          @if (field.inputType === "file") {
+            <div class="uk-form-custom">
+              <input
+                type="file"
+                [id]="field.inputFieldId"
+                [accept]="field.accept"
+                [formControlName]="field.inputFieldName"
+              />
+              <input
+                class="uk-input uk-form-width-medium"
+                type="text"
+                placeholder="Selecione uma foto"
+                disabled
+              />
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    @if (field.typeComponent === "select") {
+      <div class="uk-margin">
+        <label class="uk-form-label" [for]="field.inputFieldId">{{
+          field.label
+        }}</label>
+        <div class="uk-form-controls">
+          <select
+            [id]="field.inputFieldId"
+            [formControlName]="field.inputFieldName"
+            class="uk-select"
+          >
+            @for (option of field.options; track $index) {
+              <option [value]="option.value">
+                {{ option.label }}
+              </option>
+            }
+          </select>
+        </div>
+      </div>
+    }
+  }
+
+  <div class="uk-margin">
+    <button class="uk-button uk-button-primary" type="submit">
+      Cadastrar Atleta
+    </button>
+    <button class="uk-button uk-button-default" type="reset">Cancelar</button>
+  </div>
+</form>
