@@ -1,65 +1,142 @@
-<form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
-  @for (field of fields; track $index) {
-    @if (field.typeComponent === "input") {
-      <div class="uk-margin">
-        <label class="uk-form-label" [for]="field.inputFieldId">{{
-          field.label
-        }}</label>
-        <div class="uk-form-controls">
-          <input
-            [id]="field.inputFieldId"
-            [formControlName]="field.inputFieldName"
-            [type]="field.inputType"
-            [placeholder]="field.placeholder"
-            [accept]="field.accept"
-            class="uk-input"
-          />
-          @if (field.inputType === "file") {
-            <div class="uk-form-custom">
-              <input
-                type="file"
-                [id]="field.inputFieldId"
-                [accept]="field.accept"
-                [formControlName]="field.inputFieldName"
-              />
-              <input
-                class="uk-input uk-form-width-medium"
-                type="text"
-                placeholder="Selecione uma foto"
-                disabled
-              />
+<form class="uk-form-stacked" [formGroup]="playerForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="player">
+    <fieldset class="uk-fieldset">
+      <legend class="uk-legend">Dados Pessoais</legend>
+      <div class="row">
+        @for (field of personalData; track $index) {
+          @if (field.typeComponent === "input") {
+            <div [ngClass]="field.colClass" class="my-2">
+              <label class="uk-form-label" [for]="field.inputFieldId">{{
+                field.label
+              }}</label>
+              <div class="uk-form-controls">
+                <input
+                  [id]="field.inputFieldId"
+                  [formControlName]="field.inputFieldName"
+                  [type]="field.inputType"
+                  [placeholder]="field.placeholder"
+                  [step]="field.step"
+                  class="uk-input"
+                />
+
+                @if (field.inputType === "file") {
+                  <div class="uk-form-custom">
+                    <input
+                      type="file"
+                      [id]="field.inputFieldId"
+                      [accept]="field.accept"
+                      [formControlName]="field.inputFieldName"
+                    />
+                    <input
+                      class="uk-input uk-form-width-medium"
+                      type="text"
+                      placeholder="Selecione uma foto"
+                      disabled
+                    />
+                  </div>
+                }
+              </div>
             </div>
           }
-        </div>
+          @if (field.typeComponent === "select") {
+            <div [ngClass]="field.colClass" class="my-2">
+              <label class="uk-form-label" [for]="field.inputFieldId">{{
+                field.label
+              }}</label>
+              <div class="uk-form-controls">
+                <select
+                  [id]="field.inputFieldId"
+                  [formControlName]="field.inputFieldName"
+                  class="uk-select"
+                >
+                  <option
+                    *ngFor="let option of field.options"
+                    [value]="option.value"
+                  >
+                    {{ option.label }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          }
+        }
       </div>
-    }
+    </fieldset>
+  </div>
+  <div formGroupName="address" class="mt-4">
+    <fieldset class="uk-fieldset">
+      <legend class="uk-legend">Dados de Contato</legend>
+      <div class="row">
+        @for (field of addressPlayer; track $index) {
+          @if (field.typeComponent === "input") {
+            <div [ngClass]="field.colClass" class="my-2">
+              <label class="uk-form-label" [for]="field.inputFieldId">{{
+                field.label
+              }}</label>
+              <div class="uk-form-controls">
+                <input
+                  [id]="field.inputFieldId"
+                  [formControlName]="field.inputFieldName"
+                  [type]="field.inputType"
+                  [placeholder]="field.placeholder"
+                  [step]="field.step"
+                  class="uk-input"
+                />
 
-    @if (field.typeComponent === "select") {
-      <div class="uk-margin">
-        <label class="uk-form-label" [for]="field.inputFieldId">{{
-          field.label
-        }}</label>
-        <div class="uk-form-controls">
-          <select
-            [id]="field.inputFieldId"
-            [formControlName]="field.inputFieldName"
-            class="uk-select"
-          >
-            @for (option of field.options; track $index) {
-              <option [value]="option.value">
-                {{ option.label }}
-              </option>
-            }
-          </select>
-        </div>
+                @if (field.inputType === "file") {
+                  <div class="uk-form-custom">
+                    <input
+                      type="file"
+                      [id]="field.inputFieldId"
+                      [accept]="field.accept"
+                      [formControlName]="field.inputFieldName"
+                    />
+                    <input
+                      class="uk-input uk-form-width-medium"
+                      type="text"
+                      placeholder="Selecione uma foto"
+                      disabled
+                    />
+                  </div>
+                }
+              </div>
+            </div>
+          }
+          @if (field.typeComponent === "select") {
+            <div [ngClass]="field.colClass" class="my-2">
+              <label class="uk-form-label" [for]="field.inputFieldId">{{
+                field.label
+              }}</label>
+              <div class="uk-form-controls">
+                <select
+                  [id]="field.inputFieldId"
+                  [formControlName]="field.inputFieldName"
+                  class="uk-select"
+                >
+                  <option
+                    *ngFor="let option of field.options"
+                    [value]="option.value"
+                  >
+                    {{ option.label }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          }
+        }
       </div>
-    }
-  }
-
-  <div class="uk-margin">
-    <button class="uk-button uk-button-primary" type="submit">
-      Cadastrar Atleta
-    </button>
-    <button class="uk-button uk-button-default" type="reset">Cancelar</button>
+    </fieldset>
+  </div>
+  <div class="row g-3 mt-4">
+    <div class="col-12 col-md-6">
+      <button class="uk-button uk-button-primary w-100" type="submit">
+        Cadastrar Atleta
+      </button>
+    </div>
+    <div class="col-12 col-md-6">
+      <button class="uk-button uk-button-default w-100" type="reset">
+        Cancelar
+      </button>
+    </div>
   </div>
 </form>

@@ -5,7 +5,7 @@ export interface IInputFieldPlayer {
   label: string;
   inputFieldId: string;
   inputFieldName: string;
-  inputType?: string;
+  inputType?: 'text' | 'number' | 'email' | 'password' | 'date' | 'tel' | 'url';
   placeholder?: string;
   validators?: ValidatorFn[];
   options?: { value: string; label: string }[];

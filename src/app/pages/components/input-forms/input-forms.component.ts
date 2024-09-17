@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { inputsFieldPlayer } from '../../../utils/form-inputs/fomr-input-player';
-import { IInputFieldPlayer } from '../../../models/inputFields/InputsPlayer';
+import { inputsFieldPlayer } from '../../../utils/form-inputs/form-input-player';
 import { CommonModule } from '@angular/common';
+import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
+import { generalInputsAddress } from '../../../utils/form-inputs/form-input-address';
 
 @Component({
   selector: 'app-input-forms',
@@ -13,21 +14,27 @@ import { CommonModule } from '@angular/common';
 })
 export class InputFormsComponent implements OnInit {
   playerForm!: FormGroup;
-  fields: IInputFieldPlayer[] = inputsFieldPlayer;
+  personalData: IGeneralFields[] = inputsFieldPlayer;
+  addressPlayer: IGeneralFields[] = generalInputsAddress;
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.playerForm = this.fb.group(this.createFormGroup());
+    this.playerForm = this.fb.group({
+      player: this.fb.group(this.createFormGroup(this.personalData)),
+      address: this.fb.group(this.createFormGroup(this.addressPlayer)),
+    });
+
+    console.log('FORM GROUP', this.personalData);
   }
 
-  createFormGroup() {
+  createFormGroup(data: IGeneralFields[]): Record<string, unknown> {
     const group: Record<string, unknown> = {};
 
-    this.fields.forEach((field: IInputFieldPlayer) => {
-      group[field.inputFieldName] = [
-        field.initialValues,
-        field.validators || [],
+    data.forEach((fieldset: IGeneralFields) => {
+      group[fieldset.inputFieldName] = [
+        fieldset.initialValues,
+        fieldset.validators || [],
       ];
     });
 
