@@ -1,7 +1,7 @@
 import { Validators } from '@angular/forms';
-import { IInputFieldPlayer } from '../../models/inputFields/InputsPlayer';
+import { IGeneralFields } from '../../models/GeneralFieldsInputs';
 
-export const inputsFieldPlayer: IInputFieldPlayer[] = [
+export const inputsFieldPlayer: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'Nome Completo',
@@ -73,3 +73,43 @@ export const inputsFieldPlayer: IInputFieldPlayer[] = [
     initialValues: '',
   },
 ];
+
+//   {
+//     fields: [
+//       {
+//         typeComponent: 'input',
+//         label: 'Número da Camisa',
+//         inputFieldId: 'numero_camisa',
+//         inputFieldName: 'shirt_number',
+//         inputType: 'number',
+//         placeholder: 'Ex: 10',
+//         validators: [Validators.required],
+//         initialValues: '',
+//       },
+//       {
+//         typeComponent: 'select',
+//         label: 'Time do jogador',
+//         inputFieldId: 'team',
+//         inputFieldName: 'team',
+//         options: [],
+//         validators: [Validators.required],
+//         initialValues: '',
+//       },
+//       {
+//         typeComponent: 'select',
+//         label: 'Posição',
+//         inputFieldId: 'posicao',
+//         inputFieldName: 'position',
+//         options: [
+//           { value: 'goleiro', label: 'Goleiro' },
+//           { value: 'zagueiro', label: 'Zagueiro' },
+//           { value: 'lateral', label: 'Lateral' },
+//           { value: 'meio_campo', label: 'Meio-campo' },
+//           { value: 'atacante', label: 'Atacante' },
+//         ],
+//         validators: [Validators.required],
+//         initialValues: '',
+//       },
+//     ],
+//   },
+// ];

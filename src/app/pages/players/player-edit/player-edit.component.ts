@@ -14,7 +14,6 @@ export class PlayerEditComponent implements OnInit {
   constructor(private actvRouter: ActivatedRoute) {}
   ngOnInit(): void {
     this.actvRouter.queryParams.subscribe((data) => {
-      console.log('ACTIVATED ROUTER', data);
       this.titlePage =
         data['action'] === 'create' ? 'Novo atleta' : 'Editar Atleta';
     });
