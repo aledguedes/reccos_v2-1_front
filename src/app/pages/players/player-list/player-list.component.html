@@ -14,43 +14,65 @@
   <div class="row g-3">
     @if (players.length > 0) {
       @for (player of players; track $index) {
-        <div class="col-12 col-lg-4 col-md-6 col-sm-6">
-          <div class="uk-card uk-card-default rounded-3">
-            <div class="uk-card-media-top text-center p-2">
-              <img src="./images/default/players.jpg" width="180" alt="" />
-            </div>
-            <div class="uk-card-body px-3 py-4">
-              <h3 class="uk-card-title text-center">{{ player.surname }}</h3>
-              <div class="uk-text-center my-1" style="height: 55px">
-                {{ player.name }}
-              </div>
-              <div class="row gy-3">
-                <div class="col-12 col-md-6 col-sm-12">
-                  <button
-                    class="uk-button w-100 uk-button-default"
-                    (click)="removePlayer(+player.id)"
-                  >
-                    Excluir
-                  </button>
-                </div>
-                <div class="col-12 col-md-6 col-sm-12">
-                  <a
-                    class="uk-button w-100 uk-button-primary"
-                    [routerLink]="['update', player.id]"
-                  >
-                    Editar
-                  </a>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card">
+            <div class="card-content">
+              <div class="is-flex is-align-items-center">
+                <figure class="image is-64x64 mr-4">
+                  <img
+                    src="https://placehold.co/80x80"
+                    alt="Arboleda"
+                    class="is-rounded"
+                  />
+                </figure>
+                <div class="media-content">
+                  <!-- <span class="tag is-primary">PRO</span> -->
+                  <h3 class="title is-6 has-text-weight-bold">
+                    {{ player.surname }}
+                  </h3>
+                  <p class="subtitle is-7 m-0">{{ player.name }}</p>
+                  <!-- <p class="subtitle is-7">32 ANOS</p> -->
                 </div>
               </div>
             </div>
+            <footer class="card-footer">
+              <div class="card-footer-item">
+                <button
+                  class="button is-small is-info"
+                  [routerLink]="['update', player.id]"
+                >
+                  <span class="icon">
+                    <i class="ri-pencil-line"></i>
+                  </span>
+                  <span>Editar</span>
+                </button>
+              </div>
+              <div class="card-footer-item">
+                <button
+                  class="button is-small is-danger"
+                  (click)="removePlayer(+player.id)"
+                >
+                  <span class="icon">
+                    <i class="ri-delete-bin-2-line"></i>
+                  </span>
+                  <span>Remover</span>
+                </button>
+              </div>
+              <div class="card-footer-item">
+                <button class="button is-small is-link">
+                  <span class="icon">
+                    <i class="ri-file-list-line"></i>
+                  </span>
+                  <span>Contratos</span>
+                </button>
+              </div>
+            </footer>
           </div>
         </div>
       }
     } @else {
-      <div class="uk-alert-warning uk-margin-top" uk-alert>
-        <p class="uk-margin-remove">
-          O sistema ainda não possui atletas cadastrados!!
-        </p>
+      <div class="notification is-link is-light">
+        O sistema ainda não possui atletas cadastrados!!
       </div>
     }
   </div>
