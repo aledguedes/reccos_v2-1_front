@@ -1,23 +1,29 @@
 <div class="container">
-  <h1 class="dashboard-title uk-text-center">Dashboard</h1>
-  <div class="row g-3 sm-screen">
-    @for (menu of dashMenu; track $index) {
-      <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-        <a class="uk-link-reset" [routerLink]="menu.router">
-          <div
-            class="uk-card uk-card-default uk-card-hover uk-card-body uk-text-center uk-border-rounded"
-          >
-            <img [src]="menu.icon" [alt]="menu.name" class="icon" />
-            <h3
-              class="uk-card-title"
-              [style.color]="menu.id % 2 === 0 ? '#FC3B56' : '#3f51b5'"
+  <h1
+    class="dashboard-title has-text-centered has-text-link is-size-1 has-text-weight-bold my-4"
+  >
+    Dashboard
+  </h1>
+  <div class="container">
+    <div class="columns is-multiline is-centered">
+      @for (menu of dashMenu; track $index) {
+        <div class="column is-3-tablet is-3-desktop is-4-mobile">
+          <a class="uk-link-reset" [routerLink]="menu.router">
+            <div
+              class="card card-hover uk-card-body has-text-centered uk-border-rounded"
             >
-              {{ menu.name }}
-            </h3>
-            <p class="uk-text-muted">{{ menu.text }}</p>
-          </div>
-        </a>
-      </div>
-    }
+              <img [src]="menu.icon" [alt]="menu.name" class="icon" />
+              <h3
+                class="title is-5 my-2"
+                [style.color]="menu.id % 2 === 0 ? '#ff3860' : '#3273dc'"
+              >
+                {{ menu.name }}
+              </h3>
+              <p class="uk-text-muted is-size-7">{{ menu.text }}</p>
+            </div>
+          </a>
+        </div>
+      }
+    </div>
   </div>
 </div>
