@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { inputsFieldPlayer } from '../../../utils/form-inputs/form-input-player';
+import { Component, forwardRef, Input } from '@angular/core';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
-import { generalInputsAddress } from '../../../utils/form-inputs/form-input-address';
 
 @Component({
   selector: 'app-input-forms',
@@ -11,37 +12,51 @@ import { generalInputsAddress } from '../../../utils/form-inputs/form-input-addr
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './input-forms.component.html',
   styleUrl: './input-forms.component.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputFormsComponent),
+      multi: true,
+    },
+  ],
 })
-export class InputFormsComponent implements OnInit {
-  playerForm!: FormGroup;
-  personalData: IGeneralFields[] = inputsFieldPlayer;
-  addressPlayer: IGeneralFields[] = generalInputsAddress;
+export class InputFormsComponent implements ControlValueAccessor {
+  @Input() label = '';
+  @Input() type = 'text';
+  @Input() placeholder = '';
+  @Input() formControlName = '';
+  @Input() id = '';
+  @Input() step?: string;
+  @Input() accept?: string;
 
-  constructor(private fb: FormBuilder) {}
+  value = '';
 
-  ngOnInit(): void {
-    this.playerForm = this.fb.group({
-      player: this.fb.group(this.createFormGroup(this.personalData)),
-      address: this.fb.group(this.createFormGroup(this.addressPlayer)),
-    });
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onChange: (value: string) => void = () => {};
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onTouched: () => void = () => {};
 
-    console.log('FORM GROUP', this.personalData);
+  onIput(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.onChange(value);
   }
 
-  createFormGroup(data: IGeneralFields[]): Record<string, unknown> {
-    const group: Record<string, unknown> = {};
-
-    data.forEach((fieldset: IGeneralFields) => {
-      group[fieldset.inputFieldName] = [
-        fieldset.initialValues,
-        fieldset.validators || [],
-      ];
-    });
-
-    return group;
+  writeValue(value: string): void {
+    this.value = value;
   }
 
-  onSubmit(): void {
-    console.log(this.playerForm.value);
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  updateValue(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.value = input.value;
+    this.onChange(this.value);
+    this.onTouched();
   }
 }

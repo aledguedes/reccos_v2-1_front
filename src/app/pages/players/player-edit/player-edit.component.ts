@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { InputFormsComponent } from '../../components/input-forms/input-forms.component';
 import { ActivatedRoute } from '@angular/router';
+import { PlayerLayoutFormComponent } from '../player-layout-form/player-layout-form.component';
 
 @Component({
   selector: 'app-player-edit',
   standalone: true,
-  imports: [InputFormsComponent],
+  imports: [InputFormsComponent, PlayerLayoutFormComponent],
   templateUrl: './player-edit.component.html',
   styleUrl: './player-edit.component.scss',
 })

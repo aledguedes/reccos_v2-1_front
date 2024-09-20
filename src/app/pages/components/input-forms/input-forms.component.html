@@ -1,142 +1,15 @@
-<form class="uk-form-stacked" [formGroup]="playerForm" (ngSubmit)="onSubmit()">
-  <div formGroupName="player">
-    <fieldset class="uk-fieldset">
-      <legend class="uk-legend">Dados Pessoais</legend>
-      <div class="row">
-        @for (field of personalData; track $index) {
-          @if (field.typeComponent === "input") {
-            <div [ngClass]="field.colClass" class="my-2">
-              <label class="uk-form-label" [for]="field.inputFieldId">{{
-                field.label
-              }}</label>
-              <div class="uk-form-controls">
-                <input
-                  [id]="field.inputFieldId"
-                  [formControlName]="field.inputFieldName"
-                  [type]="field.inputType"
-                  [placeholder]="field.placeholder"
-                  [step]="field.step"
-                  class="uk-input"
-                />
-
-                @if (field.inputType === "file") {
-                  <div class="uk-form-custom">
-                    <input
-                      type="file"
-                      [id]="field.inputFieldId"
-                      [accept]="field.accept"
-                      [formControlName]="field.inputFieldName"
-                    />
-                    <input
-                      class="uk-input uk-form-width-medium"
-                      type="text"
-                      placeholder="Selecione uma foto"
-                      disabled
-                    />
-                  </div>
-                }
-              </div>
-            </div>
-          }
-          @if (field.typeComponent === "select") {
-            <div [ngClass]="field.colClass" class="my-2">
-              <label class="uk-form-label" [for]="field.inputFieldId">{{
-                field.label
-              }}</label>
-              <div class="uk-form-controls">
-                <select
-                  [id]="field.inputFieldId"
-                  [formControlName]="field.inputFieldName"
-                  class="uk-select"
-                >
-                  <option
-                    *ngFor="let option of field.options"
-                    [value]="option.value"
-                  >
-                    {{ option.label }}
-                  </option>
-                </select>
-              </div>
-            </div>
-          }
-        }
-      </div>
-    </fieldset>
+<div class="field">
+  <label class="label" for="exampleInput"> {{ label }} :</label>
+  <div class="control">
+    <input
+      [id]="id"
+      [value]="value"
+      (input)="updateValue($event)"
+      [type]="type"
+      [placeholder]="placeholder"
+      [step]="step"
+      class="input is-link"
+    />
   </div>
-  <div formGroupName="address" class="mt-4">
-    <fieldset class="uk-fieldset">
-      <legend class="uk-legend">Dados de Contato</legend>
-      <div class="row">
-        @for (field of addressPlayer; track $index) {
-          @if (field.typeComponent === "input") {
-            <div [ngClass]="field.colClass" class="my-2">
-              <label class="uk-form-label" [for]="field.inputFieldId">{{
-                field.label
-              }}</label>
-              <div class="uk-form-controls">
-                <input
-                  [id]="field.inputFieldId"
-                  [formControlName]="field.inputFieldName"
-                  [type]="field.inputType"
-                  [placeholder]="field.placeholder"
-                  [step]="field.step"
-                  class="uk-input"
-                />
-
-                @if (field.inputType === "file") {
-                  <div class="uk-form-custom">
-                    <input
-                      type="file"
-                      [id]="field.inputFieldId"
-                      [accept]="field.accept"
-                      [formControlName]="field.inputFieldName"
-                    />
-                    <input
-                      class="uk-input uk-form-width-medium"
-                      type="text"
-                      placeholder="Selecione uma foto"
-                      disabled
-                    />
-                  </div>
-                }
-              </div>
-            </div>
-          }
-          @if (field.typeComponent === "select") {
-            <div [ngClass]="field.colClass" class="my-2">
-              <label class="uk-form-label" [for]="field.inputFieldId">{{
-                field.label
-              }}</label>
-              <div class="uk-form-controls">
-                <select
-                  [id]="field.inputFieldId"
-                  [formControlName]="field.inputFieldName"
-                  class="uk-select"
-                >
-                  <option
-                    *ngFor="let option of field.options"
-                    [value]="option.value"
-                  >
-                    {{ option.label }}
-                  </option>
-                </select>
-              </div>
-            </div>
-          }
-        }
-      </div>
-    </fieldset>
-  </div>
-  <div class="row g-3 mt-4">
-    <div class="col-12 col-md-6">
-      <button class="uk-button uk-button-primary w-100" type="submit">
-        Cadastrar Atleta
-      </button>
-    </div>
-    <div class="col-12 col-md-6">
-      <button class="uk-button uk-button-default w-100" type="reset">
-        Cancelar
-      </button>
-    </div>
-  </div>
-</form>
+  <!-- <p class="help">Esse é um campo de entrada usando Bulma CSS.</p> -->
+</div>
