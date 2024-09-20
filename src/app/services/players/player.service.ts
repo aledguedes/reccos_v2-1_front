@@ -18,6 +18,10 @@ export class PlayerService {
     );
   }
 
+  getPlayerById(player_id: number) {
+    return this.http.get<Player>(`${this.url}/${this.flag}/${player_id}`);
+  }
+
   removePlayer(player_id: number) {
     return this.http.delete<Player>(`${this.url}/${this.flag}/${player_id}`);
   }

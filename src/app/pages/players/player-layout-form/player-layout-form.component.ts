@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
 import { inputsFieldPlayer } from '../../../utils/form-inputs/form-input-player';
@@ -9,6 +15,7 @@ import { SelectFormsComponent } from '../../components/select-forms/select-forms
 import { debounceTime, switchMap } from 'rxjs';
 import { AddressService } from '../../../services/address/address.service';
 import { IAddress } from '../../../models/Address';
+import { Player } from '../../../models/PlayerModel';
 
 @Component({
   selector: 'app-player-layout-form',
@@ -22,7 +29,9 @@ import { IAddress } from '../../../models/Address';
   templateUrl: './player-layout-form.component.html',
   styleUrl: './player-layout-form.component.scss',
 })
-export class PlayerLayoutFormComponent implements OnInit {
+export class PlayerLayoutFormComponent implements OnInit, OnChanges {
+  @Input() player!: Player;
+  @Input() update = false;
   playerForm!: FormGroup;
   personalData: IGeneralFields[] = inputsFieldPlayer;
   addressPlayer: IGeneralFields[] = generalInputsAddress;
@@ -63,6 +72,13 @@ export class PlayerLayoutFormComponent implements OnInit {
         this.playerForm.get('address.city')?.enable();
         this.playerForm.get('address.state')?.enable();
       });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ON CHANGES', this.update);
+    if (this.update) {
+      console.log('ON CHANGES', changes, this.update);
+    }
   }
 
   createFormGroup(data: IGeneralFields[]): Record<string, unknown> {
