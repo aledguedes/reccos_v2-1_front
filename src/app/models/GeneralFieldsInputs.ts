@@ -19,7 +19,7 @@ export interface IGeneralFields {
   validators?: ValidatorFn[];
   initialValues: string;
   accept?: string;
-  step?: number;
+  step?: string;
   colClass?: string;
 }
 

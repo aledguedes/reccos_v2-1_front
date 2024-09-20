@@ -1,33 +1,25 @@
-import { Component, forwardRef, Input } from '@angular/core';
-import {
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-} from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component, forwardRef, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-input-forms',
+  selector: 'app-select-forms',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './input-forms.component.html',
-  styleUrl: './input-forms.component.scss',
+  imports: [CommonModule],
+  templateUrl: './select-forms.component.html',
+  styleUrl: './select-forms.component.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputFormsComponent),
+      useExisting: forwardRef(() => SelectFormsComponent),
       multi: true,
     },
   ],
 })
-export class InputFormsComponent implements ControlValueAccessor {
+export class SelectFormsComponent implements ControlValueAccessor {
   @Input() label = '';
-  @Input() type = 'text';
-  @Input() placeholder = '';
-  @Input() formControlName = '';
   @Input() id = '';
-  @Input() step?: string;
-  @Input() accept?: string;
+  @Input() options: { value: string; label: string }[] = [];
 
   value = '';
 
@@ -36,7 +28,7 @@ export class InputFormsComponent implements ControlValueAccessor {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onTouched: () => void = () => {};
 
-  onInput(event: Event) {
+  onIput(event: Event) {
     const value = (event.target as HTMLInputElement).value;
     this.onChange(value);
   }

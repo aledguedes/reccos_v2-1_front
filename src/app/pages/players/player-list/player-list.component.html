@@ -39,7 +39,8 @@
               <div class="card-footer-item">
                 <button
                   class="button is-small is-info"
-                  [routerLink]="['update', player.id]"
+                  [routerLink]="['player-edit']"
+                  [queryParams]="{ action: 'update', p: player.id }"
                 >
                   <span class="icon">
                     <i class="ri-pencil-line"></i>
