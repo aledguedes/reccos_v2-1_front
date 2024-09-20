@@ -1,0 +1,21 @@
+<div class="field">
+  <label class="label" [for]="id">{{ label }}</label>
+  <div class="control">
+    <div class="select is-link is-fullwidth">
+      <select [id]="id" [value]="value" (change)="updateValue($event)">
+        <option *ngFor="let option of options" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+    <!-- <p class="help">Esse é um campo de entrada usando Bulma CSS.</p> -->
+  </div>
+</div>
+
+<!-- 
+  <select [id]="id" [value]="value" (change)="updateValue($event)">
+    <option *ngFor="let option of options" [value]="option.value">
+        {{ option.label }}
+    </option>
+</select>
+-->

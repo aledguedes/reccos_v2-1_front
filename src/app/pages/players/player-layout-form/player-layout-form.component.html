@@ -3,8 +3,8 @@
     <fieldset class="uk-fieldset">
       <legend class="uk-legend">Dados Pessoais</legend>
       <div class="row">
-        <ng-container *ngFor="let field of personalData">
-          <ng-container *ngIf="field.typeComponent === 'input'">
+        @for (field of personalData; track $index) {
+          @if (field.typeComponent === "input") {
             <div [ngClass]="field.colClass">
               <app-input-forms
                 [id]="field.inputFieldId"
@@ -17,30 +17,19 @@
               >
               </app-input-forms>
             </div>
-          </ng-container>
+          }
 
-          <ng-container *ngIf="field.typeComponent === 'select'">
-            <div [ngClass]="field.colClass" class="my-2">
-              <label class="uk-form-label" [for]="field.inputFieldId">{{
-                field.label
-              }}</label>
-              <div class="uk-form-controls">
-                <select
-                  [id]="field.inputFieldId"
-                  [formControlName]="field.inputFieldName"
-                  class="uk-select"
-                >
-                  <option
-                    *ngFor="let option of field.options"
-                    [value]="option.value"
-                  >
-                    {{ option.label }}
-                  </option>
-                </select>
-              </div>
+          @if (field.typeComponent === "select") {
+            <div [ngClass]="field.colClass">
+              <app-select-forms
+                [id]="field.inputFieldId"
+                [label]="field.label"
+                [options]="field.options ?? []"
+                [formControlName]="field.inputFieldName"
+              ></app-select-forms>
             </div>
-          </ng-container>
-        </ng-container>
+          }
+        }
       </div>
     </fieldset>
   </div>
@@ -49,71 +38,33 @@
     <fieldset class="uk-fieldset">
       <legend class="uk-legend">Dados de Contato</legend>
       <div class="row">
-        <ng-container *ngFor="let field of addressPlayer">
-          <ng-container *ngIf="field.typeComponent === 'input'">
-            <div [ngClass]="field.colClass" class="my-2">
-              <label class="uk-form-label" [for]="field.inputFieldId">{{
-                field.label
-              }}</label>
-              <div class="uk-form-controls">
-                <input
-                  [id]="field.inputFieldId"
-                  [formControlName]="field.inputFieldName"
-                  [type]="field.inputType"
-                  [placeholder]="field.placeholder"
-                  [step]="field.step"
-                  class="uk-input"
-                />
-
-                <ng-container *ngIf="field.inputType === 'file'">
-                  <div class="uk-form-custom">
-                    <input
-                      type="file"
-                      [id]="field.inputFieldId"
-                      [accept]="field.accept"
-                      [formControlName]="field.inputFieldName"
-                    />
-                    <input
-                      class="uk-input uk-form-width-medium"
-                      type="text"
-                      placeholder="Selecione uma foto"
-                      disabled
-                    />
-                  </div>
-                </ng-container>
-              </div>
+        @for (field of addressPlayer; track $index) {
+          @if (field.typeComponent === "input") {
+            <div [ngClass]="field.colClass">
+              <app-input-forms
+                [id]="field.inputFieldId"
+                [label]="field.label"
+                [formControlName]="field.inputFieldName"
+                [type]="field.inputType ?? 'text'"
+                [placeholder]="field.placeholder ?? ''"
+                [step]="field.step"
+                [accept]="field.accept"
+              >
+              </app-input-forms>
             </div>
-          </ng-container>
-
-          <ng-container *ngIf="field.typeComponent === 'select'">
-            <div [ngClass]="field.colClass" class="my-2">
-              <label class="uk-form-label" [for]="field.inputFieldId">{{
-                field.label
-              }}</label>
-              <div class="uk-form-controls">
-                <select
-                  [id]="field.inputFieldId"
-                  [formControlName]="field.inputFieldName"
-                  class="uk-select"
-                >
-                  <option
-                    *ngFor="let option of field.options"
-                    [value]="option.value"
-                  >
-                    {{ option.label }}
-                  </option>
-                </select>
-              </div>
-            </div>
-          </ng-container>
-        </ng-container>
+          }
+        }
       </div>
     </fieldset>
   </div>
 
   <div class="row g-3 mt-4">
     <div class="col-12 col-md-6">
-      <button class="uk-button uk-button-primary w-100" type="submit">
+      <button
+        class="uk-button uk-button-primary w-100"
+        type="submit"
+        [disabled]="playerForm.invalid"
+      >
         Cadastrar Atleta
       </button>
     </div>

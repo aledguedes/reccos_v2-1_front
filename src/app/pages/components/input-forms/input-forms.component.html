@@ -1,13 +1,13 @@
-<div class="field">
-  <label class="label" for="exampleInput"> {{ label }} :</label>
+<div class="field my-1">
+  <label class="label" [for]="id"> {{ label }}</label>
   <div class="control">
     <input
       [id]="id"
       [value]="value"
-      (input)="updateValue($event)"
       [type]="type"
       [placeholder]="placeholder"
       [step]="step"
+      (input)="updateValue($event)"
       class="input is-link"
     />
   </div>
