@@ -1,7 +1,10 @@
-export interface Player {
+import { IAddress } from './Address';
+
+export interface IPlayerResponse {
   id: number;
   rg: string;
   cpf: string;
+  team: number;
   name: string;
   email: string;
   status: string;
@@ -11,6 +14,6 @@ export interface Player {
   birth_date: Date;
   position: string;
   suspended: boolean;
-  cod_status: string;
   picture_profile: string;
+  address: IAddress;
 }

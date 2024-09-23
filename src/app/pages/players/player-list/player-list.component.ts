@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Player } from '../../../models/PlayerModel';
+import { IPlayerResponse } from '../../../models/PlayerModel';
 import { PlayerService } from '../../../services/players/player.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { PlayerService } from '../../../services/players/player.service';
 })
 export class PlayerListComponent implements OnInit {
   baseUrl = '';
-  players: Player[] = [];
+  players: IPlayerResponse[] = [];
 
   page = 1;
   perPage = 12;

@@ -14,4 +14,9 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./pages/players/player.routes').then((r) => r.PLAYER_ROUTES),
   },
+  {
+    path: 'team',
+    loadChildren: () =>
+      import('./pages/teams/team.routes').then((r) => r.TEAM_ROUTES),
+  },
 ];
