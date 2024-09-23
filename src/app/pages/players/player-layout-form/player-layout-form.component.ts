@@ -15,7 +15,7 @@ import { SelectFormsComponent } from '../../components/select-forms/select-forms
 import { debounceTime, switchMap } from 'rxjs';
 import { AddressService } from '../../../services/address/address.service';
 import { IAddress } from '../../../models/Address';
-import { Player } from '../../../models/PlayerModel';
+import { IPlayerResponse } from '../../../models/PlayerModel';
 
 @Component({
   selector: 'app-player-layout-form',
@@ -30,11 +30,11 @@ import { Player } from '../../../models/PlayerModel';
   styleUrl: './player-layout-form.component.scss',
 })
 export class PlayerLayoutFormComponent implements OnInit, OnChanges {
-  @Input() player!: Player;
   @Input() update = false;
+  @Input() player!: IPlayerResponse;
+  @Input() personalData: IGeneralFields[] = inputsFieldPlayer;
+  @Input() addressPlayer: IGeneralFields[] = generalInputsAddress;
   playerForm!: FormGroup;
-  personalData: IGeneralFields[] = inputsFieldPlayer;
-  addressPlayer: IGeneralFields[] = generalInputsAddress;
 
   constructor(
     private fb: FormBuilder,
@@ -75,8 +75,8 @@ export class PlayerLayoutFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('ON CHANGES', this.update);
     if (this.update) {
+      this.updateDataPlayer(changes['player'].currentValue);
       console.log('ON CHANGES', changes, this.update);
     }
   }
@@ -101,5 +101,26 @@ export class PlayerLayoutFormComponent implements OnInit, OnChanges {
   convertDateToISO(dateString: string) {
     const date = new Date(dateString);
     return date.toISOString();
+  }
+
+  updateDataPlayer(data: IPlayerResponse) {
+    const keys = Object.keys(data) as (keyof IPlayerResponse)[];
+    const keysAddress = Object.keys(data.address) as (keyof IAddress)[];
+
+    this.personalData.forEach((p: IGeneralFields) => {
+      keys.forEach((k) => {
+        if (p.inputFieldName === k) {
+          p.initialValues = data[k];
+        }
+      });
+    });
+
+    this.addressPlayer.forEach((p: IGeneralFields) => {
+      keysAddress.forEach((k) => {
+        if (p.inputFieldName === k) {
+          p.initialValues = data.address[k];
+        }
+      });
+    });
   }
 }

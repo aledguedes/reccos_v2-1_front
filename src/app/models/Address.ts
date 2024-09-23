@@ -14,7 +14,5 @@ export interface IAddress {
   city: string;
   neighborhood: string; // bairro
   street: string;
-  service?: string;
-  location?: Location;
 }
 // https://brasilapi.com.br/api/cep/v2/{cep}

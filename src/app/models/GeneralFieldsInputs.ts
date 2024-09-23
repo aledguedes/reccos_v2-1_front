@@ -1,4 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
+import { IAddress } from './Address';
 
 export interface IGeneralFields {
   typeComponent: 'input' | 'select';
@@ -17,7 +18,7 @@ export interface IGeneralFields {
   placeholder?: string;
   options?: IOptions[];
   validators?: ValidatorFn[];
-  initialValues: string;
+  initialValues: string | number | boolean | Date | IAddress;
   accept?: string;
   step?: string;
   colClass?: string;

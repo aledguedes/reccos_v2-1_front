@@ -3,7 +3,10 @@ import { InputFormsComponent } from '../../components/input-forms/input-forms.co
 import { ActivatedRoute } from '@angular/router';
 import { PlayerLayoutFormComponent } from '../player-layout-form/player-layout-form.component';
 import { PlayerService } from '../../../services/players/player.service';
-import { Player } from '../../../models/PlayerModel';
+import { IPlayerResponse } from '../../../models/PlayerModel';
+import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
+import { inputsFieldPlayer } from '../../../utils/form-inputs/form-input-player';
+import { generalInputsAddress } from '../../../utils/form-inputs/form-input-address';
 
 @Component({
   selector: 'app-player-edit',
@@ -15,7 +18,7 @@ import { Player } from '../../../models/PlayerModel';
 export class PlayerEditComponent implements OnInit {
   titlePage = '';
   isUpdate = false;
-  player: Player = {
+  player: IPlayerResponse = {
     id: 0,
     rg: '',
     cpf: '',
@@ -28,9 +31,19 @@ export class PlayerEditComponent implements OnInit {
     birth_date: new Date(),
     position: '',
     suspended: false,
-    cod_status: '',
+    team: 1,
     picture_profile: '',
+    address: {
+      cep: '',
+      state: '',
+      city: '',
+      neighborhood: '',
+      street: '',
+    },
   };
+
+  personalData: IGeneralFields[] = inputsFieldPlayer;
+  addressPlayer: IGeneralFields[] = generalInputsAddress;
   constructor(
     private actvRouter: ActivatedRoute,
     private playerService: PlayerService,
@@ -49,7 +62,7 @@ export class PlayerEditComponent implements OnInit {
 
   playerById(player_id: number) {
     this.playerService.getPlayerById(player_id).subscribe({
-      next: (data: Player) => {
+      next: (data: IPlayerResponse) => {
         this.player = data;
         console.log('PLAYER BY ID DATA', data);
       },
