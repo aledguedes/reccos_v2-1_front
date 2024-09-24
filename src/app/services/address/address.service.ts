@@ -11,7 +11,6 @@ export class AddressService {
   constructor(private http: HttpClient) {}
 
   getAddress(cep: string) {
-    console.log('SERVICE CEP', cep);
     return this.http.get<IAddress>(`${this.url}/${cep}`);
   }
 }

@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
 import { inputsFieldPlayer } from '../../../utils/form-inputs/form-input-player';
@@ -15,8 +9,38 @@ import { SelectFormsComponent } from '../../components/select-forms/select-forms
 import { debounceTime, switchMap } from 'rxjs';
 import { AddressService } from '../../../services/address/address.service';
 import { IAddress } from '../../../models/Address';
-import { IPlayerResponse } from '../../../models/PlayerModel';
+import { PlayerService } from '../../../services/players/player.service';
+import { IPlayerRequest, IPlayerResponse } from '../../../models/PlayerModel';
 
+interface IPlayerForm {
+  update: boolean;
+  player_id: number;
+}
+
+interface IDataPlayer {
+  player: IPlayerMethod;
+  address: IAddressMethod;
+}
+interface IPlayerMethod {
+  rg: string;
+  cpf: string;
+  team: number;
+  name: string;
+  email: string;
+  status: string;
+  surname: string;
+  birth_date: Date;
+  position: string;
+  picture_profile: string;
+}
+
+interface IAddressMethod {
+  cep: string;
+  state: string;
+  city: string;
+  neighborhood: string; // bairro
+  street: string;
+}
 @Component({
   selector: 'app-player-layout-form',
   standalone: true,
@@ -30,54 +54,59 @@ import { IPlayerResponse } from '../../../models/PlayerModel';
   styleUrl: './player-layout-form.component.scss',
 })
 export class PlayerLayoutFormComponent implements OnInit, OnChanges {
-  @Input() update = false;
-  @Input() player!: IPlayerResponse;
-  @Input() personalData: IGeneralFields[] = inputsFieldPlayer;
-  @Input() addressPlayer: IGeneralFields[] = generalInputsAddress;
+  @Input() toForm: IPlayerForm = {
+    update: false,
+    player_id: 0,
+  };
+  player!: IDataPlayer;
+  personalData: IGeneralFields[] = inputsFieldPlayer;
+  addressPlayer: IGeneralFields[] = generalInputsAddress;
   playerForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private cepService: AddressService,
+    private playerService: PlayerService,
   ) {}
 
   ngOnInit(): void {
+    this.initForm(false, 0);
+
+    if (!this.toForm.update) {
+      this.playerForm
+        .get('address.cep')
+        ?.valueChanges.pipe(
+          debounceTime(1000),
+          switchMap((cep) => this.cepService.getAddress(cep)),
+        )
+        .subscribe((address: IAddress) => {
+          this.playerForm.patchValue({
+            address: {
+              street: address.street,
+              city: address.city,
+              state: address.state,
+              neighborhood: address.neighborhood,
+            },
+          });
+        });
+    }
+  }
+
+  ngOnChanges(): void {
+    if (this.toForm.update) {
+      this.initForm(this.toForm.update, this.toForm.player_id);
+    }
+  }
+
+  initForm(update: boolean, player_id: number) {
     this.playerForm = this.fb.group({
       player: this.fb.group(this.createFormGroup(this.personalData)),
       address: this.fb.group(this.createFormGroup(this.addressPlayer)),
     });
-
-    this.playerForm.controls['address.street']?.disable();
-    this.playerForm.controls['address.neighborhood']?.disable();
-    this.playerForm.controls['address.city']?.disable();
-    this.playerForm.controls['address.state']?.disable();
-
-    this.playerForm
-      .get('address.cep')
-      ?.valueChanges.pipe(
-        debounceTime(1000),
-        switchMap((cep) => this.cepService.getAddress(cep)),
-      )
-      .subscribe((address: IAddress) => {
-        this.playerForm.patchValue({
-          address: {
-            street: address.street,
-            city: address.city,
-            state: address.state,
-            neighborhood: address.neighborhood,
-          },
-        });
-        this.playerForm.get('address.street')?.enable();
-        this.playerForm.get('address.neighborhood')?.enable();
-        this.playerForm.get('address.city')?.enable();
-        this.playerForm.get('address.state')?.enable();
-      });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.update) {
-      this.updateDataPlayer(changes['player'].currentValue);
-      console.log('ON CHANGES', changes, this.update);
+    if (update) {
+      setTimeout(() => {
+        this.playerById(player_id);
+      }, 100);
     }
   }
 
@@ -95,7 +124,23 @@ export class PlayerLayoutFormComponent implements OnInit, OnChanges {
   }
 
   onSubmit(): void {
-    console.log(this.playerForm.value);
+    const obj: IPlayerRequest = {
+      id: this.toForm.player_id,
+      address: this.playerForm.value.address,
+      ...this.playerForm.value.player,
+    };
+    this.updatePlayer(this.toForm.player_id, obj);
+  }
+
+  updatePlayer(player_id: number, form: IPlayerRequest) {
+    this.playerService.updatePlayer(player_id, form).subscribe({
+      next: (data) => {
+        console.log('UPDATE PLAYER BY ID DATA', data);
+      },
+      error: (err) => {
+        console.log('UPDATE PLAYER BY ID ERR', err);
+      },
+    });
   }
 
   convertDateToISO(dateString: string) {
@@ -103,24 +148,23 @@ export class PlayerLayoutFormComponent implements OnInit, OnChanges {
     return date.toISOString();
   }
 
-  updateDataPlayer(data: IPlayerResponse) {
-    const keys = Object.keys(data) as (keyof IPlayerResponse)[];
-    const keysAddress = Object.keys(data.address) as (keyof IAddress)[];
-
-    this.personalData.forEach((p: IGeneralFields) => {
-      keys.forEach((k) => {
-        if (p.inputFieldName === k) {
-          p.initialValues = data[k];
-        }
-      });
+  playerById(player_id: number) {
+    this.playerService.getPlayerById(player_id).subscribe({
+      next: (data: IPlayerResponse) => {
+        // console.log('PLAYER BY ID DATA', data);
+        const { address, ...player } = data;
+        this.updateDataPlayer({
+          address: address,
+          player: player,
+        });
+      },
+      error: (err) => {
+        console.log('PLAYER BY ID ERR', err);
+      },
     });
+  }
 
-    this.addressPlayer.forEach((p: IGeneralFields) => {
-      keysAddress.forEach((k) => {
-        if (p.inputFieldName === k) {
-          p.initialValues = data.address[k];
-        }
-      });
-    });
+  updateDataPlayer(data: IDataPlayer) {
+    this.playerForm.patchValue(data);
   }
 }

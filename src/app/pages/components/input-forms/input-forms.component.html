@@ -9,7 +9,10 @@
       [step]="step"
       (input)="updateValue($event)"
       class="input is-link"
+      [class.is-danger]="isInvalid"
+      [class.is-success]="!isInvalid && value"
     />
   </div>
+  <p class="help is-danger" *ngIf="isInvalid">{{ label }} é inválido.</p>
   <!-- <p class="help">Esse é um campo de entrada usando Bulma CSS.</p> -->
 </div>

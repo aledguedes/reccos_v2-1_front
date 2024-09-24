@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { IPlayerResponse } from '../../models/PlayerModel';
+import { IPlayerRequest, IPlayerResponse } from '../../models/PlayerModel';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +21,13 @@ export class PlayerService {
   getPlayerById(player_id: number) {
     return this.http.get<IPlayerResponse>(
       `${this.url}/${this.flag}/${player_id}`,
+    );
+  }
+
+  updatePlayer(player_id: number, form: IPlayerRequest) {
+    return this.http.put<IPlayerResponse>(
+      `${this.url}/${this.flag}/${player_id}`,
+      JSON.stringify(form),
     );
   }
 
