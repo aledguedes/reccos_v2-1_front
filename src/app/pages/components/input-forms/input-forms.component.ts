@@ -28,6 +28,7 @@ export class InputFormsComponent implements ControlValueAccessor {
   @Input() id = '';
   @Input() step?: string;
   @Input() accept?: string;
+  @Input() isInvalid = false;
 
   value = '';
 

@@ -28,7 +28,7 @@ export class PlayerListComponent implements OnInit {
     this.playerService.getAllPlayers(this.page, this.perPage).subscribe({
       next: (data) => {
         this.players = data;
-        console.log('PLAYERS ALL', this.players);
+        // console.log('PLAYERS ALL', this.players);
       },
       error: (err) => {
         console.log('PLAYERS ALL ERR', err);
@@ -39,7 +39,7 @@ export class PlayerListComponent implements OnInit {
   removePlayer(id_player: number) {
     this.playerService.removePlayer(id_player).subscribe({
       next: (data) => {
-        console.log('PLAYERS ALL', data);
+        // console.log('PLAYERS ALL', data);
         this.listAllPlayers();
       },
       error: (err) => {

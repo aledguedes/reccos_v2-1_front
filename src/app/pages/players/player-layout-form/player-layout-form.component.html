@@ -14,6 +14,14 @@
                 [placeholder]="field.placeholder ?? ''"
                 [step]="field.step"
                 [accept]="field.accept"
+                [isInvalid]="
+                  (playerForm.get('player.' + field.inputFieldName)?.invalid &&
+                    (playerForm.get('player.' + field.inputFieldName)
+                      ?.touched ||
+                      playerForm.get('player.' + field.inputFieldName)
+                        ?.dirty)) ??
+                  false
+                "
               >
               </app-input-forms>
             </div>
@@ -49,6 +57,14 @@
                 [placeholder]="field.placeholder ?? ''"
                 [step]="field.step"
                 [accept]="field.accept"
+                [isInvalid]="
+                  (playerForm.get('address.' + field.inputFieldName)?.invalid &&
+                    (playerForm.get('address.' + field.inputFieldName)
+                      ?.touched ||
+                      playerForm.get('address.' + field.inputFieldName)
+                        ?.dirty)) ??
+                  false
+                "
               >
               </app-input-forms>
             </div>

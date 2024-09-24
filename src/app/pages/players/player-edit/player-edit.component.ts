@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { InputFormsComponent } from '../../components/input-forms/input-forms.component';
 import { ActivatedRoute } from '@angular/router';
 import { PlayerLayoutFormComponent } from '../player-layout-form/player-layout-form.component';
-import { PlayerService } from '../../../services/players/player.service';
-import { IPlayerResponse } from '../../../models/PlayerModel';
 import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
 import { inputsFieldPlayer } from '../../../utils/form-inputs/form-input-player';
 import { generalInputsAddress } from '../../../utils/form-inputs/form-input-address';
 
+interface IPlayerForm {
+  update: boolean;
+  player_id: number;
+}
 @Component({
   selector: 'app-player-edit',
   standalone: true,
@@ -17,58 +19,20 @@ import { generalInputsAddress } from '../../../utils/form-inputs/form-input-addr
 })
 export class PlayerEditComponent implements OnInit {
   titlePage = '';
-  isUpdate = false;
-  player: IPlayerResponse = {
-    id: 0,
-    rg: '',
-    cpf: '',
-    name: '',
-    email: '',
-    status: '',
-    surname: '',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    birth_date: new Date(),
-    position: '',
-    suspended: false,
-    team: 1,
-    picture_profile: '',
-    address: {
-      cep: '',
-      state: '',
-      city: '',
-      neighborhood: '',
-      street: '',
-    },
-  };
+  playerForm!: IPlayerForm;
 
   personalData: IGeneralFields[] = inputsFieldPlayer;
   addressPlayer: IGeneralFields[] = generalInputsAddress;
-  constructor(
-    private actvRouter: ActivatedRoute,
-    private playerService: PlayerService,
-  ) {}
+  constructor(private actvRouter: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.actvRouter.queryParams.subscribe((data) => {
       this.titlePage =
         data['action'] === 'create' ? 'Novo atleta' : 'Editar Atleta';
-      this.isUpdate = data['action'] === 'update';
-      if (data['action'] === 'update') {
-        this.playerById(+data['p']);
-      }
-    });
-  }
-
-  playerById(player_id: number) {
-    this.playerService.getPlayerById(player_id).subscribe({
-      next: (data: IPlayerResponse) => {
-        this.player = data;
-        console.log('PLAYER BY ID DATA', data);
-      },
-      error: (err) => {
-        console.log('PLAYER BY ID ERR', err);
-      },
+      this.playerForm = {
+        update: data['action'] === 'update',
+        player_id: data['action'] === 'update' ? +data['p'] : 0,
+      };
     });
   }
 }
