@@ -5,7 +5,6 @@ export const generalInputsAddress: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'CEP:',
-    inputFieldId: 'cep',
     inputFieldName: 'cep',
     inputType: 'text',
     placeholder: 'Ex: 01000-000',
@@ -16,7 +15,6 @@ export const generalInputsAddress: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'Endereço:',
-    inputFieldId: 'street',
     inputFieldName: 'street',
     inputType: 'text',
     placeholder: 'Ex: Rua das Palmeiras',
@@ -27,7 +25,6 @@ export const generalInputsAddress: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'Número:',
-    inputFieldId: 'numberHome',
     inputFieldName: 'number_home',
     inputType: 'number',
     placeholder: '123',
@@ -38,7 +35,6 @@ export const generalInputsAddress: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'Bairro:',
-    inputFieldId: 'neighborhood',
     inputFieldName: 'neighborhood',
     inputType: 'text',
     placeholder: 'Vila Capanema',
@@ -49,7 +45,6 @@ export const generalInputsAddress: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'Cidade:',
-    inputFieldId: 'city',
     inputFieldName: 'city',
     inputType: 'text',
     placeholder: 'São Paulo',
@@ -60,7 +55,6 @@ export const generalInputsAddress: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'Estado:',
-    inputFieldId: 'state',
     inputFieldName: 'state',
     inputType: 'text',
     placeholder: 'São Paulo',

@@ -1,5 +1,5 @@
-<form class="uk-form-stacked" [formGroup]="playerForm" (ngSubmit)="onSubmit()">
-  <div formGroupName="player">
+<form class="uk-form-stacked" [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="team">
     <fieldset class="uk-fieldset">
       <legend class="uk-legend">Dados Pessoais</legend>
       <div class="row">
@@ -15,11 +15,9 @@
                 [step]="field.step"
                 [accept]="field.accept"
                 [isInvalid]="
-                  (playerForm.get('player.' + field.inputFieldName)?.invalid &&
-                    (playerForm.get('player.' + field.inputFieldName)
-                      ?.touched ||
-                      playerForm.get('player.' + field.inputFieldName)
-                        ?.dirty)) ??
+                  (teamForm.get('team.' + field.inputFieldName)?.invalid &&
+                    (teamForm.get('team.' + field.inputFieldName)?.touched ||
+                      teamForm.get('team.' + field.inputFieldName)?.dirty)) ??
                   false
                 "
               >
@@ -46,7 +44,7 @@
     <fieldset class="uk-fieldset">
       <legend class="uk-legend">Dados de Contato</legend>
       <div class="row">
-        @for (field of addressPlayer; track $index) {
+        @for (field of addressTeam; track $index) {
           @if (field.typeComponent === "input") {
             <div [ngClass]="field.colClass">
               <app-input-forms
@@ -58,10 +56,9 @@
                 [step]="field.step"
                 [accept]="field.accept"
                 [isInvalid]="
-                  (playerForm.get('address.' + field.inputFieldName)?.invalid &&
-                    (playerForm.get('address.' + field.inputFieldName)
-                      ?.touched ||
-                      playerForm.get('address.' + field.inputFieldName)
+                  (teamForm.get('address.' + field.inputFieldName)?.invalid &&
+                    (teamForm.get('address.' + field.inputFieldName)?.touched ||
+                      teamForm.get('address.' + field.inputFieldName)
                         ?.dirty)) ??
                   false
                 "
@@ -79,12 +76,12 @@
       <button
         class="uk-button uk-button-primary w-100"
         type="submit"
-        [disabled]="playerForm.invalid"
+        [disabled]="teamForm.invalid"
       >
-        Cadastrar Atleta
+        Cadastrar time
       </button>
     </div>
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6" [routerLink]="['/team']">
       <button class="uk-button uk-button-default w-100" type="reset">
         Cancelar
       </button>

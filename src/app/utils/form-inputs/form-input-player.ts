@@ -5,7 +5,6 @@ export const inputsFieldPlayer: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'Nome Completo:',
-    inputFieldId: 'nome_completo',
     inputFieldName: 'name',
     inputType: 'text',
     placeholder: 'Ex: João da Silva',
@@ -16,7 +15,6 @@ export const inputsFieldPlayer: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'Apelido:',
-    inputFieldId: 'apelido',
     inputFieldName: 'surname',
     inputType: 'text',
     placeholder: 'Ex: Joãozinho',
@@ -27,7 +25,6 @@ export const inputsFieldPlayer: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'CPF:',
-    inputFieldId: 'cpf',
     inputFieldName: 'cpf',
     inputType: 'text',
     placeholder: '000.000.000-00',
@@ -38,7 +35,6 @@ export const inputsFieldPlayer: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'RG:',
-    inputFieldId: 'rg',
     inputFieldName: 'rg',
     inputType: 'text',
     placeholder: '00.000.000-0',
@@ -49,7 +45,6 @@ export const inputsFieldPlayer: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'E-mail:',
-    inputFieldId: 'email',
     inputFieldName: 'email',
     inputType: 'email',
     placeholder: 'Ex: user@reccos.com',
@@ -60,7 +55,6 @@ export const inputsFieldPlayer: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'Telefone:',
-    inputFieldId: 'telefone',
     inputFieldName: 'phone',
     inputType: 'tel',
     placeholder: 'Ex: (11) 99999-9999',
@@ -71,7 +65,6 @@ export const inputsFieldPlayer: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'Data de Nascimento:',
-    inputFieldId: 'data_nascimento',
     inputFieldName: 'birth_date',
     inputType: 'date',
     validators: [Validators.required],
@@ -81,7 +74,6 @@ export const inputsFieldPlayer: IGeneralFields[] = [
   {
     typeComponent: 'select',
     label: 'Sexo:',
-    inputFieldId: 'gender',
     inputFieldName: 'gender',
     options: [
       { value: '', label: 'Selecione o sexo' },
@@ -95,7 +87,6 @@ export const inputsFieldPlayer: IGeneralFields[] = [
   {
     typeComponent: 'select',
     label: 'Status:',
-    inputFieldId: 'status',
     inputFieldName: 'position',
     options: [
       { value: '', label: 'Selecione o status do atleta' },
@@ -111,7 +102,6 @@ export const inputsFieldPlayer: IGeneralFields[] = [
   // {
   //   typeComponent: 'input',
   //   label: 'Foto do Atleta (Opcional)',
-  //   inputFieldId: 'foto',
   //   inputFieldName: 'photo',
   //   inputType: 'file',
   //   placeholder: 'Selecione uma foto',
