@@ -1,7 +1,11 @@
 <div class="container">
   <div class="columns is-mobile is-justify-content-flex-end my-3">
     <div class="column is-narrow">
-      <a class="button is-link is-uppercase" routerLink="create">
+      <a
+        class="button is-link is-uppercase"
+        [routerLink]="['team-edit']"
+        [queryParams]="{ action: 'create' }"
+      >
         <span class="icon">
           <i class="ri-add-line"></i>
         </span>
@@ -10,28 +14,28 @@
     </div>
   </div>
 
-  @if (teams.length) {
-    @for (t of teams; track $index) {
-      <a
-        class="has-text-centered d-flex flex-column align-items-center"
-        [routerLink]="['/edit-team']"
-      >
-        <div
-          class="profile-photo"
-          [style.backgroundImage]="'url(' + baseUrl + ')'"
-          style="
-            background-size: cover;
-            height: 150px;
-            width: 150px;
-            border-radius: 50%;
-          "
-        ></div>
-        <p class="mt-2">{{ t.surname }}</p>
-      </a>
+  <div class="row">
+    @if (teams.length) {
+      @for (t of teams; track $index) {
+        <div class="col-6 col-lg-2 col-md-2 col-sm-6 mb-2">
+          <a
+            class="has-text-centered d-flex flex-column align-items-center"
+            [routerLink]="['team-edit']"
+            [queryParams]="{ action: 'update', p: t.id }"
+            style="font-size: 12px"
+          >
+            <div
+              class="profile-photo"
+              [style.backgroundImage]="'url(' + baseUrl + ')'"
+            ></div>
+            <p class="mt-2">{{ t.surname }}</p>
+          </a>
+        </div>
+      }
+    } @else {
+      <div class="notification is-warning mt-5">
+        <p class="m-0">O sistema ainda não possui times cadastrados!!</p>
+      </div>
     }
-  } @else {
-    <div class="notification is-warning mt-5">
-      <p class="m-0">O sistema ainda não possui times cadastrados!!</p>
-    </div>
-  }
+  </div>
 </div>

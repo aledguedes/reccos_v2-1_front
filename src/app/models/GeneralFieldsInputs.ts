@@ -4,7 +4,6 @@ import { IAddress } from './Address';
 export interface IGeneralFields {
   typeComponent: 'input' | 'select';
   label: string;
-  inputFieldId: string;
   inputFieldName: string;
   inputType?:
     | 'text'
