@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 interface IDataPlayer {
+  team: ITeamMethod;
   address: IAddressMethod;
 }
 
@@ -30,12 +31,17 @@ interface IAddressMethod {
   street: string;
 }
 
-interface IAddressMethod {
-  cep: string;
-  state: string;
-  city: string;
-  neighborhood: string; // bairro
-  street: string;
+interface ITeamMethod {
+  id: number;
+  name: string;
+  surname: string;
+  acronym: string;
+  status: string;
+  picture_profile?: string;
+  birth_date: string;
+  registered_federation: number;
+  created_at: string;
+  updated_at: string;
 }
 
 interface IAddressMethod {
@@ -100,7 +106,6 @@ export class TeamLayoutFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    console.log('NO CHANGES TO FORM TEAM', this.toForm);
     if (this.toForm.update) {
       this.initForm(this.toForm.update, this.toForm.team_id);
     }
@@ -122,11 +127,11 @@ export class TeamLayoutFormComponent implements OnInit, OnChanges {
     this.teamService.getTeamById(team_id).subscribe({
       next: (data: ITeamResponse) => {
         console.log('PLAYER BY ID DATA', data);
-        // const { address, ...team } = data;
-        // this.updateData({
-        //   address: address,
-        //   team: team,
-        // });
+        const { address, ...team } = data;
+        this.updateData({
+          address: address,
+          team: team,
+        });
       },
       error: (err) => {
         console.log('PLAYER BY ID ERR', err);
