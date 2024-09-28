@@ -3,7 +3,7 @@
     <div class="uk-width-auto">
       <a
         [routerLink]="['player-edit']"
-        [queryParams]="{ action: 'create' }"
+        [queryParams]="{ action: 'create', f: 'players' }"
         class="uk-button uk-button-primary uk-text-uppercase"
       >
         <span uk-icon="icon: plus"></span> Adicionar atleta
@@ -40,7 +40,11 @@
                 <button
                   class="button is-small is-info"
                   [routerLink]="['player-edit']"
-                  [queryParams]="{ action: 'update', p: player.id }"
+                  [queryParams]="{
+                    action: 'update',
+                    f: 'players',
+                    p: player.id,
+                  }"
                 >
                   <span class="icon">
                     <i class="ri-pencil-line"></i>

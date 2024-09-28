@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamLayoutFormComponent } from '../team-layout-form/team-layout-form.component';
 import { ActivatedRoute } from '@angular/router';
-
-interface ITeamForm {
-  update: boolean;
-  team_id: number;
-}
+import { IToForm } from '../../../models/GeneralForms';
 
 @Component({
   selector: 'app-team-edit',
@@ -16,7 +12,7 @@ interface ITeamForm {
 })
 export class TeamEditComponent implements OnInit {
   titlePage = '';
-  teamForm!: ITeamForm;
+  teamForm!: IToForm;
   constructor(private actvRouter: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -24,7 +20,7 @@ export class TeamEditComponent implements OnInit {
       this.titlePage = data['action'] === 'create' ? 'Novo' : 'Editar';
       this.teamForm = {
         update: data['action'] === 'update',
-        team_id: data['action'] === 'update' ? +data['p'] : 0,
+        data_id: data['action'] === 'update' ? +data['p'] : 0,
       };
     });
   }

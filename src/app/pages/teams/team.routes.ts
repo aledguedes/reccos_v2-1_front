@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { TeamRouterComponent } from './team-router.component';
 import { TeamListComponent } from './team-list/team-list.component';
-import { TeamEditComponent } from './team-edit/team-edit.component';
+import { FormEditComponent } from '../components/form-edit/form-edit.component';
 
 export const TEAM_ROUTES: Routes = [
   {
@@ -14,7 +14,7 @@ export const TEAM_ROUTES: Routes = [
       },
       {
         path: 'team-edit',
-        component: TeamEditComponent,
+        component: FormEditComponent,
       },
     ],
   },

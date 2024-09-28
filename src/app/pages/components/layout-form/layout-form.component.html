@@ -1,0 +1,95 @@
+<form class="form-group" [formGroup]="generalForm">
+  <div formGroupName="team">
+    <fieldset class="p-3">
+      <legend class="text-center">Dados Pessoais</legend>
+      <div class="row">
+        @for (field of personalData; track $index) {
+          @if (field.typeComponent === "input") {
+            <div [ngClass]="field.colClass">
+              <app-input-forms
+                [id]="field.inputFieldName"
+                [label]="field.label"
+                [formControlName]="field.inputFieldName"
+                [type]="field.inputType ?? 'text'"
+                [placeholder]="field.placeholder ?? ''"
+                [step]="field.step"
+                [accept]="field.accept"
+                [isInvalid]="
+                  (generalForm.get('team.' + field.inputFieldName)?.invalid &&
+                    (generalForm.get('team.' + field.inputFieldName)?.touched ||
+                      generalForm.get('team.' + field.inputFieldName)
+                        ?.dirty)) ??
+                  false
+                "
+              ></app-input-forms>
+            </div>
+          }
+
+          @if (field.typeComponent === "select") {
+            <div [ngClass]="field.colClass">
+              <app-select-forms
+                [id]="field.inputFieldName"
+                [label]="field.label"
+                [options]="field.options ?? []"
+                [formControlName]="field.inputFieldName"
+              ></app-select-forms>
+            </div>
+          }
+        }
+      </div>
+    </fieldset>
+  </div>
+
+  <div formGroupName="address" class="mt-4">
+    <fieldset class="p-3">
+      <legend class="text-center">Dados de Contato</legend>
+      <div class="row">
+        @for (field of addressData; track $index) {
+          @if (field.typeComponent === "input") {
+            <div [ngClass]="field.colClass">
+              <app-input-forms
+                [id]="field.inputFieldName"
+                [label]="field.label"
+                [formControlName]="field.inputFieldName"
+                [type]="field.inputType ?? 'text'"
+                [placeholder]="field.placeholder ?? ''"
+                [step]="field.step"
+                [accept]="field.accept"
+                [isInvalid]="
+                  (generalForm.get('address.' + field.inputFieldName)
+                    ?.invalid &&
+                    (generalForm.get('address.' + field.inputFieldName)
+                      ?.touched ||
+                      generalForm.get('address.' + field.inputFieldName)
+                        ?.dirty)) ??
+                  false
+                "
+              ></app-input-forms>
+            </div>
+          }
+        }
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="row g-3 mt-4">
+    <div class="col-12 col-md-6">
+      <button
+        class="btn btn-primary w-100"
+        type="submit"
+        [disabled]="generalForm.invalid"
+      >
+        Cadastrar time
+      </button>
+    </div>
+    <div class="col-12 col-md-6">
+      <button
+        class="btn btn-secondary w-100"
+        type="reset"
+        [routerLink]="['/team']"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</form>

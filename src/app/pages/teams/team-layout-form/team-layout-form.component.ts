@@ -1,56 +1,16 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
-import { generalInputsAddress } from '../../../utils/form-inputs/form-input-address';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AddressService } from '../../../services/address/address.service';
 import { debounceTime, switchMap } from 'rxjs';
 import { IAddress } from '../../../models/Address';
-import { inputsFieldTeam } from '../../../utils/form-inputs/form-input-team';
 import { TeamService } from '../../../services/teams/team.service';
 import { ITeamRequest, ITeamResponse } from '../../../models/TeamModel';
 import { InputFormsComponent } from '../../components/input-forms/input-forms.component';
 import { SelectFormsComponent } from '../../components/select-forms/select-forms.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
-interface IDataPlayer {
-  team: ITeamMethod;
-  address: IAddressMethod;
-}
-
-interface ITeamForm {
-  update: boolean;
-  team_id: number;
-}
-
-interface IAddressMethod {
-  cep: string;
-  state: string;
-  city: string;
-  neighborhood: string; // bairro
-  street: string;
-}
-
-interface ITeamMethod {
-  id: number;
-  name: string;
-  surname: string;
-  acronym: string;
-  status: string;
-  picture_profile?: string;
-  birth_date: string;
-  registered_federation: number;
-  created_at: string;
-  updated_at: string;
-}
-
-interface IAddressMethod {
-  cep: string;
-  state: string;
-  city: string;
-  neighborhood: string; // bairro
-  street: string;
-}
+import { IDataForm, IToForm } from '../../../models/GeneralForms';
 
 @Component({
   selector: 'app-team-layout-form',
@@ -66,13 +26,16 @@ interface IAddressMethod {
   styleUrl: './team-layout-form.component.scss',
 })
 export class TeamLayoutFormComponent implements OnInit, OnChanges {
-  @Input() toForm: ITeamForm = {
+  @Input() toForm: IToForm = {
     update: false,
-    team_id: 0,
+    data_id: 0,
   };
-  team!: IDataPlayer;
-  personalData: IGeneralFields[] = inputsFieldTeam;
-  addressTeam: IGeneralFields[] = generalInputsAddress;
+  // team!: IDataPlayer;
+  // personalData: IGeneralFields[] = inputsFieldTeam;
+  // addressTeam: IGeneralFields[] = generalInputsAddress;
+
+  personalData: IGeneralFields[] = [];
+  addressTeam: IGeneralFields[] = [];
 
   teamForm!: FormGroup;
 
@@ -107,7 +70,7 @@ export class TeamLayoutFormComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     if (this.toForm.update) {
-      this.initForm(this.toForm.update, this.toForm.team_id);
+      this.initForm(this.toForm.update, this.toForm.data_id);
     }
   }
 
@@ -130,7 +93,7 @@ export class TeamLayoutFormComponent implements OnInit, OnChanges {
         const { address, ...team } = data;
         this.updateData({
           address: address,
-          team: team,
+          data: team,
         });
       },
       error: (err) => {
@@ -152,17 +115,17 @@ export class TeamLayoutFormComponent implements OnInit, OnChanges {
     return group;
   }
 
-  updateData(data: IDataPlayer) {
+  updateData(data: IDataForm) {
     this.teamForm.patchValue(data);
   }
 
   onSubmit(): void {
     const obj: ITeamRequest = {
-      id: this.toForm.team_id,
+      id: this.toForm.data_id,
       address: this.teamForm.value.address,
       ...this.teamForm.value.player,
     };
-    this.updatePlayer(this.toForm.team_id, obj);
+    this.updatePlayer(this.toForm.data_id, obj);
   }
 
   updatePlayer(player_id: number, form: ITeamRequest) {
