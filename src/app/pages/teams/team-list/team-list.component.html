@@ -4,7 +4,7 @@
       <a
         class="button is-link is-uppercase"
         [routerLink]="['team-edit']"
-        [queryParams]="{ action: 'create' }"
+        [queryParams]="{ action: 'create', f: 'teams' }"
       >
         <span class="icon">
           <i class="ri-add-line"></i>
@@ -21,7 +21,7 @@
           <a
             class="has-text-centered d-flex flex-column align-items-center"
             [routerLink]="['team-edit']"
-            [queryParams]="{ action: 'update', p: t.id }"
+            [queryParams]="{ action: 'update', f: 'teams', p: t.id }"
             style="font-size: 12px"
           >
             <div

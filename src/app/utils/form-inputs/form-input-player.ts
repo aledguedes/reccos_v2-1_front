@@ -60,7 +60,7 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     placeholder: 'Ex: (11) 99999-9999',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-6 col-sm-12',
+    colClass: 'col-12 col-md-3 col-sm-12',
   },
   {
     typeComponent: 'input',
@@ -70,6 +70,26 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     validators: [Validators.required],
     initialValues: '',
     colClass: 'col-12 col-md-3 col-sm-12',
+  },
+  {
+    typeComponent: 'select',
+    label: 'Posição:',
+    inputFieldName: 'position',
+    options: [
+      { value: '', label: 'Selecione a posição' },
+      { value: 'Atacante', label: 'Atacante' }, // Alterado para "Atacante"
+      { value: 'Goleiro', label: 'Goleiro' }, // Alterado para "Goleiro"
+      { value: 'Lateral', label: 'Lateral' }, // Alterado para "Lateral"
+      { value: 'Zagueiro', label: 'Zagueiro' }, // Alterado para "Zagueiro"
+      { value: 'Meia', label: 'Meia' }, // Alterado para "Meia"
+      { value: 'Volante', label: 'Volante' }, // Alterado para "Volante"
+      { value: 'Ala', label: 'Ala' }, // Alterado para "Ala"
+      { value: 'Pivô', label: 'Pivô' }, // Alterado para "Pivô"
+      { value: 'Fixo', label: 'Fixo' },
+    ],
+    validators: [Validators.required],
+    initialValues: '',
+    colClass: 'col-12 col-md-4 col-sm-12',
   },
   {
     typeComponent: 'select',
@@ -87,7 +107,7 @@ export const inputsFieldPlayer: IGeneralFields[] = [
   {
     typeComponent: 'select',
     label: 'Status:',
-    inputFieldName: 'position',
+    inputFieldName: 'status',
     options: [
       { value: '', label: 'Selecione o status do atleta' },
       { value: 'active', label: 'Ativo' },
@@ -97,7 +117,7 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     ],
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-5 col-sm-12',
+    colClass: 'col-12 col-md-4 col-sm-12',
   },
   // {
   //   typeComponent: 'input',

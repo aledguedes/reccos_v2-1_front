@@ -1,3 +1,5 @@
+import { IAddress } from './Address';
+
 export interface ITeamResponse {
   id: number;
   name: string;
@@ -9,6 +11,7 @@ export interface ITeamResponse {
   registered_federation: number;
   created_at: string;
   updated_at: string;
+  address: IAddress;
 }
 
 export interface ITeamRequest {
@@ -19,4 +22,5 @@ export interface ITeamRequest {
   picture_profile?: string;
   birth_date: string;
   registered_federation: number;
+  address: IAddress;
 }

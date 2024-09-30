@@ -1,7 +1,7 @@
-<form class="uk-form-stacked" [formGroup]="playerForm" (ngSubmit)="onSubmit()">
-  <div formGroupName="player">
-    <fieldset class="uk-fieldset">
-      <legend class="uk-legend">Dados Pessoais</legend>
+<form class="form-group" [formGroup]="generalForm">
+  <div formGroupName="team">
+    <fieldset class="p-3">
+      <legend class="text-center">Dados Pessoais</legend>
       <div class="row">
         @for (field of personalData; track $index) {
           @if (field.typeComponent === "input") {
@@ -15,15 +15,13 @@
                 [step]="field.step"
                 [accept]="field.accept"
                 [isInvalid]="
-                  (playerForm.get('player.' + field.inputFieldName)?.invalid &&
-                    (playerForm.get('player.' + field.inputFieldName)
-                      ?.touched ||
-                      playerForm.get('player.' + field.inputFieldName)
+                  (generalForm.get('team.' + field.inputFieldName)?.invalid &&
+                    (generalForm.get('team.' + field.inputFieldName)?.touched ||
+                      generalForm.get('team.' + field.inputFieldName)
                         ?.dirty)) ??
                   false
                 "
-              >
-              </app-input-forms>
+              ></app-input-forms>
             </div>
           }
 
@@ -34,6 +32,13 @@
                 [label]="field.label"
                 [options]="field.options ?? []"
                 [formControlName]="field.inputFieldName"
+                [isInvalid]="
+                  (generalForm.get('team.' + field.inputFieldName)?.invalid &&
+                    (generalForm.get('team.' + field.inputFieldName)?.touched ||
+                      generalForm.get('team.' + field.inputFieldName)
+                        ?.dirty)) ??
+                  false
+                "
               ></app-select-forms>
             </div>
           }
@@ -43,10 +48,10 @@
   </div>
 
   <div formGroupName="address" class="mt-4">
-    <fieldset class="uk-fieldset">
-      <legend class="uk-legend">Dados de Contato</legend>
+    <fieldset class="p-3">
+      <legend class="text-center">Dados de Contato</legend>
       <div class="row">
-        @for (field of addressPlayer; track $index) {
+        @for (field of addressData; track $index) {
           @if (field.typeComponent === "input") {
             <div [ngClass]="field.colClass">
               <app-input-forms
@@ -58,15 +63,15 @@
                 [step]="field.step"
                 [accept]="field.accept"
                 [isInvalid]="
-                  (playerForm.get('address.' + field.inputFieldName)?.invalid &&
-                    (playerForm.get('address.' + field.inputFieldName)
+                  (generalForm.get('address.' + field.inputFieldName)
+                    ?.invalid &&
+                    (generalForm.get('address.' + field.inputFieldName)
                       ?.touched ||
-                      playerForm.get('address.' + field.inputFieldName)
+                      generalForm.get('address.' + field.inputFieldName)
                         ?.dirty)) ??
                   false
                 "
-              >
-              </app-input-forms>
+              ></app-input-forms>
             </div>
           }
         }
@@ -77,15 +82,19 @@
   <div class="row g-3 mt-4">
     <div class="col-12 col-md-6">
       <button
-        class="uk-button uk-button-primary w-100"
+        class="btn btn-primary w-100"
         type="submit"
-        [disabled]="playerForm.invalid"
+        [disabled]="generalForm.invalid"
       >
-        Cadastrar Atleta
+        Cadastrar time
       </button>
     </div>
     <div class="col-12 col-md-6">
-      <button class="uk-button uk-button-default w-100" type="reset">
+      <button
+        class="btn btn-secondary w-100"
+        type="reset"
+        [routerLink]="['/team']"
+      >
         Cancelar
       </button>
     </div>
