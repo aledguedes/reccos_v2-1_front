@@ -3,6 +3,8 @@ import { IToForm } from '../../../models/GeneralForms';
 import { ActivatedRoute } from '@angular/router';
 import { GenericsService } from '../../../services/generics/generics.service';
 import { LayoutFormComponent } from '../layout-form/layout-form.component';
+import { GenericsUpdatedsService } from '../../../services/generics/generics-updateds.service';
+import { FlagMap } from '../../../services/interfaces-map/interfaces-map';
 
 @Component({
   selector: 'app-form-edit',
@@ -18,6 +20,7 @@ export class FormEditComponent implements OnInit {
   constructor(
     private actvRouter: ActivatedRoute,
     private genericService: GenericsService,
+    private generalService: GenericsUpdatedsService,
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +32,19 @@ export class FormEditComponent implements OnInit {
         data_id: data['action'] === 'update' ? +data['p'] : 0,
         flag: data['f'],
       };
-      this.genericService.receivedFlags(data['f']);
+      if (data['action'] === 'create') {
+        this.genericService.receivedFlags(
+          data['f'],
+          data['action'] === 'update',
+        );
+      } else {
+        this.loadFlagData(
+          data['f'],
+          +data['p'],
+          data['f'],
+          data['action'] === 'update',
+        );
+      }
     });
   }
 
@@ -44,5 +59,22 @@ export class FormEditComponent implements OnInit {
       default:
         return '';
     }
+  }
+
+  loadFlagData<K extends keyof FlagMap>(
+    iFlag: K,
+    id: number,
+    flag: string,
+    update: boolean,
+  ) {
+    this.generalService.getById<K>(iFlag, id).subscribe({
+      next: (data: FlagMap[K]) => {
+        console.log('RETURN GENERAL FLAG ID DATA', data);
+        this.genericService.receivedFlags(flag, update, data);
+      },
+      error: (err) => {
+        console.log('RETURN GENERAL FLAG ID ERRO', err);
+      },
+    });
   }
 }

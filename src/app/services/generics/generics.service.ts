@@ -3,57 +3,63 @@ import { inputsFieldTeam } from '../../utils/form-inputs/form-input-team';
 import { IGeneralFields } from '../../models/GeneralFieldsInputs';
 import { generalInputsAddress } from '../../utils/form-inputs/form-input-address';
 import { inputsFieldPlayer } from '../../utils/form-inputs/form-input-player';
-import { IToFormRxjs } from '../../models/IRxjsModel';
 import { DataRxjsService } from '../data-rxjs.service';
+import { IToFormRxjs } from '../../models/IRxjsModel';
+import { FlagMap } from '../interfaces-map/interfaces-map';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GenericsService {
+  private flagMappings: Record<string, IGeneralFields[]> = {
+    players: inputsFieldPlayer,
+    teams: inputsFieldTeam,
+  };
+
   constructor(private rxjs: DataRxjsService) {}
 
-  receivedFlags(flag: string) {
-    // const addressArr: string[] = ['teams', 'players'];
-    // const person: IGeneralFields[] = inputsFieldTeam;
+  receivedFlags<K extends keyof FlagMap>(
+    flag: string,
+    update: boolean,
+    dataFromApi?: FlagMap[K],
+  ) {
+    const fields = this.getFieldsByFlag(flag);
 
-    // if (addressArr.includes(flag)) {
-    // const address: IGeneralFields[] = generalInputsAddress;
-    // }
-    console.log('receivedFlags', flag);
-
-    switch (flag) {
-      case 'teams':
-        this.flagTeams();
-        break;
-      case 'players':
-        this.flagPlayers();
-        break;
-      default:
-        this.flagTeams();
-        break;
+    if (update && dataFromApi) {
+      this.updateForm(fields.person, generalInputsAddress, dataFromApi);
+    } else {
+      this.sendInfo(fields.person, generalInputsAddress);
     }
   }
 
-  flagPlayers() {
-    const person: IGeneralFields[] = inputsFieldPlayer;
-    const address: IGeneralFields[] = generalInputsAddress;
-    console.log('flagPlayers', person, address);
-    this.sendInfo(person, address);
+  getFieldsByFlag(flag: string): { person: IGeneralFields[] } {
+    const personFields = this.flagMappings[flag] || this.flagMappings['teams'];
+    return { person: personFields };
   }
 
-  flagTeams() {
-    const person: IGeneralFields[] = inputsFieldTeam;
-    const address: IGeneralFields[] = generalInputsAddress;
-    console.log('flagTeams', person, address);
-    this.sendInfo(person, address);
+  updateForm<K extends keyof FlagMap>(
+    person: IGeneralFields[],
+    address: IGeneralFields[],
+    data: FlagMap[K],
+  ) {
+    const updatedPerson = this.updateFormWithApiData(person, data);
+    const updatedAddress = this.updateFormWithApiData(address, data?.address);
+    this.sendInfo(updatedPerson, updatedAddress);
+  }
+
+  updateFormWithApiData(
+    formFields: IGeneralFields[],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    apiData: any,
+  ): IGeneralFields[] {
+    return formFields.map((field) => ({
+      ...field,
+      initialValues: apiData?.[field.inputFieldName] || field.initialValues,
+    }));
   }
 
   sendInfo(person: IGeneralFields[], address: IGeneralFields[] = []) {
-    const toForm: IToFormRxjs = {
-      data: person,
-      address: address,
-    };
-    console.log('sendInfo', toForm);
+    const toForm: IToFormRxjs = { data: person, address };
     this.rxjs.sendDataForm(toForm);
   }
 }
