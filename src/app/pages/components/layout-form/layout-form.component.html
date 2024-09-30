@@ -32,6 +32,13 @@
                 [label]="field.label"
                 [options]="field.options ?? []"
                 [formControlName]="field.inputFieldName"
+                [isInvalid]="
+                  (generalForm.get('team.' + field.inputFieldName)?.invalid &&
+                    (generalForm.get('team.' + field.inputFieldName)?.touched ||
+                      generalForm.get('team.' + field.inputFieldName)
+                        ?.dirty)) ??
+                  false
+                "
               ></app-select-forms>
             </div>
           }

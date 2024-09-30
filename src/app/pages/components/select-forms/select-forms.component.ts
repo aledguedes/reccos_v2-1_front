@@ -20,6 +20,7 @@ export class SelectFormsComponent implements ControlValueAccessor {
   @Input() label = '';
   @Input() id = '';
   @Input() options: { value: string; label: string }[] = [];
+  @Input() isInvalid = false;
 
   value = '';
 
