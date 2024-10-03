@@ -1,7 +1,7 @@
-import { IPlayerRequest } from '../../models/PlayerModel';
-import { ITeamRequest } from '../../models/TeamModel';
+import { IPlayerResponse } from '../../models/PlayerModel';
+import { ITeamResponse } from '../../models/TeamModel';
 
 export interface FlagMap {
-  players: IPlayerRequest;
-  teams: ITeamRequest;
+  players: IPlayerResponse;
+  teams: ITeamResponse;
 }

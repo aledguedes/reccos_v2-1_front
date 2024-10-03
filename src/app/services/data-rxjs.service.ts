@@ -9,11 +9,15 @@ export class DataRxjsService {
   dataForm = new BehaviorSubject<IToFormRxjs>({
     address: [],
     data: [],
+    edit: {
+      flag: 'players',
+      update: false,
+      data_id: 0,
+    },
   });
   dataForm$ = this.dataForm.asObservable();
 
   sendDataForm(data: IToFormRxjs) {
-    console.log('sendDataForm', data);
     this.dataForm.next(data);
   }
 }

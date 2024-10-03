@@ -6,6 +6,7 @@ import { inputsFieldPlayer } from '../../utils/form-inputs/form-input-player';
 import { DataRxjsService } from '../data-rxjs.service';
 import { IToFormRxjs } from '../../models/IRxjsModel';
 import { FlagMap } from '../interfaces-map/interfaces-map';
+import { IToForm } from '../../models/GeneralForms';
 
 @Injectable({
   providedIn: 'root',
@@ -16,20 +17,23 @@ export class GenericsService {
     teams: inputsFieldTeam,
   };
 
+  toEdit: IToForm = {
+    flag: '',
+    update: false,
+    data_id: 0,
+  };
+
   constructor(private rxjs: DataRxjsService) {}
 
-  receivedFlags<K extends keyof FlagMap>(
-    flag: string,
-    update: boolean,
-    dataFromApi?: FlagMap[K],
-  ) {
+  receivedFlags(flag: string, update: boolean, flag_id: number) {
     const fields = this.getFieldsByFlag(flag);
 
-    if (update && dataFromApi) {
-      this.updateForm(fields.person, generalInputsAddress, dataFromApi);
-    } else {
-      this.sendInfo(fields.person, generalInputsAddress);
-    }
+    this.toEdit = {
+      flag: flag,
+      update: update,
+      data_id: flag_id,
+    };
+    this.sendInfo(fields.person, generalInputsAddress);
   }
 
   getFieldsByFlag(flag: string): { person: IGeneralFields[] } {
@@ -59,7 +63,7 @@ export class GenericsService {
   }
 
   sendInfo(person: IGeneralFields[], address: IGeneralFields[] = []) {
-    const toForm: IToFormRxjs = { data: person, address };
+    const toForm: IToFormRxjs = { data: person, address, edit: this.toEdit };
     this.rxjs.sendDataForm(toForm);
   }
 }
