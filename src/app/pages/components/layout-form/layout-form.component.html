@@ -1,5 +1,5 @@
 <form class="form-group" [formGroup]="generalForm">
-  <div formGroupName="team">
+  <div formGroupName="personal">
     <fieldset class="p-3">
       <legend class="text-center">Dados Pessoais</legend>
       <div class="row">
@@ -15,9 +15,11 @@
                 [step]="field.step"
                 [accept]="field.accept"
                 [isInvalid]="
-                  (generalForm.get('team.' + field.inputFieldName)?.invalid &&
-                    (generalForm.get('team.' + field.inputFieldName)?.touched ||
-                      generalForm.get('team.' + field.inputFieldName)
+                  (generalForm.get('personal.' + field.inputFieldName)
+                    ?.invalid &&
+                    (generalForm.get('personal.' + field.inputFieldName)
+                      ?.touched ||
+                      generalForm.get('personal.' + field.inputFieldName)
                         ?.dirty)) ??
                   false
                 "
@@ -33,9 +35,11 @@
                 [options]="field.options ?? []"
                 [formControlName]="field.inputFieldName"
                 [isInvalid]="
-                  (generalForm.get('team.' + field.inputFieldName)?.invalid &&
-                    (generalForm.get('team.' + field.inputFieldName)?.touched ||
-                      generalForm.get('team.' + field.inputFieldName)
+                  (generalForm.get('personal.' + field.inputFieldName)
+                    ?.invalid &&
+                    (generalForm.get('personal.' + field.inputFieldName)
+                      ?.touched ||
+                      generalForm.get('personal.' + field.inputFieldName)
                         ?.dirty)) ??
                   false
                 "

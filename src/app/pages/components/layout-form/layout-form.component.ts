@@ -11,6 +11,9 @@ import { IToFormRxjs } from '../../../models/IRxjsModel';
 import { debounceTime, Subscription, switchMap } from 'rxjs';
 import { AddressService } from '../../../services/address/address.service';
 import { IAddress } from '../../../models/Address';
+import { FlagMap } from '../../../services/interfaces-map/interfaces-map';
+import { GenericsUpdatedsService } from '../../../services/generics/generics-updateds.service';
+import { IToForm } from '../../../models/GeneralForms';
 
 @Component({
   selector: 'app-layout-form',
@@ -27,12 +30,11 @@ import { IAddress } from '../../../models/Address';
 })
 export class LayoutFormComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
-
-  // @Input() toForm: IToForm = {
-  //   update: false,
-  //   data_id: 0,
-  // };
-  // team!: IDataPlayer;
+  edit: IToForm = {
+    flag: '',
+    update: false,
+    data_id: 0,
+  };
   personalData: IGeneralFields[] = [];
   addressData: IGeneralFields[] = [];
 
@@ -42,6 +44,7 @@ export class LayoutFormComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private rxjs: DataRxjsService,
     private cepService: AddressService,
+    private generalService: GenericsUpdatedsService,
   ) {}
 
   ngOnInit(): void {
@@ -49,7 +52,7 @@ export class LayoutFormComponent implements OnInit, OnDestroy {
       (form: IToFormRxjs) => {
         this.personalData = form.data;
         this.addressData = form.address;
-
+        this.edit = form.edit;
         this.initForm();
       },
     );
@@ -63,33 +66,30 @@ export class LayoutFormComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.generalForm = this.fb.group({
-      team: this.fb.group(this.createFormGroup(this.personalData)),
+      personal: this.fb.group(this.createFormGroup(this.personalData)),
       address: this.fb.group(this.createFormGroup(this.addressData)),
     });
-    // if (update) {
-    //   setTimeout(() => {
-    //     this.teamById(team_id);
-    //   }, 100);
-    // }
 
-    // if (!this.toForm.update) {
-    this.generalForm
-      .get('address.cep')
-      ?.valueChanges.pipe(
-        debounceTime(1000),
-        switchMap((cep) => this.cepService.getAddress(cep)),
-      )
-      .subscribe((address: IAddress) => {
-        this.generalForm.patchValue({
-          address: {
-            street: address.street,
-            city: address.city,
-            state: address.state,
-            neighborhood: address.neighborhood,
-          },
+    if (!this.edit.update) {
+      this.generalForm
+        .get('address.cep')
+        ?.valueChanges.pipe(
+          debounceTime(1000),
+          switchMap((cep) => this.cepService.getAddress(cep)),
+        )
+        .subscribe((address: IAddress) => {
+          this.generalForm.patchValue({
+            address: {
+              street: address.street,
+              city: address.city,
+              state: address.state,
+              neighborhood: address.neighborhood,
+            },
+          });
         });
-      });
-    // }
+    } else {
+      this.loadFlagData(this.edit.flag as keyof FlagMap, this.edit.data_id);
+    }
   }
 
   createFormGroup(data: IGeneralFields[]): Record<string, unknown> {
@@ -103,5 +103,30 @@ export class LayoutFormComponent implements OnInit, OnDestroy {
     });
 
     return group;
+  }
+
+  loadFlagData<K extends keyof FlagMap>(iFlag: K, id: number) {
+    // this.initForm();
+    this.generalService.getById<K>(iFlag, id).subscribe({
+      next: (data: FlagMap[K]) => {
+        const { address, ...personal } = data;
+        this.updateData({ address, personal });
+      },
+      error: (err) => {
+        console.error('Erro ao carregar dados', err);
+      },
+    });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  updateData(data: { address: IAddress; personal: Record<string, any> }) {
+    if (data.personal['birth_date']) {
+      const birthDate = new Date(data.personal['birth_date']);
+      data.personal['birth_date'] = birthDate.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+    }
+    this.generalForm.patchValue({
+      address: data.address,
+      personal: data.personal,
+    });
   }
 }
