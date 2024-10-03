@@ -25,8 +25,8 @@ export const inputsFieldTeam: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'Data de Fundação:',
-    inputFieldName: 'name',
-    inputType: 'text',
+    inputFieldName: 'birth_date',
+    inputType: 'date',
     placeholder: '31/12/2015',
     validators: [Validators.required],
     initialValues: '',
