@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputFormsComponent } from '../input-forms/input-forms.component';
 import { SelectFormsComponent } from '../select-forms/select-forms.component';
@@ -29,6 +35,7 @@ import { IToForm } from '../../../models/GeneralForms';
   styleUrl: './layout-form.component.scss',
 })
 export class LayoutFormComponent implements OnInit, OnDestroy {
+  @Output() statusForm = new EventEmitter<boolean>();
   private subscription: Subscription = new Subscription();
   edit: IToForm = {
     flag: '',
@@ -56,6 +63,10 @@ export class LayoutFormComponent implements OnInit, OnDestroy {
         this.initForm();
       },
     );
+
+    this.generalForm.statusChanges.subscribe((newStaus) => {
+      this.statusForm.emit(newStaus === 'VALID');
+    });
 
     this.subscription.add(dataSubscription);
   }
@@ -128,5 +139,6 @@ export class LayoutFormComponent implements OnInit, OnDestroy {
       address: data.address,
       personal: data.personal,
     });
+    this.statusForm.emit(this.generalForm.status === 'VALID');
   }
 }

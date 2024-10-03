@@ -7,20 +7,27 @@
         >
           {{ titlePage }}
         </h2>
-        <app-layout-form />
-
-        <!-- <div class="row g-3 mt-4">
-            <div class="col-12 col-md-6">
-              <button class="uk-button uk-button-primary w-100" type="submit">
-                Cadastrar Atleta
-              </button>
-            </div>
-            <div class="col-12 col-md-6">
-              <button class="uk-button uk-button-default w-100" type="reset">
-                Cancelar
-              </button>
-            </div>
-          </div> -->
+        <app-layout-form (statusForm)="statusForm($event)" />
+        <div class="row g-3 mt-4">
+          <div class="col-12 col-md-6">
+            <button
+              class="uk-button uk-button-primary w-100"
+              type="submit"
+              [disabled]="!completdForm"
+            >
+              Salvar
+            </button>
+          </div>
+          <div class="col-12 col-md-6">
+            <button
+              class="uk-button uk-button-default w-100"
+              type="reset"
+              (click)="onCancel()"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
