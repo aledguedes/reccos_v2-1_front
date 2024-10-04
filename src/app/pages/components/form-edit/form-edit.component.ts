@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GenericsService } from '../../../services/generics/generics.service';
 import { LayoutFormComponent } from '../layout-form/layout-form.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-edit',
@@ -12,8 +13,10 @@ import { LayoutFormComponent } from '../layout-form/layout-form.component';
 })
 export class FormEditComponent implements OnInit {
   titlePage = '';
+  completdForm = false;
 
   constructor(
+    private router: Router,
     private actvRouter: ActivatedRoute,
     private genericService: GenericsService,
   ) {}
@@ -29,6 +32,19 @@ export class FormEditComponent implements OnInit {
         flag_id,
       );
     });
+  }
+
+  statusForm($event: boolean) {
+    this.completdForm = $event;
+  }
+
+  onCancel() {
+    const currentUrl = this.router.url.split('/');
+    console.log('URL', this.router.url, currentUrl);
+    const baseRoute = currentUrl[1];
+
+    // Navegar para a lista do componente correspondente
+    this.router.navigate([`/${baseRoute}`]); // Redireciona para /player ou /team
   }
 
   switchFlags(flag: string) {
