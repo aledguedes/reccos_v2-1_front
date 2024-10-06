@@ -19,4 +19,9 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./pages/teams/team.routes').then((r) => r.TEAM_ROUTES),
   },
+  { 
+    path: 'federation',
+    loadChildren: () =>
+      import('./pages/federations/federation.routes').then((r) => r.FEDERATION_ROUTES),
+  },
 ];
