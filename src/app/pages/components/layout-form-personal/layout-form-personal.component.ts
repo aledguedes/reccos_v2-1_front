@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
 import { DataRxjsService } from '../../../services/data-rxjs.service';
@@ -23,6 +23,7 @@ import { FlagMap } from '../../../services/interfaces-map/interfaces-map';
 export class LayoutFormPersonalComponent implements OnInit, OnDestroy {
   personalForm!: FormGroup;
   personalData: IGeneralFields[] = [];
+  @Input() update = false;
   subscription: Subscription = new Subscription();
 
   constructor(
@@ -42,10 +43,9 @@ export class LayoutFormPersonalComponent implements OnInit, OnDestroy {
 
     const personalSubscription = this.rxjs.updateFormPersonalId$.subscribe(
       (personal: FlagMap[keyof FlagMap] | null) => {
-        if (personal) {
-          this.updatedForm(personal);
-        } else {
+        if (personal && this.update) {
           this.personalForm.reset();
+          this.updatedForm(personal);
         }
       },
     );

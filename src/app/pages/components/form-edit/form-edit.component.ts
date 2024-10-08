@@ -38,13 +38,14 @@ export class FormEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.actvRouter.queryParams.subscribe((data) => {
+      this.resetForms();
       const flag = data['f'];
       const strFlag: string = this.switchFlags(flag);
       this.titlePage = `${data['action'] === 'create' ? 'Novo' : 'Editar'} ${strFlag}`;
 
       this.edit = {
         flag: flag,
-        data_id: +data['p'],
+        data_id: data['action'] === 'update' ? +data['p'] : 0,
         update: data['action'] === 'update',
       };
 
@@ -56,7 +57,6 @@ export class FormEditComponent implements OnInit {
       if (haveAddress.includes(flag)) {
         this.rxjs.sendAddressForm(generalInputsAddress);
       }
-
       this.rxjs.sendDataForm(this.edit);
     });
   }
@@ -76,6 +76,12 @@ export class FormEditComponent implements OnInit {
   getFieldsByFlag(flag: string): { person: IGeneralFields[] } {
     const personFields = this.flagMappings[flag] || this.flagMappings['teams'];
     return { person: personFields };
+  }
+
+  resetForms() {
+    this.rxjs.sendAddressForm([]);
+    this.rxjs.sendPersonalForm([]);
+    this.edit = { flag: '', update: false, data_id: 0 };
   }
 
   switchFlags(flag: string) {

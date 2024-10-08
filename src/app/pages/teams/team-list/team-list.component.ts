@@ -32,7 +32,7 @@ export class TeamListComponent implements OnInit {
     this.teamService.getAllTeams(this.page, this.perPage).subscribe({
       next: (data) => {
         this.teams = data;
-        console.log('PLAYERS ALL', this.teams);
+        // console.log('TEAMS ALL', this.teams);
       },
       error: (err) => {
         console.log('PLAYERS ALL ERR', err);

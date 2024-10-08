@@ -1,13 +1,13 @@
 <div>
   <fieldset class="p-3">
     <legend class="text-center">Dados Pessoais</legend>
-    <app-layout-form-personal />
+    <app-layout-form-personal [update]="update" />
   </fieldset>
 
   @if (address) {
     <fieldset class="p-3">
       <legend class="text-center">Dados de Contato</legend>
-      <app-layout-form-address ngSkipHydration />
+      <app-layout-form-address [update]="update" ngSkipHydration />
     </fieldset>
   }
 </div>

@@ -35,6 +35,7 @@ import { LayoutFormPersonalComponent } from '../layout-form-personal/layout-form
   styleUrl: './layout-form.component.scss',
 })
 export class LayoutFormComponent implements OnInit, OnDestroy {
+  @Input() update = false;
   @Input() address = false;
   @Output() statusForm = new EventEmitter<boolean>();
   private subscription: Subscription = new Subscription();
@@ -52,7 +53,6 @@ export class LayoutFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const dataSubscription = this.rxjs.dataForm$.subscribe((form: IToForm) => {
       this.edit = form;
-      console.log('DATA FORM RXJS', form);
       if (form.update) {
         this.loadFlagData(form.flag as keyof FlagMap, form.data_id);
       }

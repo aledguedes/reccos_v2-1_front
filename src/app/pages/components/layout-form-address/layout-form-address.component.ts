@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputFormsComponent } from '../input-forms/input-forms.component';
 import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
@@ -18,6 +18,7 @@ import { AddressService } from '../../../services/address/address.service';
 export class LayoutFormAddressComponent implements OnInit, OnDestroy {
   addressForm!: FormGroup;
   addressData: IGeneralFields[] = [];
+  @Input() update = false;
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -55,10 +56,9 @@ export class LayoutFormAddressComponent implements OnInit, OnDestroy {
 
     const addressSubscription = this.rxjs.updateFormAddresslId$.subscribe(
       (address: IAddress) => {
-        if (address) {
-          this.addressForm.patchValue(address);
-        } else {
+        if (this.update) {
           this.addressForm.reset();
+          this.addressForm.patchValue(address);
         }
       },
     );
