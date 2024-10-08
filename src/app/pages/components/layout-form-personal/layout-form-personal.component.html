@@ -1,0 +1,46 @@
+<form [formGroup]="personalForm">
+  <div class="row">
+    @for (field of personalData; track $index) {
+      @if (field.typeComponent === "input") {
+        <div [ngClass]="field.colClass">
+          <app-input-forms
+            [id]="field.inputFieldName"
+            [label]="field.label"
+            [formControlName]="field.inputFieldName"
+            [type]="field.inputType ?? 'text'"
+            [placeholder]="field.placeholder ?? ''"
+            [step]="field.step"
+            [accept]="field.accept"
+            [isInvalid]="
+              (personalForm.get('personal.' + field.inputFieldName)?.invalid &&
+                (personalForm.get('personal.' + field.inputFieldName)
+                  ?.touched ||
+                  personalForm.get('personal.' + field.inputFieldName)
+                    ?.dirty)) ??
+              false
+            "
+          ></app-input-forms>
+        </div>
+      }
+
+      @if (field.typeComponent === "select") {
+        <div [ngClass]="field.colClass">
+          <app-select-forms
+            [id]="field.inputFieldName"
+            [label]="field.label"
+            [options]="field.options ?? []"
+            [formControlName]="field.inputFieldName"
+            [isInvalid]="
+              (personalForm.get('personal.' + field.inputFieldName)?.invalid &&
+                (personalForm.get('personal.' + field.inputFieldName)
+                  ?.touched ||
+                  personalForm.get('personal.' + field.inputFieldName)
+                    ?.dirty)) ??
+              false
+            "
+          ></app-select-forms>
+        </div>
+      }
+    }
+  </div>
+</form>
