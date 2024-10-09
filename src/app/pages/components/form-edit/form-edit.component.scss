@@ -2,6 +2,10 @@
   width: 75%;
 }
 
+.media-cards-form {
+  padding: 3rem;
+}
+
 @media (max-width: 768px) {
   .dynamic-title {
     font-size: 2rem; /* Ajuste conforme necessário */
@@ -23,5 +27,9 @@
 @media screen and (max-width: 992px) {
   .w-sm-card {
     width: 100%;
+  }
+
+  .media-cards-form {
+    padding: 3rem 0.5rem;
   }
 }

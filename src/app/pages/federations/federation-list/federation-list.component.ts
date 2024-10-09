@@ -7,10 +7,9 @@ import { IFederationResponse } from '../../../models/IFederationModel';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './federation-list.component.html',
-  styleUrl: './federation-list.component.scss'
+  styleUrl: './federation-list.component.scss',
 })
 export class FederationListComponent {
-
   federations: IFederationResponse[] = [
     {
       id: 1,
@@ -18,7 +17,7 @@ export class FederationListComponent {
       surname: 'FEDE_1',
       status: 'Ativo',
       created_at: '',
-      updated_at: ''
+      updated_at: '',
     },
     {
       id: 2,
@@ -26,11 +25,43 @@ export class FederationListComponent {
       surname: 'FEDE_2',
       status: 'Ativo',
       created_at: '',
-      updated_at: ''
-    }
+      updated_at: '',
+    },
+    {
+      id: 3,
+      name: 'Federação 03',
+      surname: 'FEDE_3',
+      status: 'Ativo',
+      created_at: '',
+      updated_at: '',
+    },
+    {
+      id: 4,
+      name: 'Federação 04',
+      surname: 'FEDE_4',
+      status: 'Ativo',
+      created_at: '',
+      updated_at: '',
+    },
+    {
+      id: 5,
+      name: 'Federação 05',
+      surname: 'FEDE_5',
+      status: 'Ativo',
+      created_at: '',
+      updated_at: '',
+    },
+    {
+      id: 6,
+      name: 'Federação 06',
+      surname: 'FEDE_6',
+      status: 'Ativo',
+      created_at: '',
+      updated_at: '',
+    },
   ];
 
   removeFederation(federation_id: number) {
-    console.log("federation remove", federation_id);
+    console.log('federation remove', federation_id);
   }
 }
