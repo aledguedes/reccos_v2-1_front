@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GenericsService } from '../../../services/generics/generics.service';
 import { LayoutFormComponent } from '../layout-form/layout-form.component';
 import { Router } from '@angular/router';
+import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
+import { inputsFieldPlayer } from '../../../utils/form-inputs/form-input-player';
+import { inputsFieldTeam } from '../../../utils/form-inputs/form-input-team';
+import { DataRxjsService } from '../../../services/data-rxjs.service';
+import { generalInputsAddress } from '../../../utils/form-inputs/form-input-address';
+import { IToForm } from '../../../models/GeneralForms';
 
 @Component({
   selector: 'app-form-edit',
@@ -12,25 +17,47 @@ import { Router } from '@angular/router';
   styleUrl: './form-edit.component.scss',
 })
 export class FormEditComponent implements OnInit {
+  private flagMappings: Record<string, IGeneralFields[]> = {
+    players: inputsFieldPlayer,
+    teams: inputsFieldTeam,
+  };
   titlePage = '';
+  formAddress = false;
   completdForm = false;
+
+  edit: IToForm = {
+    update: false,
+    data_id: 0,
+  };
 
   constructor(
     private router: Router,
+    private rxjs: DataRxjsService,
     private actvRouter: ActivatedRoute,
-    private genericService: GenericsService,
   ) {}
 
   ngOnInit(): void {
     this.actvRouter.queryParams.subscribe((data) => {
-      const strFlag: string = this.switchFlags(data['f']);
+      this.resetForms();
+      const flag = data['f'];
+      const strFlag: string = this.switchFlags(flag);
       this.titlePage = `${data['action'] === 'create' ? 'Novo' : 'Editar'} ${strFlag}`;
-      const flag_id = data['action'] === 'update' ? +data['p'] : 0;
-      this.genericService.receivedFlags(
-        data['f'],
-        data['action'] === 'update',
-        flag_id,
-      );
+
+      this.edit = {
+        flag: flag,
+        data_id: data['action'] === 'update' ? +data['p'] : 0,
+        update: data['action'] === 'update',
+      };
+
+      const fields = this.getFieldsByFlag(flag);
+      this.rxjs.sendPersonalForm(fields.person);
+
+      const haveAddress = ['players', 'teams'];
+      this.formAddress = haveAddress.includes(flag);
+      if (haveAddress.includes(flag)) {
+        this.rxjs.sendAddressForm(generalInputsAddress);
+      }
+      this.rxjs.sendDataForm(this.edit);
     });
   }
 
@@ -40,11 +67,21 @@ export class FormEditComponent implements OnInit {
 
   onCancel() {
     const currentUrl = this.router.url.split('/');
-    console.log('URL', this.router.url, currentUrl);
     const baseRoute = currentUrl[1];
 
     // Navegar para a lista do componente correspondente
     this.router.navigate([`/${baseRoute}`]); // Redireciona para /player ou /team
+  }
+
+  getFieldsByFlag(flag: string): { person: IGeneralFields[] } {
+    const personFields = this.flagMappings[flag] || this.flagMappings['teams'];
+    return { person: personFields };
+  }
+
+  resetForms() {
+    this.rxjs.sendAddressForm([]);
+    this.rxjs.sendPersonalForm([]);
+    this.edit = { flag: '', update: false, data_id: 0 };
   }
 
   switchFlags(flag: string) {

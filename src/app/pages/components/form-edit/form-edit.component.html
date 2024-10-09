@@ -7,7 +7,11 @@
         >
           {{ titlePage }}
         </h2>
-        <app-layout-form (statusForm)="statusForm($event)" />
+        <app-layout-form
+          (statusForm)="statusForm($event)"
+          [address]="formAddress"
+          [update]="edit.update"
+        />
         <div class="row g-3 mt-4">
           <div class="col-12 col-md-6">
             <button
