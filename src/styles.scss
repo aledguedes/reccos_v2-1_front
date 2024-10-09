@@ -9,3 +9,10 @@ html,
 body {
   background-color: #f7f7f7;
 }
+
+@media screen and (max-width: 576px) {
+  .w-sm-buttons {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}

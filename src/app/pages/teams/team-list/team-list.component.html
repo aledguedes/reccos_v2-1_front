@@ -1,20 +1,21 @@
 <div class="container">
-  <div class="columns is-mobile is-justify-content-flex-end my-3">
-    <div class="column is-narrow">
-      <a
-        class="button is-link is-uppercase"
-        [routerLink]="['team-edit']"
+  <div
+    class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between is-align-items-center mt-4"
+  >
+    <app-breadcrumb />
+    <div class="buttons w-sm-buttons">
+      <button
+        [routerLink]="['teams-edit']"
         [queryParams]="{ action: 'create', f: 'teams' }"
+        class="button is-link is-fullwidth"
       >
-        <span class="icon">
-          <i class="ri-add-line"></i>
-        </span>
-        <span>Adicionar Time</span>
-      </a>
+        <i class="ri-add-fill"></i>
+        Adicionar Time
+      </button>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-4">
     @if (teams.length) {
       @for (t of teams; track $index) {
         <div class="col-6 col-lg-2 col-md-2 col-sm-6 mb-2">

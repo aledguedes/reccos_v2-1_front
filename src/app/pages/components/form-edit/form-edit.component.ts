@@ -8,18 +8,21 @@ import { inputsFieldTeam } from '../../../utils/form-inputs/form-input-team';
 import { DataRxjsService } from '../../../services/data-rxjs.service';
 import { generalInputsAddress } from '../../../utils/form-inputs/form-input-address';
 import { IToForm } from '../../../models/GeneralForms';
+import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
+import { inputsFieldFederation } from '../../../utils/form-inputs/form-input-federations';
 
 @Component({
   selector: 'app-form-edit',
   standalone: true,
-  imports: [LayoutFormComponent],
+  imports: [LayoutFormComponent, BreadcrumbComponent],
   templateUrl: './form-edit.component.html',
   styleUrl: './form-edit.component.scss',
 })
 export class FormEditComponent implements OnInit {
   private flagMappings: Record<string, IGeneralFields[]> = {
-    players: inputsFieldPlayer,
     teams: inputsFieldTeam,
+    players: inputsFieldPlayer,
+    federations: inputsFieldFederation,
   };
   titlePage = '';
   formAddress = false;
@@ -91,6 +94,9 @@ export class FormEditComponent implements OnInit {
 
       case 'teams':
         return 'time';
+
+      case 'federations':
+        return 'federação';
 
       default:
         return '';

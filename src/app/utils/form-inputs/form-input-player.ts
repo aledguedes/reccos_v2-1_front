@@ -77,14 +77,14 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     inputFieldName: 'position',
     options: [
       { value: '', label: 'Selecione a posição' },
-      { value: 'Atacante', label: 'Atacante' }, // Alterado para "Atacante"
-      { value: 'Goleiro', label: 'Goleiro' }, // Alterado para "Goleiro"
-      { value: 'Lateral', label: 'Lateral' }, // Alterado para "Lateral"
-      { value: 'Zagueiro', label: 'Zagueiro' }, // Alterado para "Zagueiro"
-      { value: 'Meia', label: 'Meia' }, // Alterado para "Meia"
-      { value: 'Volante', label: 'Volante' }, // Alterado para "Volante"
-      { value: 'Ala', label: 'Ala' }, // Alterado para "Ala"
-      { value: 'Pivô', label: 'Pivô' }, // Alterado para "Pivô"
+      { value: 'Atacante', label: 'Atacante' },
+      { value: 'Goleiro', label: 'Goleiro' },
+      { value: 'Lateral', label: 'Lateral' },
+      { value: 'Zagueiro', label: 'Zagueiro' },
+      { value: 'Meia', label: 'Meia' },
+      { value: 'Volante', label: 'Volante' },
+      { value: 'Ala', label: 'Ala' },
+      { value: 'Pivô', label: 'Pivô' },
       { value: 'Fixo', label: 'Fixo' },
     ],
     validators: [Validators.required],

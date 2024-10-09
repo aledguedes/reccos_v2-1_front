@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TeamService } from '../../../services/teams/team.service';
+import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 
 interface ITeam {
   id?: number;
@@ -10,7 +11,7 @@ interface ITeam {
 @Component({
   selector: 'app-team-list',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, BreadcrumbComponent],
   templateUrl: './team-list.component.html',
   styleUrl: './team-list.component.scss',
 })
