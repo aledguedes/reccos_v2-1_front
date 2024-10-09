@@ -5,26 +5,26 @@
     <app-breadcrumb />
     <div class="buttons w-sm-buttons">
       <button
-        [routerLink]="['federation-edit']"
-        [queryParams]="{ action: 'create', f: 'federations' }"
+        [routerLink]="['league-edit']"
+        [queryParams]="{ action: 'create', f: 'leagues' }"
         class="button is-link is-fullwidth"
       >
         <i class="ri-add-fill"></i>
-        Adicionar Federação
+        Adicionar Liga
       </button>
     </div>
   </div>
 
   <div class="row g-4">
-    @if (federations.length > 0) {
-      @for (federation of federations; track $index) {
+    @if (leagues.length > 0) {
+      @for (league of leagues; track $index) {
         <div class="col-lg-3 col-md-6 col-sm-12 p-5">
-          <app-list-cards [data]="federation" [toQueries]="cardFlags" />
+          <app-list-cards [data]="league" [toQueries]="cardFlags" />
         </div>
       }
     } @else {
       <div class="notification is-link is-light">
-        O sistema ainda não possui atletas cadastrados!!
+        O sistema ainda não possui ligas cadastradas!!
       </div>
     }
   </div>

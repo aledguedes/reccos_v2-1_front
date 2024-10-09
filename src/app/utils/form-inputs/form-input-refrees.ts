@@ -1,7 +1,7 @@
 import { Validators } from '@angular/forms';
 import { IGeneralFields } from '../../models/GeneralFieldsInputs';
 
-export const inputsFieldPlayer: IGeneralFields[] = [
+export const inputsFieldRefree: IGeneralFields[] = [
   {
     typeComponent: 'input',
     label: 'Nome Completo:',
@@ -50,17 +50,7 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     placeholder: 'Ex: user@reccos.com',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-6 col-sm-12',
-  },
-  {
-    typeComponent: 'input',
-    label: 'Telefone:',
-    inputFieldName: 'phone',
-    inputType: 'tel',
-    placeholder: 'Ex: (11) 99999-9999',
-    validators: [Validators.required],
-    initialValues: '',
-    colClass: 'col-12 col-md-3 col-sm-12',
+    colClass: 'col-12 col-md-7 col-sm-12',
   },
   {
     typeComponent: 'input',
@@ -69,7 +59,7 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     inputType: 'date',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-3 col-sm-12',
+    colClass: 'col-12 col-md-5 col-sm-12',
   },
   {
     typeComponent: 'select',

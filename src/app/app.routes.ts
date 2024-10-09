@@ -10,18 +10,30 @@ export const routes: Routes = [
       ).then((c) => c.DashAdminComponent),
   },
   {
-    path: 'player',
+    path: 'players',
     loadChildren: () =>
       import('./pages/players/player.routes').then((r) => r.PLAYER_ROUTES),
   },
   {
-    path: 'team',
+    path: 'teams',
     loadChildren: () =>
       import('./pages/teams/team.routes').then((r) => r.TEAM_ROUTES),
   },
-  { 
-    path: 'federation',
+  {
+    path: 'federations',
     loadChildren: () =>
-      import('./pages/federations/federation.routes').then((r) => r.FEDERATION_ROUTES),
+      import('./pages/federations/federation.routes').then(
+        (r) => r.FEDERATION_ROUTES,
+      ),
+  },
+  {
+    path: 'leagues',
+    loadChildren: () =>
+      import('./pages/leagues/league.routes').then((r) => r.LEAGUE_ROUTES),
+  },
+  {
+    path: 'refrees',
+    loadChildren: () =>
+      import('./pages/refree/refree.routes').then((r) => r.REFREE_ROUTES),
   },
 ];

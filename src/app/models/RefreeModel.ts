@@ -1,4 +1,4 @@
-export interface IRefereeResponse {
+export interface IRefreeResponse {
   id: number;
   name: string;
   surname: string;
@@ -14,7 +14,7 @@ export interface IRefereeResponse {
   federations_id?: number;
 }
 
-export interface IRefereeRequest {
+export interface IRefreeRequest {
   name: string;
   surname: string;
   email: string;

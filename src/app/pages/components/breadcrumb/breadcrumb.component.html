@@ -1,0 +1,15 @@
+<nav class="breadcrumb has-bullet-separator m-0" aria-label="breadcrumbs">
+  <ul>
+    @for (breadcrumb of breadcrumbs; track $index; let last = $last) {
+      @if (!last) {
+        <li>
+          <a [routerLink]="breadcrumb.router" [class.is-active]="last">{{
+            breadcrumb.label
+          }}</a>
+        </li>
+      } @else {
+        <span>{{ breadcrumb.label }}</span>
+      }
+    }
+  </ul>
+</nav>

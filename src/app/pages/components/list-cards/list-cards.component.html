@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-image">
+    <figure class="image is-4by3">
+      <!-- <img
+          src="https://bulma.io/assets/images/placeholders/1280x960.png"
+          alt="Placeholder image"
+        /> -->
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrWtg_5v5FFlbmzTkXCcXKcthtrxzl6rN16g&s"
+        alt="Placeholder image"
+        class="p-3"
+      />
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <!-- <div class="media-left">
+          <figure class="image is-48x48">
+            <img
+              src="https://bulma.io/assets/images/placeholders/96x96.png"
+              alt="Placeholder image"
+            />
+          </figure>
+        </div> -->
+      <div class="media-content">
+        <p class="title is-4" style="height: 70px">
+          {{ data.surname ?? data.name }}
+        </p>
+        <p class="subtitle is-7">{{ data.name }}</p>
+        <p class="subtitle is-7">{{ data.status }}</p>
+      </div>
+    </div>
+  </div>
+  <footer class="card-footer p-0">
+    <a
+      [routerLink]="[toQueries.router]"
+      [queryParams]="{
+        action: 'update',
+        f: toQueries.flag,
+        p: data.id,
+      }"
+      class="card-footer-item has-background-link is-light has-text-white"
+    >
+      <i class="ri-pencil-line"></i> Editar
+    </a>
+    <a class="card-footer-item has-background-danger has-text-white">
+      <i class="ri-delete-bin-line"></i> Deletar
+    </a>
+  </footer>
+</div>

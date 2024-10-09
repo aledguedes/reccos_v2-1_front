@@ -1,13 +1,13 @@
-import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IPlayerResponse } from '../../../models/PlayerModel';
 import { PlayerService } from '../../../services/players/player.service';
+import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-player-list',
   standalone: true,
-  imports: [RouterLink, NgClass],
+  imports: [RouterLink, BreadcrumbComponent],
   templateUrl: './player-list.component.html',
   styleUrl: './player-list.component.scss',
 })

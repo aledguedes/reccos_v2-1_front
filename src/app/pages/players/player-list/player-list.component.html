@@ -1,17 +1,21 @@
 <div class="container py-3">
-  <div class="uk-grid uk-flex-right uk-padding-small uk-margin-small-bottom">
-    <div class="uk-width-auto">
-      <a
+  <div
+    class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between is-align-items-center mt-4"
+  >
+    <app-breadcrumb />
+    <div class="buttons w-sm-buttons">
+      <button
         [routerLink]="['player-edit']"
         [queryParams]="{ action: 'create', f: 'players' }"
-        class="uk-button uk-button-primary uk-text-uppercase"
+        class="button is-link is-fullwidth"
       >
-        <span uk-icon="icon: plus"></span> Adicionar atleta
-      </a>
+        <i class="ri-add-fill"></i>
+        Adicionar Atleta
+      </button>
     </div>
   </div>
 
-  <div class="row g-3">
+  <div class="row g-3 mt-4">
     @if (players.length > 0) {
       @for (player of players; track $index) {
         <div class="col-lg-4 col-md-6 col-sm-12">
@@ -21,7 +25,7 @@
                 <figure class="image is-64x64 mr-4">
                   <img
                     src="https://placehold.co/80x80"
-                    alt="Arboleda"
+                    [alt]="player.surname"
                     class="is-rounded"
                   />
                 </figure>
