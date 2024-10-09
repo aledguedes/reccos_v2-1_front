@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TeamService } from '../../../services/teams/team.service';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
+import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
+import { IListCads } from '../../../models/ListCardModel';
 
 interface ITeam {
   id?: number;
@@ -11,7 +13,7 @@ interface ITeam {
 @Component({
   selector: 'app-team-list',
   standalone: true,
-  imports: [RouterLink, BreadcrumbComponent],
+  imports: [RouterLink, BreadcrumbComponent, ListCardsComponent],
   templateUrl: './team-list.component.html',
   styleUrl: './team-list.component.scss',
 })
@@ -22,6 +24,11 @@ export class TeamListComponent implements OnInit {
   teams: ITeam[] = [];
   baseUrl =
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWhr7q7fMAKPUNqQc7kJQRbI7-VQOizKFTUA&s';
+
+  cardFlags: IListCads = {
+    flag: 'teams',
+    router: 'team-edit',
+  };
 
   constructor(private teamService: TeamService) {}
 

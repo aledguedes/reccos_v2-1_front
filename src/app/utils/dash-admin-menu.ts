@@ -46,7 +46,7 @@ export const dashAdminMenu = [
     name: 'Árbitros',
     icon: './images/icons/refree.svg',
     text: 'Gerenciar arbitros',
-    router: '/refree',
+    router: '/refrees',
   },
   {
     id: 8,

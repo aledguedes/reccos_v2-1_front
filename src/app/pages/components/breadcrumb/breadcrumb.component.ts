@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { IBreadcrumb } from '../../../models/IBreadcrumbModels';
+import { IBreadcrumb } from '../../../models/BreadcrumbModels';
 
 @Component({
   selector: 'app-breadcrumb',

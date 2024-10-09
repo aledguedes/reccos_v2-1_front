@@ -15,8 +15,20 @@
     </div>
   </div>
 
-  <div class="row mt-4">
-    @if (teams.length) {
+  <div class="row g-4">
+    @if (teams.length > 0) {
+      @for (t of teams; track $index) {
+        <div class="col-lg-3 col-md-6 col-sm-12 p-5">
+          <app-list-cards [data]="t" [toQueries]="cardFlags" />
+        </div>
+      }
+    } @else {
+      <div class="notification is-link is-light">
+        O sistema ainda não possui times cadastrados!!
+      </div>
+    }
+  </div>
+  <!-- @if (teams.length) {
       @for (t of teams; track $index) {
         <div class="col-6 col-lg-2 col-md-2 col-sm-6 mb-2">
           <a
@@ -37,6 +49,5 @@
       <div class="notification is-warning mt-5">
         <p class="m-0">O sistema ainda não possui times cadastrados!!</p>
       </div>
-    }
-  </div>
+    } -->
 </div>

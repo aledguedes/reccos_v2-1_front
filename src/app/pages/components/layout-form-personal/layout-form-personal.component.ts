@@ -81,7 +81,7 @@ export class LayoutFormPersonalComponent implements OnInit, OnDestroy {
 
     this.personalForm.patchValue(personalData);
 
-    if (Object.keys(address).length > 0) {
+    if (address) {
       this.rxjs.updateAddresslId(address);
     }
   }

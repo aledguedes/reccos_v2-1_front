@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IListCads } from '../../../models/ILIstCardModel';
+import { IListCads } from '../../../models/ListCardModel';
 
 @Component({
   selector: 'app-list-cards',

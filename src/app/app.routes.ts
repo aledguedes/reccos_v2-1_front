@@ -26,4 +26,14 @@ export const routes: Routes = [
         (r) => r.FEDERATION_ROUTES,
       ),
   },
+  {
+    path: 'leagues',
+    loadChildren: () =>
+      import('./pages/leagues/league.routes').then((r) => r.LEAGUE_ROUTES),
+  },
+  {
+    path: 'refrees',
+    loadChildren: () =>
+      import('./pages/refree/refree.routes').then((r) => r.REFREE_ROUTES),
+  },
 ];

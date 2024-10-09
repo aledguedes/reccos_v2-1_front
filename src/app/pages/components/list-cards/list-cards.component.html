@@ -8,6 +8,7 @@
       <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrWtg_5v5FFlbmzTkXCcXKcthtrxzl6rN16g&s"
         alt="Placeholder image"
+        class="p-3"
       />
     </figure>
   </div>
@@ -22,8 +23,10 @@
           </figure>
         </div> -->
       <div class="media-content">
-        <p class="title is-4">{{ data.name }}</p>
-        <p class="subtitle is-6">{{ data.surname }}</p>
+        <p class="title is-4" style="height: 70px">
+          {{ data.surname ?? data.name }}
+        </p>
+        <p class="subtitle is-7">{{ data.name }}</p>
         <p class="subtitle is-7">{{ data.status }}</p>
       </div>
     </div>
