@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputFormsComponent } from '../input-forms/input-forms.component';
-import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
+import { IGeneralFields } from '../../../models/generals/GeneralFieldsInputs';
 import { DataRxjsService } from '../../../services/data-rxjs.service';
 import { debounceTime, Subscription, switchMap } from 'rxjs';
-import { IAddress } from '../../../models/Address';
+import { IAddress } from '../../../models/generals/Address';
 import { AddressService } from '../../../services/address/address.service';
 
 @Component({

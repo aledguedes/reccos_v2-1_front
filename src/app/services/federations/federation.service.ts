@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 import {
   IFederationRequest,
   IFederationResponse,
-} from '../../models/FederationModel';
+} from '../../models/entities/FederationModel';
 
 @Injectable({
   providedIn: 'root',

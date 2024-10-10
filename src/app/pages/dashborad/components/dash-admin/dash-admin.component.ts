@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { dashAdminMenu } from '../../../../utils/dash-admin-menu';
-import { IMenuDashboard } from '../../../../models/MenuDashboard';
+import { IMenuDashboard } from '../../../../models/generals/MenuDashboard';
 import { RouterLink } from '@angular/router';
 
 @Component({

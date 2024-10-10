@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IFederationResponse } from '../../../models/FederationModel';
+import { IFederationResponse } from '../../../models/entities/FederationModel';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
-import { IListCads } from '../../../models/ListCardModel';
+import { IListCads } from '../../../models/generals/ListCardModel';
 import { FederationService } from '../../../services/federations/federation.service';
 
 @Component({

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
+import { IGeneralFields } from '../../../models/generals/GeneralFieldsInputs';
 import { DataRxjsService } from '../../../services/data-rxjs.service';
 import { Subscription } from 'rxjs';
 import { InputFormsComponent } from '../input-forms/input-forms.component';

@@ -15,7 +15,7 @@ import { DataRxjsService } from '../../../services/data-rxjs.service';
 import { Subscription } from 'rxjs';
 import { FlagMap } from '../../../services/interfaces-map/interfaces-map';
 import { GenericsUpdatedsService } from '../../../services/generics/generics-updateds.service';
-import { IToForm } from '../../../models/GeneralForms';
+import { IToForm } from '../../../models/generals/GeneralForms';
 import { LayoutFormAddressComponent } from '../layout-form-address/layout-form-address.component';
 import { LayoutFormPersonalComponent } from '../layout-form-personal/layout-form-personal.component';
 

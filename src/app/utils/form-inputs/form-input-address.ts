@@ -1,5 +1,5 @@
 import { Validators } from '@angular/forms';
-import { IGeneralFields } from '../../models/GeneralFieldsInputs';
+import { IGeneralFields } from '../../models/generals/GeneralFieldsInputs';
 
 export const generalInputsAddress: IGeneralFields[] = [
   {

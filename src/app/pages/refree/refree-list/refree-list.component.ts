@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
 import { RouterLink } from '@angular/router';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
-import { IListCads } from '../../../models/ListCardModel';
+import { IListCads } from '../../../models/generals/ListCardModel';
 import { RefreeService } from '../../../services/refrees/refree.service';
 import { IRefreeRequest } from '../../../models/RefreeModel';
 

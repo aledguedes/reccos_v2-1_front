@@ -1,4 +1,4 @@
-import { IAddress } from './Address';
+import { IAddress } from './generals/Address';
 
 export interface ITeamResponse {
   id: number;
