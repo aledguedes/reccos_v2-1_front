@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { IListCads } from '../../../models/generals/ListCardModel';
 import { RefreeService } from '../../../services/refrees/refree.service';
-import { IRefreeRequest } from '../../../models/RefreeModel';
+import { IRefreeRequest } from '../../../models/entities/RefreeModel';
 
 @Component({
   selector: 'app-refree-list',

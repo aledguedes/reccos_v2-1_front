@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { ILeagueRequest, ILeagueResponse } from '../../models/LeagueModel';
+import {
+  ILeagueRequest,
+  ILeagueResponse,
+} from '../../models/entities/LeagueModel';
 
 @Injectable({
   providedIn: 'root',

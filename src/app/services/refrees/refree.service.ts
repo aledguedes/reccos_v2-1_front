@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { IRefreeRequest, IRefreeResponse } from '../../models/RefreeModel';
+import {
+  IRefreeRequest,
+  IRefreeResponse,
+} from '../../models/entities/RefreeModel';
 
 @Injectable({
   providedIn: 'root',

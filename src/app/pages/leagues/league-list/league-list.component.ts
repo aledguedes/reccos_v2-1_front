@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { RouterLink } from '@angular/router';
-import { ILeagueResponse } from '../../../models/LeagueModel';
+import { ILeagueResponse } from '../../../models/entities/LeagueModel';
 import { IListCads } from '../../../models/generals/ListCardModel';
 import { LeagueService } from '../../../services/leagues/league.service';
 import { ListCardsComponent } from '../../components/list-cards/list-cards.component';

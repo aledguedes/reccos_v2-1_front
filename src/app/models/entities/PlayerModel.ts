@@ -1,4 +1,4 @@
-import { IAddress } from './generals/Address';
+import { IAddress } from '../generals/Address';
 
 export interface IPlayerResponse {
   id: number;
