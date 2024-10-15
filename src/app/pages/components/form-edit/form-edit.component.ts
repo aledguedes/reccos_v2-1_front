@@ -11,6 +11,7 @@ import { IToForm } from '../../../models/generals/GeneralForms';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { inputsFieldFederation } from '../../../utils/form-inputs/form-input-federations';
 import { inputsFieldRefree } from '../../../utils/form-inputs/form-input-refrees';
+import { inputsFieldLeagues } from '../../../utils/form-inputs/form-input-leagues';
 
 @Component({
   selector: 'app-form-edit',
@@ -24,6 +25,7 @@ export class FormEditComponent implements OnInit {
     teams: inputsFieldTeam,
     players: inputsFieldPlayer,
     refrees: inputsFieldRefree,
+    leagues: inputsFieldLeagues,
     federations: inputsFieldFederation,
   };
   titlePage = '';
@@ -45,8 +47,8 @@ export class FormEditComponent implements OnInit {
     this.actvRouter.queryParams.subscribe((data) => {
       this.resetForms();
       const flag = data['f'];
-      const strFlag: string = this.switchFlags(flag);
-      this.titlePage = `${data['action'] === 'create' ? 'Novo' : 'Editar'} ${strFlag}`;
+
+      this.titlePage = this.createName(flag, data['action'] === 'update');
 
       this.edit = {
         flag: flag,
@@ -66,6 +68,15 @@ export class FormEditComponent implements OnInit {
     });
   }
 
+  createName(flag: string, update: boolean) {
+    const listFlags = ['federations', 'leagues'];
+    const strFlag: string = this.switchFlags(flag);
+
+    return update
+      ? `Editar ${strFlag}`
+      : `${listFlags.includes(flag) ? 'Nova' : 'Novo'} ${strFlag}`;
+  }
+
   statusForm($event: boolean) {
     this.completdForm = $event;
   }
@@ -73,13 +84,10 @@ export class FormEditComponent implements OnInit {
   onCancel() {
     const currentUrl = this.router.url.split('/');
     const baseRoute = currentUrl[1];
-
-    // Navegar para a lista do componente correspondente
-    this.router.navigate([`/${baseRoute}`]); // Redireciona para /player ou /team
+    this.router.navigate([`/${baseRoute}`]);
   }
 
   getFieldsByFlag(flag: string): { person: IGeneralFields[] } {
-    console.log('FIELDS BY FLAG', flag);
     const personFields = this.flagMappings[flag] || this.flagMappings['teams'];
     return { person: personFields };
   }
@@ -92,17 +100,17 @@ export class FormEditComponent implements OnInit {
 
   switchFlags(flag: string) {
     switch (flag) {
-      case 'players':
-        return 'atleta';
-
       case 'teams':
         return 'time';
 
       case 'federations':
         return 'federação';
 
+      case 'leagues':
+        return 'liga';
+
       default:
-        return '';
+        return 'atleta';
     }
   }
 }
