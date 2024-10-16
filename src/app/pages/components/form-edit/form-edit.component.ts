@@ -12,11 +12,13 @@ import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { inputsFieldFederation } from '../../../utils/form-inputs/form-input-federations';
 import { inputsFieldRefree } from '../../../utils/form-inputs/form-input-refrees';
 import { inputsFieldLeagues } from '../../../utils/form-inputs/form-input-leagues';
+import { FormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-form-edit',
   standalone: true,
-  imports: [LayoutFormComponent, BreadcrumbComponent],
+  imports: [LayoutFormComponent, BreadcrumbComponent, FormsModule, NgClass],
   templateUrl: './form-edit.component.html',
   styleUrl: './form-edit.component.scss',
 })
@@ -63,6 +65,8 @@ export class FormEditComponent implements OnInit {
       this.formAddress = haveAddress.includes(flag);
       if (haveAddress.includes(flag)) {
         this.rxjs.sendAddressForm(generalInputsAddress);
+      } else {
+        this.rxjs.validateWithNoAddress(!haveAddress.includes(flag));
       }
       this.rxjs.sendDataForm(this.edit);
     });

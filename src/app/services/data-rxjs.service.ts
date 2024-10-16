@@ -55,4 +55,12 @@ export class DataRxjsService {
   updateAddresslId(data: IAddress) {
     this.updateFormAddresslId.next(data);
   }
+
+  noAddress = new BehaviorSubject<boolean>(false);
+  noAddress$ = this.noAddress.asObservable();
+
+  validateWithNoAddress(data: boolean) {
+    console.log('ADREES SERVICE validateWithNoAddress', data);
+    this.noAddress.next(data);
+  }
 }

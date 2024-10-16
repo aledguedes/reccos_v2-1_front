@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IGeneralFields } from '../../../models/generals/GeneralFieldsInputs';
 import { DataRxjsService } from '../../../services/data-rxjs.service';
@@ -7,6 +14,7 @@ import { Subscription } from 'rxjs';
 import { InputFormsComponent } from '../input-forms/input-forms.component';
 import { SelectFormsComponent } from '../select-forms/select-forms.component';
 import { FlagMap } from '../../../services/interfaces-map/interfaces-map';
+import { IStatusForm } from '../../../models/generals/Outputs';
 
 @Component({
   selector: 'app-layout-form-personal',
@@ -24,6 +32,7 @@ export class LayoutFormPersonalComponent implements OnInit, OnDestroy {
   personalForm!: FormGroup;
   personalData: IGeneralFields[] = [];
   @Input() update = false;
+  @Output() statusFormPersonal = new EventEmitter<IStatusForm>();
   subscription: Subscription = new Subscription();
 
   constructor(
@@ -38,6 +47,13 @@ export class LayoutFormPersonalComponent implements OnInit, OnDestroy {
         this.personalForm = this.fb.group(
           this.createFormGroup(this.personalData),
         );
+
+        this.personalForm.statusChanges.subscribe((newStaus) => {
+          this.statusFormPersonal.emit({
+            form: 'personal',
+            status: newStaus === 'VALID',
+          });
+        });
       },
     );
 
@@ -84,5 +100,9 @@ export class LayoutFormPersonalComponent implements OnInit, OnDestroy {
     if (address) {
       this.rxjs.updateAddresslId(address);
     }
+    this.statusFormPersonal.emit({
+      form: 'personal',
+      status: this.personalForm.status === 'VALID',
+    });
   }
 }
