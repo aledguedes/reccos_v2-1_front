@@ -94,8 +94,6 @@ export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes', changes);
-
     if (!changes['address'].currentValue) {
       this.updateStatus({
         form: 'address',
@@ -131,8 +129,6 @@ export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   updateStatus(event: { form: keyof IStatusFormValidate; status: boolean }) {
-    console.log('CHECANDO OS VALIDATIONS FORM', event);
-
     if (event.form in this.statusValidation) {
       this.statusValidation[event.form] = event.status;
 

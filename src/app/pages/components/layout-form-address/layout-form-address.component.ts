@@ -84,7 +84,6 @@ export class LayoutFormAddressComponent implements OnInit, OnDestroy {
     );
 
     const noAddress = this.rxjs.noAddress$.subscribe((address: boolean) => {
-      console.log('ADREES FORM', address);
       this.statusFormAddress.emit({
         form: 'address',
         status: address,

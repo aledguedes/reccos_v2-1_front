@@ -9,6 +9,7 @@
       id="img_logo"
       accept="image/*"
       required
+      (change)="uploadFiles($event)"
     />
     <label for="img_logo" class="button is-primary">Escolher Arquivo</label>
     <p id="file-name" class="mt-2"></p>

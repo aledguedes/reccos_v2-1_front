@@ -57,10 +57,10 @@
   @if (step === 3) {
     <fieldset class="p-3">
       <!-- <legend class="text-center mb-3">Upload</legend> -->
-      <app-form-upload />
+      <app-form-upload (statusFormUpload)="updateStatus($event)" />
     </fieldset>
 
-    <button class="button is-danger is-outlined" (click)="previousStep()">
+    <button class="button is-danger is-outlined ms-2" (click)="previousStep()">
       Anterior
     </button>
     <button
@@ -78,9 +78,16 @@
       <!-- <app-form-upload /> -->
     </fieldset>
 
-    <button class="button is-danger is-outlined" (click)="previousStep()">
+    <button class="button is-danger is-outlined ms-2" (click)="previousStep()">
       Anterior
     </button>
+
+    <button
+      [disabled]="!allFormsCompleted"
+      class="button is-primary"
+      (click)="nextStep()"
+    >
+      Finalizar
+    </button>
   }
-  <div class="row">statusValidation => {{ statusValidation | json }}</div>
 </div>
