@@ -13,7 +13,7 @@ export const LEAGUE_ROUTES: Routes = [
         component: LeagueListComponent,
       },
       {
-        path: 'team-edit',
+        path: 'league-edit',
         component: FormEditComponent,
       },
     ],

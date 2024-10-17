@@ -1,12 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputFormsComponent } from '../input-forms/input-forms.component';
-import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
+import { IGeneralFields } from '../../../models/generals/GeneralFieldsInputs';
 import { DataRxjsService } from '../../../services/data-rxjs.service';
 import { debounceTime, Subscription, switchMap } from 'rxjs';
-import { IAddress } from '../../../models/Address';
+import { IAddress } from '../../../models/generals/Address';
 import { AddressService } from '../../../services/address/address.service';
+import { IStatusForm } from '../../../models/generals/Outputs';
 
 @Component({
   selector: 'app-layout-form-address',
@@ -19,6 +27,7 @@ export class LayoutFormAddressComponent implements OnInit, OnDestroy {
   addressForm!: FormGroup;
   addressData: IGeneralFields[] = [];
   @Input() update = false;
+  @Output() statusFormAddress = new EventEmitter<IStatusForm>();
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -35,6 +44,13 @@ export class LayoutFormAddressComponent implements OnInit, OnDestroy {
         this.addressForm = this.fb.group(
           this.createFormGroup(this.addressData),
         );
+
+        this.addressForm.statusChanges.subscribe((newStaus) => {
+          this.statusFormAddress.emit({
+            form: 'address',
+            status: newStaus === 'VALID',
+          });
+        });
       },
     );
     this.addressForm
@@ -59,10 +75,22 @@ export class LayoutFormAddressComponent implements OnInit, OnDestroy {
         if (this.update) {
           this.addressForm.reset();
           this.addressForm.patchValue(address);
+          this.statusFormAddress.emit({
+            form: 'address',
+            status: this.addressForm.status === 'VALID',
+          });
         }
       },
     );
 
+    const noAddress = this.rxjs.noAddress$.subscribe((address: boolean) => {
+      this.statusFormAddress.emit({
+        form: 'address',
+        status: address,
+      });
+    });
+
+    this.subscription.add(noAddress);
     this.subscription.add(dataSubscription);
     this.subscription.add(addressSubscription);
   }

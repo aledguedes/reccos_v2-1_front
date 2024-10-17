@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IGeneralFields } from '../models/GeneralFieldsInputs';
-import { IToForm } from '../models/GeneralForms';
-import { IAddress } from '../models/Address';
+import { IGeneralFields } from '../models/generals/GeneralFieldsInputs';
+import { IToForm } from '../models/generals/GeneralForms';
+import { IAddress } from '../models/generals/Address';
 import { FlagMap } from './interfaces-map/interfaces-map';
 
 @Injectable({
@@ -54,5 +54,13 @@ export class DataRxjsService {
 
   updateAddresslId(data: IAddress) {
     this.updateFormAddresslId.next(data);
+  }
+
+  noAddress = new BehaviorSubject<boolean>(false);
+  noAddress$ = this.noAddress.asObservable();
+
+  validateWithNoAddress(data: boolean) {
+    console.log('ADREES SERVICE validateWithNoAddress', data);
+    this.noAddress.next(data);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IPlayerResponse } from '../../../models/PlayerModel';
+import { IPlayerResponse } from '../../../models/entities/PlayerModel';
 import { PlayerService } from '../../../services/players/player.service';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 

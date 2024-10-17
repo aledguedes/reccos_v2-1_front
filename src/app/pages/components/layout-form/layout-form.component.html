@@ -1,13 +1,93 @@
-<div>
-  <fieldset class="p-3">
-    <legend class="text-center">Informações Gerais</legend>
-    <app-layout-form-personal [update]="update" />
-  </fieldset>
+<div class="container">
+  <ul class="steps has-content-centered">
+    @for (s of stepsForm; track $index) {
+      @if (s.enable) {
+        <li
+          class="steps-segment"
+          [ngClass]="{ 'is-active': step === $index + 1 }"
+        >
+          <span class="steps-marker"></span>
+          <div class="steps-content">
+            <p class="is-size-5">{{ s.label }}</p>
+          </div>
+        </li>
+      }
+    }
+  </ul>
+  @if (step === 1) {
+    <fieldset class="p-3">
+      <legend class="text-center">Informações Gerais</legend>
+      <app-layout-form-personal
+        (statusFormPersonal)="updateStatus($event)"
+        [update]="update"
+      />
+    </fieldset>
+    <button
+      [disabled]="!statusValidation.personal"
+      class="button is-primary"
+      (click)="nextStep()"
+    >
+      Próximo
+    </button>
+  }
 
   @if (address) {
+    @if (step === 2) {
+      <fieldset class="p-3">
+        <!-- <legend class="text-center">Endereço</legend> -->
+        <app-layout-form-address
+          (statusFormAddress)="updateStatus($event)"
+          [update]="update"
+          ngSkipHydration
+        />
+      </fieldset>
+      <button class="button is-danger is-outlined" (click)="previousStep()">
+        Anterior
+      </button>
+      <button
+        [disabled]="!statusValidation.address"
+        class="button is-primary"
+        (click)="nextStep()"
+      >
+        Próximo
+      </button>
+    }
+  }
+
+  @if (step === 3) {
     <fieldset class="p-3">
-      <legend class="text-center">Dados de Contato</legend>
-      <app-layout-form-address [update]="update" ngSkipHydration />
+      <!-- <legend class="text-center mb-3">Upload</legend> -->
+      <app-form-upload (statusFormUpload)="updateStatus($event)" />
     </fieldset>
+
+    <button class="button is-danger is-outlined ms-2" (click)="previousStep()">
+      Anterior
+    </button>
+    <button
+      [disabled]="!statusValidation.upload"
+      class="button is-primary"
+      (click)="nextStep()"
+    >
+      Próximo
+    </button>
+  }
+
+  @if (step === 4) {
+    <fieldset class="p-3">
+      <!-- <legend class="text-center">Confirmação</legend> -->
+      <!-- <app-form-upload /> -->
+    </fieldset>
+
+    <button class="button is-danger is-outlined ms-2" (click)="previousStep()">
+      Anterior
+    </button>
+
+    <button
+      [disabled]="!allFormsCompleted"
+      class="button is-primary"
+      (click)="nextStep()"
+    >
+      Finalizar
+    </button>
   }
 </div>

@@ -2,20 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LayoutFormComponent } from '../layout-form/layout-form.component';
 import { Router } from '@angular/router';
-import { IGeneralFields } from '../../../models/GeneralFieldsInputs';
+import { IGeneralFields } from '../../../models/generals/GeneralFieldsInputs';
 import { inputsFieldPlayer } from '../../../utils/form-inputs/form-input-player';
 import { inputsFieldTeam } from '../../../utils/form-inputs/form-input-team';
 import { DataRxjsService } from '../../../services/data-rxjs.service';
 import { generalInputsAddress } from '../../../utils/form-inputs/form-input-address';
-import { IToForm } from '../../../models/GeneralForms';
+import { IToForm } from '../../../models/generals/GeneralForms';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { inputsFieldFederation } from '../../../utils/form-inputs/form-input-federations';
 import { inputsFieldRefree } from '../../../utils/form-inputs/form-input-refrees';
+import { inputsFieldLeagues } from '../../../utils/form-inputs/form-input-leagues';
+import { FormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-form-edit',
   standalone: true,
-  imports: [LayoutFormComponent, BreadcrumbComponent],
+  imports: [LayoutFormComponent, BreadcrumbComponent, FormsModule, NgClass],
   templateUrl: './form-edit.component.html',
   styleUrl: './form-edit.component.scss',
 })
@@ -24,6 +27,7 @@ export class FormEditComponent implements OnInit {
     teams: inputsFieldTeam,
     players: inputsFieldPlayer,
     refrees: inputsFieldRefree,
+    leagues: inputsFieldLeagues,
     federations: inputsFieldFederation,
   };
   titlePage = '';
@@ -45,8 +49,8 @@ export class FormEditComponent implements OnInit {
     this.actvRouter.queryParams.subscribe((data) => {
       this.resetForms();
       const flag = data['f'];
-      const strFlag: string = this.switchFlags(flag);
-      this.titlePage = `${data['action'] === 'create' ? 'Novo' : 'Editar'} ${strFlag}`;
+
+      this.titlePage = this.createName(flag, data['action'] === 'update');
 
       this.edit = {
         flag: flag,
@@ -61,9 +65,20 @@ export class FormEditComponent implements OnInit {
       this.formAddress = haveAddress.includes(flag);
       if (haveAddress.includes(flag)) {
         this.rxjs.sendAddressForm(generalInputsAddress);
+      } else {
+        this.rxjs.validateWithNoAddress(!haveAddress.includes(flag));
       }
       this.rxjs.sendDataForm(this.edit);
     });
+  }
+
+  createName(flag: string, update: boolean) {
+    const listFlags = ['federations', 'leagues'];
+    const strFlag: string = this.switchFlags(flag);
+
+    return update
+      ? `Editar ${strFlag}`
+      : `${listFlags.includes(flag) ? 'Nova' : 'Novo'} ${strFlag}`;
   }
 
   statusForm($event: boolean) {
@@ -73,13 +88,10 @@ export class FormEditComponent implements OnInit {
   onCancel() {
     const currentUrl = this.router.url.split('/');
     const baseRoute = currentUrl[1];
-
-    // Navegar para a lista do componente correspondente
-    this.router.navigate([`/${baseRoute}`]); // Redireciona para /player ou /team
+    this.router.navigate([`/${baseRoute}`]);
   }
 
   getFieldsByFlag(flag: string): { person: IGeneralFields[] } {
-    console.log('FIELDS BY FLAG', flag);
     const personFields = this.flagMappings[flag] || this.flagMappings['teams'];
     return { person: personFields };
   }
@@ -92,17 +104,17 @@ export class FormEditComponent implements OnInit {
 
   switchFlags(flag: string) {
     switch (flag) {
-      case 'players':
-        return 'atleta';
-
       case 'teams':
         return 'time';
 
       case 'federations':
         return 'federação';
 
+      case 'leagues':
+        return 'liga';
+
       default:
-        return '';
+        return 'atleta';
     }
   }
 }

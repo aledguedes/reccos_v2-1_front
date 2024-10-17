@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { TeamService } from '../../../services/teams/team.service';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
-import { IListCads } from '../../../models/ListCardModel';
+import { IListCads } from '../../../models/generals/ListCardModel';
 
 interface ITeam {
   id?: number;
