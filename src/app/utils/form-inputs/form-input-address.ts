@@ -40,7 +40,7 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: 'Vila Capanema',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-5 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -50,7 +50,7 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: 'São Paulo',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-5 col-sm-12',
+    colClass: 'col-12 col-md-9 col-sm-12',
   },
   {
     typeComponent: 'input',
@@ -60,6 +60,6 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: 'SP',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-2 col-sm-12',
+    colClass: 'col-12 col-md-3 col-sm-12',
   },
 ];

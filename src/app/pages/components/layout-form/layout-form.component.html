@@ -1,7 +1,7 @@
 <div class="form-box">
   <div class="stepper">
     <!-- <div class="logo text-center"><span>aled</span>guedes</div> -->
-    <ul class="stepper-steps ps-5">
+    <ul class="stepper-steps">
       @for (item of stepsForm; track $index) {
         <li class="step" [class.active]="currentStep === $index + 1">
           <span>{{ $index + 1 }}</span>
@@ -10,7 +10,7 @@
       }
     </ul>
   </div>
-  <div class="form-stepers">
+  <div class="form-stepers p-5">
     @if (currentStep === 1) {
       <ng-container>
         <div class="form-one form-step" [class.active]="currentStep === 1">
