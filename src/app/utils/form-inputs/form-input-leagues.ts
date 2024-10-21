@@ -48,7 +48,7 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     ],
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -58,7 +58,7 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     placeholder: 'Ex: Batatais',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-6 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -67,7 +67,7 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     inputType: 'date',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-3 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -76,7 +76,7 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     inputType: 'date',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-3 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -85,7 +85,7 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     inputType: 'date',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-3 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -94,7 +94,7 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     inputType: 'date',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-3 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -103,7 +103,7 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     inputType: 'number',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-3 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -112,7 +112,7 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     inputType: 'number',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-xl-3 col-lg-3 col-md-3 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -121,7 +121,7 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     inputType: 'text',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'select',
@@ -135,7 +135,7 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     ],
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'select',
@@ -152,7 +152,7 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     ],
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'select',
@@ -165,7 +165,7 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     ],
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'select',
@@ -177,6 +177,6 @@ export const inputsFieldLeagues: IGeneralFields[] = [
     ],
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12',
+    colClass: 'col-12',
   },
 ];

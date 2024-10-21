@@ -1,93 +1,67 @@
-<div class="container">
-  <ul class="steps has-content-centered">
-    @for (s of stepsForm; track $index) {
-      @if (s.enable) {
-        <li
-          class="steps-segment"
-          [ngClass]="{ 'is-active': step === $index + 1 }"
-        >
-          <span class="steps-marker"></span>
-          <div class="steps-content">
-            <p class="is-size-5">{{ s.label }}</p>
-          </div>
+<div class="form-box">
+  <div class="stepper">
+    <!-- <div class="logo text-center"><span>aled</span>guedes</div> -->
+    <ul class="stepper-steps ps-5">
+      @for (item of stepsForm; track $index) {
+        <li class="step" [class.active]="currentStep === $index + 1">
+          <span>{{ $index + 1 }}</span>
+          <p>{{ item.label }}</p>
         </li>
       }
+    </ul>
+  </div>
+  <div class="form-stepers">
+    @if (currentStep === 1) {
+      <ng-container>
+        <div class="form-one form-step" [class.active]="currentStep === 1">
+          <app-layout-form-personal
+            (statusFormPersonal)="updateStatus($event)"
+            [update]="update"
+          />
+        </div>
+      </ng-container>
     }
-  </ul>
-  @if (step === 1) {
-    <fieldset class="p-3">
-      <legend class="text-center">Informações Gerais</legend>
-      <app-layout-form-personal
-        (statusFormPersonal)="updateStatus($event)"
-        [update]="update"
-      />
-    </fieldset>
-    <button
-      [disabled]="!statusValidation.personal"
-      class="button is-primary"
-      (click)="nextStep()"
-    >
-      Próximo
-    </button>
-  }
 
-  @if (address) {
-    @if (step === 2) {
-      <fieldset class="p-3">
-        <!-- <legend class="text-center">Endereço</legend> -->
-        <app-layout-form-address
-          (statusFormAddress)="updateStatus($event)"
-          [update]="update"
-          ngSkipHydration
-        />
-      </fieldset>
-      <button class="button is-danger is-outlined" (click)="previousStep()">
-        Anterior
-      </button>
-      <button
-        [disabled]="!statusValidation.address"
-        class="button is-primary"
-        (click)="nextStep()"
-      >
-        Próximo
-      </button>
+    @if (currentStep === 2 && address) {
+      <ng-container>
+        <div class="form-two form-step" [class.active]="currentStep === 2">
+          <app-layout-form-address
+            (statusFormAddress)="updateStatus($event)"
+            [update]="update"
+            ngSkipHydration
+          />
+        </div>
+      </ng-container>
     }
+
+    @if (currentStep === 3) {
+      <ng-container>
+        <div class="form-three form-step" [class.active]="currentStep === 3">
+          <app-form-upload (statusFormUpload)="updateStatus($event)" />
+        </div>
+      </ng-container>
+    }
+
+    @if (currentStep === 4) {
+      <ng-container>
+        <div class="form-three form-step" [class.active]="currentStep === 4">
+          <!-- <app-form-upload (statusFormUpload)="updateStatus($event)" /> -->
+        </div>
+      </ng-container>
+    }
+  </div>
+</div>
+
+<div class="d-flex justify-content-around">
+  @if (currentStep !== 1) {
+    <button class="button is-danger is-outlined w-25" (click)="prevStep()">
+      Voltar
+    </button>
   }
-
-  @if (step === 3) {
-    <fieldset class="p-3">
-      <!-- <legend class="text-center mb-3">Upload</legend> -->
-      <app-form-upload (statusFormUpload)="updateStatus($event)" />
-    </fieldset>
-
-    <button class="button is-danger is-outlined ms-2" (click)="previousStep()">
-      Anterior
-    </button>
-    <button
-      [disabled]="!statusValidation.upload"
-      class="button is-primary"
-      (click)="nextStep()"
-    >
-      Próximo
-    </button>
+  @if (currentStep !== 4) {
+    <button class="button is-link w-25" (click)="nextStep()">Próximo</button>
   }
-
-  @if (step === 4) {
-    <fieldset class="p-3">
-      <!-- <legend class="text-center">Confirmação</legend> -->
-      <!-- <app-form-upload /> -->
-    </fieldset>
-
-    <button class="button is-danger is-outlined ms-2" (click)="previousStep()">
-      Anterior
-    </button>
-
-    <button
-      [disabled]="!allFormsCompleted"
-      class="button is-primary"
-      (click)="nextStep()"
-    >
-      Finalizar
-    </button>
+  @if (currentStep === 4) {
+    <button class="button is-link w-25">Enviar</button>
   }
 </div>
