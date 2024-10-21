@@ -2,6 +2,17 @@
 @import url("../node_modules/bulma/bulma.scss");
 @import url("../node_modules/bulma-o-steps/bulma-steps.min.css");
 
+:root {
+  --main-color: #4258ff;
+  --secondary-color: #a29bfe;
+  --lighter-color: #e0e0e7;
+  --ligth-color: #b0b0c0;
+  --dark-color: #52505e;
+
+  --font-smaller: 14px;
+  --font-bigger: 20px;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -11,6 +22,7 @@
 html,
 body {
   background-color: #f7f7f7;
+  font-family: "Nunito", sans-serif;
 }
 
 @media screen and (max-width: 576px) {
@@ -18,4 +30,21 @@ body {
     width: 100%;
     margin-top: 0.5rem;
   }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

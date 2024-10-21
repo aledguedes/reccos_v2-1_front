@@ -73,6 +73,8 @@ export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
   stepsForm: IStepsComponent[] = stepForms;
   statusValidation: IStatusFormValidate = statusForms;
 
+  currentStep = 1;
+
   constructor(
     private rxjs: DataRxjsService,
     private generalService: GenericsUpdatedsService,
@@ -112,21 +114,6 @@ export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
       },
     });
   }
-  nextStep() {
-    this.step++;
-    if (this.step === 2 && !this.address) {
-      this.step++;
-    }
-  }
-
-  previousStep() {
-    if (this.step > 1) {
-      this.step--;
-      if (this.step === 2 && !this.address) {
-        this.step--;
-      }
-    }
-  }
 
   updateStatus(event: { form: keyof IStatusFormValidate; status: boolean }) {
     if (event.form in this.statusValidation) {
@@ -137,6 +124,18 @@ export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
       );
 
       this.allFormsCompleted = allFormsValid;
+    }
+  }
+
+  nextStep() {
+    if (this.currentStep < 4) {
+      this.currentStep++;
+    }
+  }
+
+  prevStep() {
+    if (this.currentStep > 1) {
+      this.currentStep--;
     }
   }
 }
