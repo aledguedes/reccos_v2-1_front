@@ -15,10 +15,22 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="buttons">
+      <button class="button is-skeleton">Button</button>
+      <button class="button is-link is-skeleton">Link</button>
+      <button class="button is-primary is-skeleton">Primary</button>
+      <button class="button is-success is-skeleton">Success</button>
+      <button class="button is-info is-skeleton">Info</button>
+      <button class="button is-warning is-skeleton">Warning</button>
+      <button class="button is-danger is-skeleton">Danger</button>
+    </div>
+  </div>
+
   <div class="row g-4">
     @if (federations.length > 0) {
       @for (federation of federations; track $index) {
-        <div class="col-lg-3 col-md-6 col-sm-12 p-5">
+        <div class="col-lg-3 col-md-6 col-sm-12">
           <app-list-cards [data]="federation" [toQueries]="cardFlags" />
         </div>
       }

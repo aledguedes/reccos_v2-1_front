@@ -66,6 +66,12 @@ export class LayoutFormPersonalComponent implements OnInit, OnDestroy {
       },
     );
 
+    this.personalForm.statusChanges.subscribe((newStatus) => {
+      if (newStatus === 'VALID') {
+        this.rxjs.sendPersonalFormsValue(this.personalForm.value);
+      }
+    });
+
     this.subscription.add(dataSubscription);
     this.subscription.add(personalSubscription);
   }

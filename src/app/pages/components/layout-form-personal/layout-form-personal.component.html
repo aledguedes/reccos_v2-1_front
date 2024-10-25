@@ -25,20 +25,23 @@
 
       @if (field.typeComponent === "select") {
         <div [ngClass]="field.colClass">
-          <app-select-forms
-            [id]="field.inputFieldName"
-            [label]="field.label"
-            [options]="field.options ?? []"
-            [formControlName]="field.inputFieldName"
-            [isInvalid]="
-              (personalForm.get('personal.' + field.inputFieldName)?.invalid &&
+          @if (update || field.inputFieldName !== "status") {
+            <app-select-forms
+              [id]="field.inputFieldName"
+              [label]="field.label"
+              [options]="field.options ?? []"
+              [formControlName]="field.inputFieldName"
+              [isInvalid]="
                 (personalForm.get('personal.' + field.inputFieldName)
-                  ?.touched ||
-                  personalForm.get('personal.' + field.inputFieldName)
-                    ?.dirty)) ??
-              false
-            "
-          ></app-select-forms>
+                  ?.invalid &&
+                  (personalForm.get('personal.' + field.inputFieldName)
+                    ?.touched ||
+                    personalForm.get('personal.' + field.inputFieldName)
+                      ?.dirty)) ??
+                false
+              "
+            ></app-select-forms>
+          }
         </div>
       }
     }

@@ -63,4 +63,11 @@ export class DataRxjsService {
     console.log('ADREES SERVICE validateWithNoAddress', data);
     this.noAddress.next(data);
   }
+
+  valuePersonalForm = new BehaviorSubject<FlagMap[keyof FlagMap] | null>(null);
+  valuePersonalForm$ = this.valuePersonalForm.asObservable();
+
+  sendPersonalFormsValue(personal: FlagMap[keyof FlagMap] | null) {
+    this.valuePersonalForm.next(personal);
+  }
 }
