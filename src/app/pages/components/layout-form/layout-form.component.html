@@ -14,6 +14,9 @@
     @if (currentStep === 1) {
       <ng-container>
         <div class="form-one form-step" [class.active]="currentStep === 1">
+          <div class="bg-svg"></div>
+          <h2>Informações básicas</h2>
+          <p>Entre com os dados pessoais.</p>
           <app-layout-form-personal
             (statusFormPersonal)="updateStatus($event)"
             [update]="update"
@@ -25,6 +28,9 @@
     @if (currentStep === 2 && address) {
       <ng-container>
         <div class="form-two form-step" [class.active]="currentStep === 2">
+          <div class="bg-svg"></div>
+          <h2>Endereço</h2>
+          <p>Entre com os dados de endereço.</p>
           <app-layout-form-address
             (statusFormAddress)="updateStatus($event)"
             [update]="update"
@@ -37,6 +43,9 @@
     @if (currentStep === 3) {
       <ng-container>
         <div class="form-three form-step" [class.active]="currentStep === 3">
+          <div class="bg-svg"></div>
+          <h2>Upload</h2>
+          <p>Selecione uma imagem como avatar.</p>
           <app-form-upload (statusFormUpload)="updateStatus($event)" />
         </div>
       </ng-container>
@@ -45,6 +54,9 @@
     @if (currentStep === 4) {
       <ng-container>
         <div class="form-three form-step" [class.active]="currentStep === 4">
+          <div class="bg-svg"></div>
+          <h2>Confirmação dos dados</h2>
+          <p>Confirme as informações fornecidos para finalziar</p>
           <!-- <app-form-upload (statusFormUpload)="updateStatus($event)" /> -->
         </div>
       </ng-container>

@@ -1,7 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("../node_modules/bulma/bulma.scss");
-@import url("../node_modules/bulma-o-steps/bulma-steps.min.css");
-
 :root {
   --main-color: #4258ff;
   --secondary-color: #a29bfe;
@@ -21,7 +19,7 @@
 
 html,
 body {
-  background-color: #f7f7f7;
+  background-color: #f0f0f0;
   font-family: "Nunito", sans-serif;
 }
 

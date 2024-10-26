@@ -88,7 +88,13 @@ export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
       }
     });
 
+    const personalFormsValue = this.rxjs.valuePersonalForm$.subscribe(
+      (personal: FlagMap[keyof FlagMap] | null) => {
+        console.log('Values FORM PERSONAL', personal);
+      },
+    );
     this.subscription.add(dataSubscription);
+    this.subscription.add(personalFormsValue);
   }
 
   ngOnDestroy(): void {
