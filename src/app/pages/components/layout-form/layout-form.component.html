@@ -1,85 +1,79 @@
-<form class="form-group" [formGroup]="generalForm">
-  <div formGroupName="personal">
-    <fieldset class="p-3">
-      <legend class="text-center">Dados Pessoais</legend>
-      <div class="row">
-        @for (field of personalData; track $index) {
-          @if (field.typeComponent === "input") {
-            <div [ngClass]="field.colClass">
-              <app-input-forms
-                [id]="field.inputFieldName"
-                [label]="field.label"
-                [formControlName]="field.inputFieldName"
-                [type]="field.inputType ?? 'text'"
-                [placeholder]="field.placeholder ?? ''"
-                [step]="field.step"
-                [accept]="field.accept"
-                [isInvalid]="
-                  (generalForm.get('personal.' + field.inputFieldName)
-                    ?.invalid &&
-                    (generalForm.get('personal.' + field.inputFieldName)
-                      ?.touched ||
-                      generalForm.get('personal.' + field.inputFieldName)
-                        ?.dirty)) ??
-                  false
-                "
-              ></app-input-forms>
-            </div>
-          }
-
-          @if (field.typeComponent === "select") {
-            <div [ngClass]="field.colClass">
-              <app-select-forms
-                [id]="field.inputFieldName"
-                [label]="field.label"
-                [options]="field.options ?? []"
-                [formControlName]="field.inputFieldName"
-                [isInvalid]="
-                  (generalForm.get('personal.' + field.inputFieldName)
-                    ?.invalid &&
-                    (generalForm.get('personal.' + field.inputFieldName)
-                      ?.touched ||
-                      generalForm.get('personal.' + field.inputFieldName)
-                        ?.dirty)) ??
-                  false
-                "
-              ></app-select-forms>
-            </div>
-          }
-        }
-      </div>
-    </fieldset>
+<div class="form-box">
+  <div class="stepper">
+    <!-- <div class="logo text-center"><span>aled</span>guedes</div> -->
+    <ul class="stepper-steps">
+      @for (item of stepsForm; track $index) {
+        <li class="step" [class.active]="currentStep === $index + 1">
+          <span>{{ $index + 1 }}</span>
+          <p>{{ item.label }}</p>
+        </li>
+      }
+    </ul>
   </div>
+  <div class="form-stepers p-5">
+    @if (currentStep === 1) {
+      <ng-container>
+        <div class="form-one form-step" [class.active]="currentStep === 1">
+          <div class="bg-svg"></div>
+          <h2>Informações básicas</h2>
+          <p>Entre com os dados pessoais.</p>
+          <app-layout-form-personal
+            (statusFormPersonal)="updateStatus($event)"
+            [update]="update"
+          />
+        </div>
+      </ng-container>
+    }
 
-  <div formGroupName="address" class="mt-4">
-    <fieldset class="p-3">
-      <legend class="text-center">Dados de Contato</legend>
-      <div class="row">
-        @for (field of addressData; track $index) {
-          @if (field.typeComponent === "input") {
-            <div [ngClass]="field.colClass">
-              <app-input-forms
-                [id]="field.inputFieldName"
-                [label]="field.label"
-                [formControlName]="field.inputFieldName"
-                [type]="field.inputType ?? 'text'"
-                [placeholder]="field.placeholder ?? ''"
-                [step]="field.step"
-                [accept]="field.accept"
-                [isInvalid]="
-                  (generalForm.get('address.' + field.inputFieldName)
-                    ?.invalid &&
-                    (generalForm.get('address.' + field.inputFieldName)
-                      ?.touched ||
-                      generalForm.get('address.' + field.inputFieldName)
-                        ?.dirty)) ??
-                  false
-                "
-              ></app-input-forms>
-            </div>
-          }
-        }
-      </div>
-    </fieldset>
+    @if (currentStep === 2 && address) {
+      <ng-container>
+        <div class="form-two form-step" [class.active]="currentStep === 2">
+          <div class="bg-svg"></div>
+          <h2>Endereço</h2>
+          <p>Entre com os dados de endereço.</p>
+          <app-layout-form-address
+            (statusFormAddress)="updateStatus($event)"
+            [update]="update"
+            ngSkipHydration
+          />
+        </div>
+      </ng-container>
+    }
+
+    @if (currentStep === 3) {
+      <ng-container>
+        <div class="form-three form-step" [class.active]="currentStep === 3">
+          <div class="bg-svg"></div>
+          <h2>Upload</h2>
+          <p>Selecione uma imagem como avatar.</p>
+          <app-form-upload (statusFormUpload)="updateStatus($event)" />
+        </div>
+      </ng-container>
+    }
+
+    @if (currentStep === 4) {
+      <ng-container>
+        <div class="form-three form-step" [class.active]="currentStep === 4">
+          <div class="bg-svg"></div>
+          <h2>Confirmação dos dados</h2>
+          <p>Confirme as informações fornecidos para finalziar</p>
+          <!-- <app-form-upload (statusFormUpload)="updateStatus($event)" /> -->
+        </div>
+      </ng-container>
+    }
   </div>
-</form>
+</div>
+
+<div class="d-flex justify-content-around">
+  @if (currentStep !== 1) {
+    <button class="button is-danger is-outlined w-25" (click)="prevStep()">
+      Voltar
+    </button>
+  }
+  @if (currentStep !== 4) {
+    <button class="button is-link w-25" (click)="nextStep()">Próximo</button>
+  }
+  @if (currentStep === 4) {
+    <button class="button is-link w-25">Enviar</button>
+  }
+</div>

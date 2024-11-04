@@ -3,15 +3,21 @@
   height: 50px;
 }
 
-.card-hover {
+.box-hover {
   transition:
     transform 0.3s,
     box-shadow 0.3s;
 }
 
-.card-hover:hover {
+.box-hover:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.skeleton-card {
+  width: 100%;
+  height: 250px;
+  border: 1px solid #004993;
 }
 
 @media screen and (max-width: 575px) {

@@ -1,5 +1,5 @@
 import { Validators } from '@angular/forms';
-import { IGeneralFields } from '../../models/GeneralFieldsInputs';
+import { IGeneralFields } from '../../models/generals/GeneralFieldsInputs';
 
 export const generalInputsAddress: IGeneralFields[] = [
   {
@@ -10,7 +10,7 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: 'Ex: 01000-000',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-3 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -20,7 +20,7 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: 'Ex: Rua das Palmeiras',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-7 col-sm-12',
+    colClass: 'col-12 col-md-9 col-sm-12',
   },
   {
     typeComponent: 'input',
@@ -30,7 +30,7 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: '123',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-2 col-sm-12',
+    colClass: 'col-12 col-md-3 col-sm-12',
   },
   {
     typeComponent: 'input',
@@ -40,7 +40,7 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: 'Vila Capanema',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-5 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -50,14 +50,14 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: 'São Paulo',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-4 col-sm-12',
+    colClass: 'col-12 col-md-9 col-sm-12',
   },
   {
     typeComponent: 'input',
     label: 'Estado:',
     inputFieldName: 'state',
     inputType: 'text',
-    placeholder: 'São Paulo',
+    placeholder: 'SP',
     validators: [Validators.required],
     initialValues: '',
     colClass: 'col-12 col-md-3 col-sm-12',

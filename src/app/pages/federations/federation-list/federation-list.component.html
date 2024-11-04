@@ -1,48 +1,43 @@
 <div class="container py-3">
-    <div class="uk-grid uk-flex-right uk-padding-small uk-margin-small-bottom">
-        <div class="uk-width-auto">
-            <a [routerLink]="['Federation-edit']" [queryParams]="{ action: 'create', f: 'federation' }"
-                class="uk-button uk-button-primary uk-text-uppercase">
-                <span uk-icon="icon: plus"></span> Adicionar Federação
-            </a>
-        </div>
+  <div
+    class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between is-align-items-center my-4"
+  >
+    <app-breadcrumb />
+    <div class="buttons w-sm-buttons">
+      <button
+        [routerLink]="['federation-edit']"
+        [queryParams]="{ action: 'create', f: 'federations' }"
+        class="button is-link is-fullwidth"
+      >
+        <i class="ri-add-fill"></i>
+        Adicionar Federação
+      </button>
     </div>
+  </div>
 
-    <div class="row g-3">
-        @if (federations.length > 0) {
-        @for (federation of federations; track $index) {
+  <div class="row">
+    <div class="buttons">
+      <button class="button is-skeleton">Button</button>
+      <button class="button is-link is-skeleton">Link</button>
+      <button class="button is-primary is-skeleton">Primary</button>
+      <button class="button is-success is-skeleton">Success</button>
+      <button class="button is-info is-skeleton">Info</button>
+      <button class="button is-warning is-skeleton">Warning</button>
+      <button class="button is-danger is-skeleton">Danger</button>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    @if (federations.length > 0) {
+      @for (federation of federations; track $index) {
         <div class="col-lg-3 col-md-6 col-sm-12">
-
-            <div class="card" style="width: 95%;">
-                <div class="card-content">
-                    <figure class="image is-128x128 has-text-centered">
-                        <img src="caminho/para/logo.png" alt="Logo" class="is-rounded" />
-                    </figure>
-                    <h2 class="title is-5 has-text-centered">Nome da Federação</h2>
-                    <h3 class="subtitle is-6 has-text-centered">Sobrenome</h3>
-                    <p class="has-text-centered">Status: Ativo</p>
-                </div>
-                <footer class="card-footer p-0">
-                    <a [routerLink]="['federation-edit']"
-                    [queryParams]="{
-                      action: 'update',
-                      f: 'federations',
-                      p: federation.id,
-                    }" class="card-footer-item has-background-info has-text-white">
-                        <i class="ri-pencil-line"></i> Editar
-                    </a>
-                    <a (click)="removeFederation(+federation.id)" class="card-footer-item has-background-danger has-text-white"
-                        onclick="return confirm('Tem certeza que deseja deletar?');">
-                        <i class="ri-delete-bin-line"></i> Deletar
-                    </a>
-                </footer>
-            </div>
+          <app-list-cards [data]="federation" [toQueries]="cardFlags" />
         </div>
-        }
-        } @else {
-        <div class="notification is-link is-light">
-            O sistema ainda não possui atletas cadastrados!!
-        </div>
-        }
-    </div>
+      }
+    } @else {
+      <div class="notification is-link is-light">
+        O sistema ainda não possui atletas cadastrados!!
+      </div>
+    }
+  </div>
 </div>

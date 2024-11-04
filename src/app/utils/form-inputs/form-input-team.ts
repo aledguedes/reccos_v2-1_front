@@ -1,5 +1,5 @@
 import { Validators } from '@angular/forms';
-import { IGeneralFields } from '../../models/GeneralFieldsInputs';
+import { IGeneralFields } from '../../models/generals/GeneralFieldsInputs';
 
 export const inputsFieldTeam: IGeneralFields[] = [
   {
@@ -10,7 +10,7 @@ export const inputsFieldTeam: IGeneralFields[] = [
     placeholder: 'Minha Agremiação Futebol CLube',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-sm-12',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -20,7 +20,7 @@ export const inputsFieldTeam: IGeneralFields[] = [
     placeholder: 'Minha agremiação',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-sm-6',
+    colClass: 'col-12',
   },
   {
     typeComponent: 'input',
@@ -30,6 +30,6 @@ export const inputsFieldTeam: IGeneralFields[] = [
     placeholder: '31/12/2015',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-sm-6',
+    colClass: 'col-12',
   },
 ];

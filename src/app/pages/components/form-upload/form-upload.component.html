@@ -1,0 +1,17 @@
+<div class="form-group my-3">
+  <div class="upload-box">
+    <p class="upload-text">
+      Arraste e solte o arquivo aqui ou clique para selecionar
+    </p>
+    <input
+      type="file"
+      class="file-input"
+      id="img_logo"
+      accept="image/*"
+      required
+      (change)="uploadFiles($event)"
+    />
+    <label for="img_logo" class="button is-primary">Escolher Arquivo</label>
+    <p id="file-name" class="mt-2"></p>
+  </div>
+</div>
