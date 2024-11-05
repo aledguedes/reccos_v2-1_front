@@ -1,58 +1,34 @@
 <div class="container">
-  <h1
-    class="dashboard-title has-text-centered has-text-link is-size-1 has-text-weight-bold my-4"
-  >
-    Dashboard >> {{ loader }}
-  </h1>
+  <h1 class="dashboard-title text-center text-primary my-4">Dashboard</h1>
   <div class="container">
-    <div class="row g-3">
+    <div class="grid">
       @if (loader) {
         @for (menu of dashMenu; track $index) {
-          <div class="col-12 col-lg-3 col-md-6 col-sm-12">
-            <a class="has-text-black" [routerLink]="menu.router">
-              <div
-                class="box box-hover has-text-centered has-border-radius p-5"
-              >
+          <div class="col-12 lg:col-3 md:col-6 sm:col-12">
+            <a class="text-center" [routerLink]="menu.router">
+              <div class="box bg-white box-hover text-center p-5">
                 <img [src]="menu.icon" [alt]="menu.name" class="icon" />
                 <h3
                   class="title is-5 my-2"
-                  [style.color]="menu.id % 2 === 0 ? '#ff3860' : '#3273dc'"
+                  [style.color]="menu.id % 2 === 0 ? '#FC3B56' : '#3f51b5'"
                 >
                   {{ menu.name }}
                 </h3>
-                <p class="has-text-grey is-size-7">{{ menu.text }}</p>
+                <p [style.color]="menu.id % 2 === 0 ? '#FC3B56' : '#3f51b5'">
+                  {{ menu.text }}
+                </p>
               </div>
             </a>
           </div>
         }
       } @else {
         @for (menu of [1, 2, 3, 4]; track $index) {
-          <div class="col-12 col-lg-3 col-md-6 col-sm-12">
+          <div class="col-12 lg:col-3 md:col-6 sm:col-12">
             <div class="has-text-black">
               <div
                 class="box box-hover has-text-centered has-border-radius p-5"
               >
-                <ngx-skeleton-loader
-                  appearance="circle"
-                  [theme]="{ width: '80px', height: '80px' }"
-                >
-                </ngx-skeleton-loader>
-                <ngx-skeleton-loader
-                  [theme]="{
-                    width: '200px',
-                    'border-radius': '0',
-                    height: '15px',
-                    'margin-bottom': '0.5rem',
-                  }"
-                ></ngx-skeleton-loader>
-                <ngx-skeleton-loader
-                  [theme]="{
-                    width: '200px',
-                    'border-radius': '0',
-                    height: '8px',
-                    'margin-bottom': '0.5rem',
-                  }"
-                ></ngx-skeleton-loader>
+                loader
               </div>
             </div>
           </div>
