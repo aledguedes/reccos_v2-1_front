@@ -1,15 +1,16 @@
-<nav class="breadcrumb has-bullet-separator m-0" aria-label="breadcrumbs">
-  <ul>
-    @for (breadcrumb of breadcrumbs; track $index; let last = $last) {
-      @if (!last) {
-        <li>
-          <a [routerLink]="breadcrumb.router" [class.is-active]="last">{{
-            breadcrumb.label
-          }}</a>
-        </li>
+<div class="card flex justify-content-center">
+  <p-breadcrumb class="max-w-full" [model]="items">
+    <ng-template pTemplate="item" let-item>
+      @if (item.route) {
+        <a [routerLink]="item.route" class="p-menuitem-link">
+          <span [ngClass]="[item.icon ? item.icon : '', 'text-color']"></span>
+          <span class="text-primary font-semibold">{{ item.label }}</span>
+        </a>
       } @else {
-        <span>{{ breadcrumb.label }}</span>
+        <a>
+          <span class="text-color">{{ item.label }}</span>
+        </a>
       }
-    }
-  </ul>
-</nav>
+    </ng-template>
+  </p-breadcrumb>
+</div>

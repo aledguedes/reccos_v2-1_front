@@ -1,29 +1,37 @@
-<div class="rc-card">
-  <img
-    class="image-card"
-    src="https://bulma.io/assets/images/placeholders/96x96.png"
-    alt="Gaucho"
-  />
-  <div class="rc-body-card p-4">
-    <p class="title-card">{{ data.surname ?? data.name }}</p>
-    <p class="sub-title-card">{{ data.name }}</p>
-  </div>
-
-  <div class="rc-footer p-4">
-    <button
-      [routerLink]="[toQueries.router]"
-      [queryParams]="{
-        action: 'update',
-        f: toQueries.flag,
-        p: data.id,
-      }"
-      class="button is-link is-outlined"
-    >
-      <i class="ri-pencil-line"></i>
-      Editar
-    </button>
-    <button class="button is-danger is-outlined">
-      <i class="ri-delete-bin-line"></i> Remover
-    </button>
-  </div>
-</div>
+<p-card
+  [header]="data.surname ?? data.name"
+  [subheader]="data.name"
+  [style]="{ width: '100%' }"
+>
+  <ng-template pTemplate="header">
+    <img
+      alt="Card"
+      src="https://bulma.io/assets/images/placeholders/96x96.png"
+    />
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="flex justify-content-center gap-1 mt-1">
+      <p-button
+        label="Remover"
+        severity="secondary"
+        class="w-full"
+        styleClass="w-full"
+        icon="pi pi-trash"
+        size="small"
+      />
+      <p-button
+        label="Editar"
+        [routerLink]="[toQueries.router]"
+        [queryParams]="{
+          action: 'update',
+          f: toQueries.flag,
+          p: data.id,
+        }"
+        icon="pi pi-pencil"
+        class="w-full"
+        styleClass="w-full"
+        size="small"
+      />
+    </div>
+  </ng-template>
+</p-card>
