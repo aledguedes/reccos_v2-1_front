@@ -1,5 +1,5 @@
 export interface IBreadcrumb {
   label: string;
-  router: string;
+  route: string;
   icon?: string;
 }

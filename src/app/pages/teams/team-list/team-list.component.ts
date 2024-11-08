@@ -4,6 +4,9 @@ import { TeamService } from '../../../services/teams/team.service';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
 import { IListCads } from '../../../models/generals/ListCardModel';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
 
 interface ITeam {
   id?: number;
@@ -13,7 +16,13 @@ interface ITeam {
 @Component({
   selector: 'app-team-list',
   standalone: true,
-  imports: [RouterLink, BreadcrumbComponent, ListCardsComponent],
+  imports: [
+    RouterLink,
+    BreadcrumbComponent,
+    ListCardsComponent,
+    CardModule,
+    ButtonModule,
+  ],
   templateUrl: './team-list.component.html',
   styleUrl: './team-list.component.scss',
 })
@@ -29,6 +38,11 @@ export class TeamListComponent implements OnInit {
     flag: 'teams',
     router: 'team-edit',
   };
+
+  breadcrumb: Partial<IBreadcrumb>[] = [
+    { icon: 'pi pi-home', route: '/dashboard' },
+    { label: 'Times' },
+  ];
 
   constructor(private teamService: TeamService) {}
 

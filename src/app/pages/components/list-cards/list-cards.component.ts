@@ -1,11 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IListCads } from '../../../models/generals/ListCardModel';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-list-cards',
   standalone: true,
-  imports: [ListCardsComponent, RouterLink],
+  imports: [RouterLink, ButtonModule, CardModule],
   templateUrl: './list-cards.component.html',
   styleUrl: './list-cards.component.scss',
 })
