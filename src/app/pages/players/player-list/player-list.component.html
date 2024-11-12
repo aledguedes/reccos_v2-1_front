@@ -1,10 +1,11 @@
 <div class="container py-3">
   <div
-    class="flex flex-column md:flex-row justify-content-center md:justify-content-between align-items-center my-4"
+    class="flex md:flex-row flex-column md:flex-row justify-content-center md:justify-content-between align-items-center my-4"
   >
     <app-breadcrumb ngSkipHydration [items]="breadcrumb" />
-    <div class="buttons w-sm-buttons">
+    <div class="md:mt-0 mt-2">
       <p-button
+        class="w-full sm:w-auto md:w-20rem"
         label="Adicionar Atleta"
         [routerLink]="['player-edit']"
         [queryParams]="{ action: 'create', f: 'players' }"
@@ -13,7 +14,7 @@
     </div>
   </div>
 
-  <div class="row g-3 mt-4">
+  <!-- <div class="row g-3 mt-4">
     @if (players.length > 0) {
       @for (player of players; track $index) {
         <div class="lg:col-4 md:col-6 sm:col-12">
@@ -28,12 +29,12 @@
                   />
                 </figure>
                 <div class="media-content">
-                  <!-- <span class="tag is-primary">PRO</span> -->
+                  <span class="tag is-primary">PRO</span>
                   <h3 class="title is-6 has-text-weight-bold">
                     {{ player.surname }}
                   </h3>
                   <p class="subtitle is-7 m-0">{{ player.name }}</p>
-                  <!-- <p class="subtitle is-7">32 ANOS</p> -->
+                  <p class="subtitle is-7">32 ANOS</p>
                 </div>
               </div>
             </div>
@@ -80,6 +81,22 @@
     } @else {
       <div class="notification is-link is-light">
         O sistema ainda não possui atletas cadastrados!!
+      </div>
+    }
+  </div> -->
+
+  <div
+    class="grid row-gap-4 md:row-gap-0 md:justify-content-start justify-content-center"
+  >
+    @if (players.length > 0) {
+      @for (player of players; track $index) {
+        <div class="lg:col-3 md:col-6 sm:col-12">
+          <app-list-cards [data]="player" [toQueries]="cardFlags" />
+        </div>
+      }
+    } @else {
+      <div class="notification is-link is-light">
+        O sistema ainda não possui times cadastrados!!
       </div>
     }
   </div>

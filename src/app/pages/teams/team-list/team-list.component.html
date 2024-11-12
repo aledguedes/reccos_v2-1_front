@@ -13,7 +13,9 @@
     </div>
   </div>
 
-  <div class="grid">
+  <div
+    class="grid row-gap-4 md:row-gap-0 md:justify-content-start justify-content-center"
+  >
     @if (teams.length > 0) {
       @for (t of teams; track $index) {
         <div class="lg:col-3 md:col-6 sm:col-12">

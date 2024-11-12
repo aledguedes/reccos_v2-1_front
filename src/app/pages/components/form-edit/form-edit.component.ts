@@ -13,12 +13,11 @@ import { inputsFieldFederation } from '../../../utils/form-inputs/form-input-fed
 import { inputsFieldRefree } from '../../../utils/form-inputs/form-input-refrees';
 import { inputsFieldLeagues } from '../../../utils/form-inputs/form-input-leagues';
 import { FormsModule } from '@angular/forms';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-form-edit',
   standalone: true,
-  imports: [LayoutFormComponent, BreadcrumbComponent, FormsModule, NgClass],
+  imports: [LayoutFormComponent, BreadcrumbComponent, FormsModule],
   templateUrl: './form-edit.component.html',
   styleUrl: './form-edit.component.scss',
 })

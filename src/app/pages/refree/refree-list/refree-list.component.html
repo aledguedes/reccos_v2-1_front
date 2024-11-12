@@ -13,7 +13,9 @@
     </div>
   </div>
 
-  <div class="grid">
+  <div
+    class="grid row-gap-4 md:row-gap-0 md:justify-content-start justify-content-center"
+  >
     @if (refrees.length > 0) {
       @for (refree of refrees; track $index) {
         <div class="lg:col-3 md:col-6 sm:col-12">
