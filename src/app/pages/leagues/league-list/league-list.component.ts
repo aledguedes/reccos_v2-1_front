@@ -5,11 +5,13 @@ import { ILeagueResponse } from '../../../models/entities/LeagueModel';
 import { IListCads } from '../../../models/generals/ListCardModel';
 import { LeagueService } from '../../../services/leagues/league.service';
 import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
+import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-league-list',
   standalone: true,
-  imports: [BreadcrumbComponent, RouterLink, ListCardsComponent],
+  imports: [BreadcrumbComponent, RouterLink, ListCardsComponent, ButtonModule],
   templateUrl: './league-list.component.html',
   styleUrl: './league-list.component.scss',
 })
@@ -21,6 +23,11 @@ export class LeagueListComponent implements OnInit {
     router: 'league-edit',
   };
   leagues: ILeagueResponse[] = [];
+
+  breadcrumb: Partial<IBreadcrumb>[] = [
+    { icon: 'pi pi-home', route: '/dashboard' },
+    { label: 'Ligas' },
+  ];
 
   constructor(private leagueService: LeagueService) {}
 

@@ -3,11 +3,22 @@ import { RouterLink } from '@angular/router';
 import { IPlayerResponse } from '../../../models/entities/PlayerModel';
 import { PlayerService } from '../../../services/players/player.service';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
+import { ButtonModule } from 'primeng/button';
+import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
+import { CardModule } from 'primeng/card';
+import { IListCads } from '../../../models/generals/ListCardModel';
+import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
 
 @Component({
   selector: 'app-player-list',
   standalone: true,
-  imports: [RouterLink, BreadcrumbComponent],
+  imports: [
+    RouterLink,
+    BreadcrumbComponent,
+    ButtonModule,
+    CardModule,
+    ListCardsComponent,
+  ],
   templateUrl: './player-list.component.html',
   styleUrl: './player-list.component.scss',
 })
@@ -17,6 +28,15 @@ export class PlayerListComponent implements OnInit {
 
   page = 1;
   perPage = 12;
+
+  breadcrumb: Partial<IBreadcrumb>[] = [
+    { icon: 'pi pi-home', route: '/dashboard' },
+    { label: 'Atletas' },
+  ];
+  cardFlags: IListCads = {
+    flag: 'players',
+    router: 'player-edit',
+  };
 
   constructor(private playerService: PlayerService) {}
 

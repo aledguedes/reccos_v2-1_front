@@ -1,36 +1,24 @@
 <div class="container py-3">
   <div
-    class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between is-align-items-center my-4"
+    class="flex flex-column md:flex-row justify-content-center md:justify-content-between align-items-center my-4"
   >
-    <app-breadcrumb />
-    <div class="buttons w-sm-buttons">
-      <button
+    <app-breadcrumb ngSkipHydration [items]="breadcrumb" />
+    <div class="w-sm-buttons">
+      <p-button
+        label="Adicionar Federação"
         [routerLink]="['federation-edit']"
         [queryParams]="{ action: 'create', f: 'federations' }"
-        class="button is-link is-fullwidth"
-      >
-        <i class="ri-add-fill"></i>
-        Adicionar Federação
-      </button>
+        icon="pi pi-plus"
+      />
     </div>
   </div>
 
-  <div class="row">
-    <div class="buttons">
-      <button class="button is-skeleton">Button</button>
-      <button class="button is-link is-skeleton">Link</button>
-      <button class="button is-primary is-skeleton">Primary</button>
-      <button class="button is-success is-skeleton">Success</button>
-      <button class="button is-info is-skeleton">Info</button>
-      <button class="button is-warning is-skeleton">Warning</button>
-      <button class="button is-danger is-skeleton">Danger</button>
-    </div>
-  </div>
-
-  <div class="row g-4">
+  <div
+    class="grid row-gap-4 md:row-gap-0 md:justify-content-start justify-content-center"
+  >
     @if (federations.length > 0) {
       @for (federation of federations; track $index) {
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="lg:col-3 md:col-6 sm:col-12">
           <app-list-cards [data]="federation" [toQueries]="cardFlags" />
         </div>
       }

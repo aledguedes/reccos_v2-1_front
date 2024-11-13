@@ -4,6 +4,11 @@
   background: #fff;
   border-radius: 8px;
   border: 1px solid #d8d8d8;
+
+  .text-ellipsis {
+    width: 80%;
+    text-overflow: ellipsis;
+  }
 }
 
 .image-card {

@@ -1,24 +1,24 @@
 <div class="container">
   <div
-    class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between is-align-items-center mt-4"
+    class="flex flex-column md:flex-row justify-content-center md:justify-content-between align-items-center my-4"
   >
-    <app-breadcrumb />
+    <app-breadcrumb ngSkipHydration [items]="breadcrumb" />
     <div class="buttons w-sm-buttons">
-      <button
+      <p-button
+        label="Adicionar Time"
         [routerLink]="['team-edit']"
         [queryParams]="{ action: 'create', f: 'teams' }"
-        class="button is-link is-fullwidth"
-      >
-        <i class="ri-add-fill"></i>
-        Adicionar Time
-      </button>
+        icon="pi pi-plus"
+      />
     </div>
   </div>
 
-  <div class="row g-4">
+  <div
+    class="grid row-gap-4 md:row-gap-0 md:justify-content-start justify-content-center"
+  >
     @if (teams.length > 0) {
       @for (t of teams; track $index) {
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="lg:col-3 md:col-6 sm:col-12">
           <app-list-cards [data]="t" [toQueries]="cardFlags" />
         </div>
       }
@@ -28,26 +28,4 @@
       </div>
     }
   </div>
-  <!-- @if (teams.length) {
-      @for (t of teams; track $index) {
-        <div class="col-6 col-lg-2 col-md-2 col-sm-6 mb-2">
-          <a
-            class="has-text-centered d-flex flex-column align-items-center"
-            [routerLink]="['team-edit']"
-            [queryParams]="{ action: 'update', f: 'teams', p: t.id }"
-            style="font-size: 12px"
-          >
-            <div
-              class="profile-photo"
-              [style.backgroundImage]="'url(' + baseUrl + ')'"
-            ></div>
-            <p class="mt-2">{{ t.surname }}</p>
-          </a>
-        </div>
-      }
-    } @else {
-      <div class="notification is-warning mt-5">
-        <p class="m-0">O sistema ainda não possui times cadastrados!!</p>
-      </div>
-    } -->
 </div>
