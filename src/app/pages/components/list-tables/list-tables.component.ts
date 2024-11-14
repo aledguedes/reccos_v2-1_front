@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { IListCads } from '../../../models/generals/ListCardModel';
 import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-list-tables',
   standalone: true,
-  imports: [TableModule],
+  imports: [TableModule, ButtonModule],
   templateUrl: './list-tables.component.html',
   styleUrl: './list-tables.component.scss',
 })
