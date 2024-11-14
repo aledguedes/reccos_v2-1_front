@@ -1,18 +1,19 @@
-<div class="field my-1">
-  <label class="label" [for]="id"> {{ label }}</label>
-  <div class="control">
-    <input
-      [id]="id"
-      [value]="value"
-      [type]="type"
-      [placeholder]="placeholder"
-      [step]="step"
-      (input)="updateValue($event)"
-      class="input is-link"
-      [class.is-danger]="isInvalid"
-      [class.is-success]="!isInvalid && value"
-    />
-  </div>
-  <p class="help is-danger" *ngIf="isInvalid">{{ label }} é inválido.</p>
-  <!-- <p class="help">Esse é um campo de entrada usando Bulma CSS.</p> -->
+<div class="flex flex-column gap-2">
+  <label class="label" [for]="id">
+    <strong>{{ label }}</strong>
+  </label>
+  <input
+    pInputText
+    aria-describedby="username-help"
+    class="w-full"
+    [id]="id"
+    [value]="value"
+    [type]="type"
+    [placeholder]="placeholder"
+    [step]="step"
+    (input)="updateValue($event)"
+    [class.is-danger]="isInvalid"
+    [class.is-success]="!isInvalid && value"
+  />
+  <!-- <small id="username-help"> {{ label }} é inválido. </small> -->
 </div>

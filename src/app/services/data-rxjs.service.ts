@@ -4,6 +4,7 @@ import { IGeneralFields } from '../models/generals/GeneralFieldsInputs';
 import { IToForm } from '../models/generals/GeneralForms';
 import { IAddress } from '../models/generals/Address';
 import { FlagMap } from './interfaces-map/interfaces-map';
+import { IMenuDashboard } from '../models/generals/MenuDashboard';
 
 @Injectable({
   providedIn: 'root',
@@ -69,5 +70,18 @@ export class DataRxjsService {
 
   sendPersonalFormsValue(personal: FlagMap[keyof FlagMap] | null) {
     this.valuePersonalForm.next(personal);
+  }
+
+  titleSectionToolbar = new BehaviorSubject<IMenuDashboard>({
+    id: 0,
+    name: 'dashboard',
+    icon: 'https://primefaces.org/cdn/primeng/images/primeng.svg',
+    text: 'Dashboard',
+    router: '/',
+  });
+  titleSectionToolbar$ = this.titleSectionToolbar.asObservable();
+
+  sendTitleToolBar(title: IMenuDashboard) {
+    this.titleSectionToolbar.next(title);
   }
 }

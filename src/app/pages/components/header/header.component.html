@@ -6,11 +6,8 @@
   }"
 >
   <ng-template pTemplate="start">
-    <img
-      src="https://primefaces.org/cdn/primeng/images/primeng.svg"
-      alt="logo"
-    />
-    <span class="font-bold text-bluegray-50"> reccosSystem </span>
+    <img [src]="section.icon" [alt]="section.text" width="30" />
+    <span class="font-bold text-bluegray-50 ml-2"> {{ section.text }} </span>
   </ng-template>
   <ng-template pTemplate="center">
     <div class="flex flex-wrap align-items-center gap-3">

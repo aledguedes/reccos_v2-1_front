@@ -7,7 +7,11 @@
       @if (loader) {
         @for (menu of dashMenu; track $index) {
           <div class="col-12 lg:col-3 md:col-6 sm:col-12">
-            <a class="text-center" [routerLink]="menu.router">
+            <a
+              class="text-center"
+              [routerLink]="menu.router"
+              (click)="toolBarTitle(menu)"
+            >
               <div class="box bg-white box-hover text-center p-5">
                 <img [src]="menu.icon" [alt]="menu.name" class="icon" />
                 <h3

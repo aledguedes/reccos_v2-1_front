@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IFederationResponse } from '../../../models/entities/FederationModel';
 import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
 import { IListCads } from '../../../models/generals/ListCardModel';
@@ -29,9 +29,15 @@ export class FederationListComponent implements OnInit {
     { label: 'Federação' },
   ];
 
-  constructor(private federationService: FederationService) {}
+  constructor(
+    private federationService: FederationService,
+    private actRouter: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
+    this.actRouter.queryParams.subscribe((data) => {
+      console.log('queryParams', data);
+    });
     this.getAllFederations();
   }
 
