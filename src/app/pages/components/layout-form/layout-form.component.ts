@@ -25,6 +25,8 @@ import {
   statusForms,
   stepForms,
 } from '../../../utils/step-layout-forms/step-forms';
+import { StepperModule } from 'primeng/stepper';
+import { ButtonModule } from 'primeng/button';
 
 interface IStepsComponent {
   label: string;
@@ -50,6 +52,8 @@ interface IStatusFormValidate {
     LayoutFormAddressComponent,
     LayoutFormPersonalComponent,
     FormUploadComponent,
+    StepperModule,
+    ButtonModule,
   ],
   templateUrl: './layout-form.component.html',
   styleUrl: './layout-form.component.scss',

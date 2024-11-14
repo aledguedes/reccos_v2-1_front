@@ -20,7 +20,7 @@ export const inputsFieldFederation: IGeneralFields[] = [
     placeholder: 'Federação X',
     validators: [],
     initialValues: '',
-    colClass: 'col-12 col-md-6 col-sm-12',
+    colClass: 'col-12 md:col-6 sm:col-12',
   },
   {
     typeComponent: 'select',
@@ -35,6 +35,6 @@ export const inputsFieldFederation: IGeneralFields[] = [
     ],
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-6 col-sm-12',
+    colClass: 'col-12 md:col-6 sm:col-12',
   },
 ];

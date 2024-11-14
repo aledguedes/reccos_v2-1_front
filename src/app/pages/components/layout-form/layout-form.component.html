@@ -1,79 +1,61 @@
-<div class="form-box">
-  <div class="stepper">
-    <!-- <div class="logo text-center"><span>aled</span>guedes</div> -->
-    <ul class="stepper-steps">
-      @for (item of stepsForm; track $index) {
-        <li class="step" [class.active]="currentStep === $index + 1">
-          <span>{{ $index + 1 }}</span>
-          <p>{{ item.label }}</p>
-        </li>
-      }
-    </ul>
-  </div>
-  <div class="form-stepers p-5">
-    @if (currentStep === 1) {
-      <ng-container>
-        <div class="form-one form-step" [class.active]="currentStep === 1">
-          <div class="bg-svg"></div>
-          <h2>Informações básicas</h2>
-          <p>Entre com os dados pessoais.</p>
-          <app-layout-form-personal
-            (statusFormPersonal)="updateStatus($event)"
-            [update]="update"
-          />
-        </div>
-      </ng-container>
-    }
+<div class="card">
+  <p-stepper orientation="vertical">
+    @for (item of stepsForm; track $index; let last = $last) {
+      <p-stepperPanel [header]="item.label">
+        <ng-template
+          pTemplate="content"
+          let-index="index"
+          let-nextCallback="nextCallback"
+          let-prevCallback="prevCallback"
+        >
+          <div class="flex flex-column h-auto">
+            <div class="text-center mt-3 mb-3 text-xl font-semibold">
+              {{ item.label }}
+            </div>
+            <div>
+              @switch ($index) {
+                @case (0) {
+                  <app-layout-form-personal
+                    (statusFormPersonal)="updateStatus($event)"
+                    [update]="update"
+                  />
+                }
 
-    @if (currentStep === 2 && address) {
-      <ng-container>
-        <div class="form-two form-step" [class.active]="currentStep === 2">
-          <div class="bg-svg"></div>
-          <h2>Endereço</h2>
-          <p>Entre com os dados de endereço.</p>
-          <app-layout-form-address
-            (statusFormAddress)="updateStatus($event)"
-            [update]="update"
-            ngSkipHydration
-          />
-        </div>
-      </ng-container>
-    }
+                @case (1) {
+                  <app-layout-form-address
+                    (statusFormAddress)="updateStatus($event)"
+                    [update]="update"
+                    ngSkipHydration
+                  />
+                }
 
-    @if (currentStep === 3) {
-      <ng-container>
-        <div class="form-three form-step" [class.active]="currentStep === 3">
-          <div class="bg-svg"></div>
-          <h2>Upload</h2>
-          <p>Selecione uma imagem como avatar.</p>
-          <app-form-upload (statusFormUpload)="updateStatus($event)" />
-        </div>
-      </ng-container>
-    }
+                @case (2) {
+                  <app-form-upload (statusFormUpload)="updateStatus($event)" />
+                }
 
-    @if (currentStep === 4) {
-      <ng-container>
-        <div class="form-three form-step" [class.active]="currentStep === 4">
-          <div class="bg-svg"></div>
-          <h2>Confirmação dos dados</h2>
-          <p>Confirme as informações fornecidos para finalziar</p>
-          <!-- <app-form-upload (statusFormUpload)="updateStatus($event)" /> -->
-        </div>
-      </ng-container>
+                @default {
+                  <h2>Confirmação dos dados</h2>
+                  <p>Confirme as informações fornecidos para finalizar</p>
+                }
+              }
+            </div>
+          </div>
+          <div class="flex py-4 gap-2">
+            @if ($index === 0) {
+              <p-button label="Next" (onClick)="nextCallback.emit()" />
+            } @else {
+              <p-button
+                label="Back"
+                severity="secondary"
+                (onClick)="prevCallback.emit()"
+              />
+              @if (!last) {
+                <p-button label="Next" (onClick)="nextCallback.emit()" />
+              }
+            }
+          </div>
+        </ng-template>
+      </p-stepperPanel>
     }
-  </div>
-</div>
-
-<div class="d-flex justify-content-around">
-  @if (currentStep !== 1) {
-    <button class="button is-danger is-outlined w-25" (click)="prevStep()">
-      Voltar
-    </button>
-  }
-  @if (currentStep !== 4) {
-    <button class="button is-link w-25" (click)="nextStep()">Próximo</button>
-  }
-  @if (currentStep === 4) {
-    <button class="button is-link w-25">Enviar</button>
-  }
+  </p-stepper>
 </div>

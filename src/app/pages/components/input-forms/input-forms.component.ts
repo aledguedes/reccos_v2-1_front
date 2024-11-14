@@ -5,11 +5,18 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-input-forms',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    FloatLabelModule,
+    InputTextModule,
+  ],
   templateUrl: './input-forms.component.html',
   styleUrl: './input-forms.component.scss',
   providers: [
