@@ -10,9 +10,6 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { InputFormsComponent } from '../input-forms/input-forms.component';
-import { SelectFormsComponent } from '../select-forms/select-forms.component';
-import { RouterLink } from '@angular/router';
 import { DataRxjsService } from '../../../services/data-rxjs.service';
 import { Subscription } from 'rxjs';
 import { FlagMap } from '../../../services/interfaces-map/interfaces-map';
@@ -46,9 +43,6 @@ interface IStatusFormValidate {
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    InputFormsComponent,
-    SelectFormsComponent,
-    RouterLink,
     LayoutFormAddressComponent,
     LayoutFormPersonalComponent,
     FormUploadComponent,

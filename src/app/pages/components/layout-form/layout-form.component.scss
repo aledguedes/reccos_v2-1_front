@@ -6,3 +6,17 @@
   background-color: #fff;
   padding: 2rem;
 }
+
+.custom-step-content,
+.custom-stepper-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.custom-stepper-content {
+  max-height: 550px;
+}
+
+.custom-step-content {
+  max-height: 350px;
+}

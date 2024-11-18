@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card custom-stepper-content">
   <p-stepper orientation="vertical">
     @for (item of stepsForm; track $index; let last = $last) {
       <p-stepperPanel [header]="item.label">
@@ -8,10 +8,7 @@
           let-nextCallback="nextCallback"
           let-prevCallback="prevCallback"
         >
-          <div class="flex flex-column h-auto">
-            <div class="text-center mt-3 mb-3 text-xl font-semibold">
-              {{ item.label }}
-            </div>
+          <div class="custom-step-content">
             <div>
               @switch ($index) {
                 @case (0) {
