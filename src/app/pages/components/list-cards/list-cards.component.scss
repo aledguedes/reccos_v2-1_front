@@ -1,41 +1,14 @@
-.rc-card {
-  position: relative;
-  width: 100%;
-  background: #fff;
-  border-radius: 8px;
-  border: 1px solid #d8d8d8;
-
-  .text-ellipsis {
+:host ::ng-deep {
+  .p-card .p-card-title {
+    height: auto;
     width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
   }
-}
 
-.image-card {
-  width: 100%;
-  height: 325px;
-  border-radius: 0 0 8px 8px;
-}
-
-.title-card {
-  width: 280px;
-  height: 26px;
-  font-size: 16px;
-  line-height: 26px;
-  font-weight: 700;
-  color: #171a1fff;
-}
-
-.sub-title-card {
-  height: 22px;
-  font-size: 14px;
-  line-height: 22px;
-  font-weight: 400;
-  color: #9095a0ff;
-}
-
-.rc-footer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px 0;
+  .p-card .p-card-footer,
+  .p-card .p-card-content {
+    padding: 0;
+  }
 }

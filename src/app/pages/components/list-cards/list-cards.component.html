@@ -4,10 +4,7 @@
   [style]="{ width: '100%' }"
 >
   <ng-template pTemplate="header">
-    <img
-      alt="Card"
-      src="https://bulma.io/assets/images/placeholders/96x96.png"
-    />
+    <img class="border-round" [alt]="data.name" [src]="img01" />
   </ng-template>
   <ng-template pTemplate="footer">
     <div class="flex justify-content-center gap-1 mt-1">

@@ -18,4 +18,7 @@ export class ListCardsComponent {
     flag: '',
     router: '',
   };
+
+  img01 = 'https://primefaces.org/cdn/primeng/images/card-ng.jpg';
+  img02 = 'https://bulma.io/assets/images/placeholders/96x96.png';
 }
