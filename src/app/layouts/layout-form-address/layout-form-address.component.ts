@@ -8,13 +8,13 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { InputFormsComponent } from '../input-forms/input-forms.component';
-import { IGeneralFields } from '../../../models/generals/GeneralFieldsInputs';
-import { DataRxjsService } from '../../../services/data-rxjs.service';
+import { DataRxjsService } from '../../services/data-rxjs.service';
 import { debounceTime, Subscription, switchMap } from 'rxjs';
-import { IAddress } from '../../../models/generals/Address';
-import { AddressService } from '../../../services/address/address.service';
-import { IStatusForm } from '../../../models/generals/Outputs';
+import { IAddress } from '../../models/generals/Address';
+import { AddressService } from '../../services/address/address.service';
+import { IStatusForm } from '../../models/generals/Outputs';
+import { IGeneralFields } from '../../models/generals/GeneralFieldsInputs';
+import { InputFormsComponent } from '../../pages/components/input-forms/input-forms.component';
 
 @Component({
   selector: 'app-layout-form-address',

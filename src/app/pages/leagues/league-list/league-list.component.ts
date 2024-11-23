@@ -4,14 +4,20 @@ import { RouterLink } from '@angular/router';
 import { ILeagueResponse } from '../../../models/entities/LeagueModel';
 import { IListCads } from '../../../models/generals/ListCardModel';
 import { LeagueService } from '../../../services/leagues/league.service';
-import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
+// import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
 import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
 import { ButtonModule } from 'primeng/button';
+import { FlexibleViewComponent } from '../../../layouts/flexible-view/flexible-view.component';
 
 @Component({
   selector: 'app-league-list',
   standalone: true,
-  imports: [BreadcrumbComponent, RouterLink, ListCardsComponent, ButtonModule],
+  imports: [
+    BreadcrumbComponent,
+    RouterLink,
+    FlexibleViewComponent,
+    ButtonModule,
+  ],
   templateUrl: './league-list.component.html',
   styleUrl: './league-list.component.scss',
 })

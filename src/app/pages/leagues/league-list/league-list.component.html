@@ -19,7 +19,8 @@
     @if (leagues.length > 0) {
       @for (league of leagues; track $index) {
         <div class="lg:col-3 md:col-6 sm:col-12">
-          <app-list-cards [data]="league" [toQueries]="cardFlags" />
+          <!-- <app-list-cards [data]="league" [toQueries]="cardFlags" /> -->
+          <app-flexible-view />
         </div>
       }
     } @else {
