@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
 import { CardModule } from 'primeng/card';
 import { IListCads } from '../../../models/generals/ListCardModel';
-import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
+import { ListCardsComponent } from '../../../layouts/list-cards/list-cards.component';
 
 @Component({
   selector: 'app-player-list',

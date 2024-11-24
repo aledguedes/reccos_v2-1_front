@@ -1,0 +1,12 @@
+<a [routerLink]="['/federations', data.id]">
+  <div class="team-item mb-3">
+    <div class="team-logo-container">
+      <img
+        [src]="data.img_perfil"
+        [alt]="data.name + ' Logo'"
+        class="team-logo"
+      />
+    </div>
+    <h3 class="m-0">{{ data.name }}</h3>
+  </div>
+</a>

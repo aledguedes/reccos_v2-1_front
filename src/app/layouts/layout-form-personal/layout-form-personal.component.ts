@@ -8,13 +8,13 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { IGeneralFields } from '../../../models/generals/GeneralFieldsInputs';
-import { DataRxjsService } from '../../../services/data-rxjs.service';
+import { IGeneralFields } from '../../models/generals/GeneralFieldsInputs';
+import { DataRxjsService } from '../../services/data-rxjs.service';
 import { Subscription } from 'rxjs';
-import { InputFormsComponent } from '../input-forms/input-forms.component';
-import { SelectFormsComponent } from '../select-forms/select-forms.component';
-import { FlagMap } from '../../../services/interfaces-map/interfaces-map';
-import { IStatusForm } from '../../../models/generals/Outputs';
+import { FlagMap } from '../../services/interfaces-map/interfaces-map';
+import { IStatusForm } from '../../models/generals/Outputs';
+import { InputFormsComponent } from '../../pages/components/input-forms/input-forms.component';
+import { SelectFormsComponent } from '../../pages/components/select-forms/select-forms.component';
 
 @Component({
   selector: 'app-layout-form-personal',
