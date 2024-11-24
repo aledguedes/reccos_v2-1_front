@@ -48,7 +48,7 @@ export class FederationListComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.federations = data;
-          console.log('FEDERATIONS ALL', this.federations);
+          // console.log('FEDERATIONS ALL', this.federations);
         },
         error: (err) => {
           console.log('PLAYERS ALL ERR', err);

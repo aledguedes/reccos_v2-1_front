@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IListCads } from '../../../models/generals/ListCardModel';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { IListCads } from '../../models/generals/ListCardModel';
 
 @Component({
   selector: 'app-list-cards',
