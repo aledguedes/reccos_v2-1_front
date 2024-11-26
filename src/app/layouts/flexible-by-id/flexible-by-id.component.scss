@@ -1,0 +1,91 @@
+.h-container {
+  height: calc(100vh - 120px);
+}
+
+.match-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: purple;
+  height: 210px;
+  color: #fff;
+}
+
+.match-details {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.match-details h4 {
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+}
+
+.match-details .sub-title {
+  margin: 8px 0;
+}
+
+.match-escudos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.escudos {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  right: 50px;
+}
+
+.escudo {
+  width: 80px;
+  position: absolute;
+}
+
+.escudo-left {
+  left: 0;
+  z-index: 1;
+  top: -15px;
+}
+
+.escudo-right {
+  left: 50px;
+  z-index: 2;
+}
+
+.box-team {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  background-color: #afacac;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.flex-rounds {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 16px;
+}
+
+.bottom-border {
+  border-bottom: 1px solid #aaaaaa62;
+}
+
+.rounds {
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.rounds {
+  background-color: #fff;
+  margin-bottom: 0.3rem;
+}
