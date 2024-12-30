@@ -1,248 +1,260 @@
-<div class="container">
-  <div class="grid mt-3">
-    <div class="col-12 md:col-6 lg:col-8">
-      <section>
-        <div class="match-content border-round-md shadow-4 p-5">
-          <div class="match-details">
-            <h4 class="m-0"><strong>Manchester City Vs Arsenal</strong></h4>
-            <p class="sub-title">
-              <i class="ri-calendar-line mr-2"></i>10 January, 2022
-            </p>
-            <p class="sub-title">
-              <i class="ri-football-line mr-2"></i>Old Trafford Stadium
-            </p>
-          </div>
-          <div class="match-escudos">
-            <div class="escudos">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
-                alt="Manchester City"
-                class="escudo escudo-left"
-              />
-              <img
-                src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
-                alt="Arsenal"
-                class="escudo escudo-right"
-              />
-            </div>
-          </div>
+<div class="grid w-full h-full mt-1">
+  <div class="col-2" style="background-color: #c6c6c6">
+    <app-sidebar-menu />
+  </div>
+  <div class="col-10">
+    <app-header />
+    <div class="grid mt-2">
+      @for (item of statistics; track $index) {
+        <div class="col-12 md:col-3">
+          <app-dash-statistics [data]="item" />
         </div>
-      </section>
+      }
 
-      <section class="bg-very-dark rounded">
-        <h4 class="mb-4">Last Matches</h4>
-        <div class="border-bg-secondary">
-          <div class="rounds flex align-items-center p-3">
-            <div class="flex-rounds col-12 md:col-2">
-              <i class="ri-star-line"></i>
-              <span class="text-success">83</span>
+      <div class="col-12 md:col-6 lg:col-8">
+        <section>
+          <div
+            class="flex justify-content-around align-items-center match-content border-round-md shadow-4 p-5"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
+              alt="Manchester City"
+              height="120"
+            />
+
+            <div class="flex flex-column align-items-center p-3">
+              <h1 class="m-0"><strong>Manchester City Vs Arsenal</strong></h1>
+              <p class="my-1 match-sub-title">
+                <i class="ri-calendar-line mr-2"></i>10 January, 2022
+              </p>
+              <p class="my-1 match-sub-title">
+                <i class="ri-football-line mr-2"></i>Old Trafford Stadium
+              </p>
             </div>
-            <div class="col-12 md:col-8">
-              <div
-                class="flex justify-content-between align-items-center"
-                style="font-size: 13px"
-              >
-                <div class="flex align-items-center">
-                  <div class="box-team">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
-                      alt="Manchester City"
-                      width="18"
-                      height="18"
-                    />
+
+            <img
+              src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
+              alt="Arsenal"
+              height="120"
+            />
+          </div>
+        </section>
+
+        <section class="bg-very-dark rounded">
+          <h2 class="mb-4">Last Matches</h2>
+          <div class="border-bg-secondary">
+            <div class="rounds flex align-items-center p-3">
+              <div class="flex-rounds col-12 md:col-2">
+                <i class="ri-star-line"></i>
+                <span class="text-success">83</span>
+              </div>
+              <div class="col-12 md:col-8">
+                <div
+                  class="flex justify-content-between align-items-center"
+                  style="font-size: 13px"
+                >
+                  <div class="flex align-items-center">
+                    <div class="box-team">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
+                        alt="Manchester City"
+                        width="18"
+                        height="18"
+                      />
+                    </div>
+                    <span class="ml-2">Manchester City</span>
                   </div>
-                  <span class="ml-2">Manchester City</span>
-                </div>
-                <span class="badge-phill px-2">1 : 0</span>
-                <div class="flex align-items-center">
-                  <span class="mr-2">Arsenal</span>
-                  <div class="box-team">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
-                      alt="Arsenal"
-                      width="18"
-                      height="18"
-                    />
+                  <span class="badge-phill px-2">1 : 0</span>
+                  <div class="flex align-items-center">
+                    <span class="mr-2">Arsenal</span>
+                    <div class="box-team">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
+                        alt="Arsenal"
+                        width="18"
+                        height="18"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="flex-rounds col-12 md:col-2">
+                <i class="ri-eye-line"></i>
+                <i class="ri-file-list-line"></i>
+              </div>
             </div>
-            <div class="flex-rounds col-12 md:col-2">
-              <i class="ri-eye-line"></i>
-              <i class="ri-file-list-line"></i>
-            </div>
-          </div>
 
-          <div class="rounds flex align-items-center p-3">
-            <div class="flex-rounds col-12 md:col-2">
-              <i class="ri-star-line"></i>
-              <span class="text-success">83</span>
-            </div>
-            <div class="col-12 md:col-8">
-              <div
-                class="flex justify-content-between align-items-center"
-                style="font-size: 13px"
-              >
-                <div class="flex align-items-center">
-                  <div class="box-team">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
-                      alt="Manchester City"
-                      width="18"
-                      height="18"
-                    />
+            <div class="rounds flex align-items-center p-3">
+              <div class="flex-rounds col-12 md:col-2">
+                <i class="ri-star-line"></i>
+                <span class="text-success">83</span>
+              </div>
+              <div class="col-12 md:col-8">
+                <div
+                  class="flex justify-content-between align-items-center"
+                  style="font-size: 13px"
+                >
+                  <div class="flex align-items-center">
+                    <div class="box-team">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
+                        alt="Manchester City"
+                        width="18"
+                        height="18"
+                      />
+                    </div>
+                    <span class="ml-2">Manchester City</span>
                   </div>
-                  <span class="ml-2">Manchester City</span>
-                </div>
-                <span class="badge-phill px-2">1 : 0</span>
-                <div class="flex align-items-center">
-                  <span class="mr-2">Arsenal</span>
-                  <div class="box-team">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
-                      alt="Arsenal"
-                      width="18"
-                      height="18"
-                    />
+                  <span class="badge-phill px-2">1 : 0</span>
+                  <div class="flex align-items-center">
+                    <span class="mr-2">Arsenal</span>
+                    <div class="box-team">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
+                        alt="Arsenal"
+                        width="18"
+                        height="18"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="flex-rounds col-12 md:col-2">
+                <i class="ri-eye-line"></i>
+                <i class="ri-file-list-line"></i>
+              </div>
             </div>
-            <div class="flex-rounds col-12 md:col-2">
-              <i class="ri-eye-line"></i>
-              <i class="ri-file-list-line"></i>
-            </div>
-          </div>
 
-          <div class="rounds flex align-items-center p-3">
-            <div class="flex-rounds col-12 md:col-2">
-              <i class="ri-star-line"></i>
-              <span class="text-success">83</span>
-            </div>
-            <div class="col-12 md:col-8">
-              <div
-                class="flex justify-content-between align-items-center"
-                style="font-size: 13px"
-              >
-                <div class="flex align-items-center">
-                  <div class="box-team">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
-                      alt="Manchester City"
-                      width="18"
-                      height="18"
-                    />
+            <div class="rounds flex align-items-center p-3">
+              <div class="flex-rounds col-12 md:col-2">
+                <i class="ri-star-line"></i>
+                <span class="text-success">83</span>
+              </div>
+              <div class="col-12 md:col-8">
+                <div
+                  class="flex justify-content-between align-items-center"
+                  style="font-size: 13px"
+                >
+                  <div class="flex align-items-center">
+                    <div class="box-team">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
+                        alt="Manchester City"
+                        width="18"
+                        height="18"
+                      />
+                    </div>
+                    <span class="ml-2">Manchester City</span>
                   </div>
-                  <span class="ml-2">Manchester City</span>
-                </div>
-                <span class="badge-phill px-2">1 : 0</span>
-                <div class="flex align-items-center">
-                  <span class="mr-2">Arsenal</span>
-                  <div class="box-team">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
-                      alt="Arsenal"
-                      width="18"
-                      height="18"
-                    />
+                  <span class="badge-phill px-2">1 : 0</span>
+                  <div class="flex align-items-center">
+                    <span class="mr-2">Arsenal</span>
+                    <div class="box-team">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
+                        alt="Arsenal"
+                        width="18"
+                        height="18"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="flex-rounds col-12 md:col-2">
+                <i class="ri-eye-line"></i>
+                <i class="ri-file-list-line"></i>
+              </div>
             </div>
-            <div class="flex-rounds col-12 md:col-2">
-              <i class="ri-eye-line"></i>
-              <i class="ri-file-list-line"></i>
-            </div>
-          </div>
 
-          <div class="rounds flex align-items-center p-3">
-            <div class="flex-rounds col-12 md:col-2">
-              <i class="ri-star-line"></i>
-              <span class="text-success">83</span>
-            </div>
-            <div class="col-12 md:col-8">
-              <div
-                class="flex justify-content-between align-items-center"
-                style="font-size: 13px"
-              >
-                <div class="flex align-items-center">
-                  <div class="box-team">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
-                      alt="Manchester City"
-                      width="18"
-                      height="18"
-                    />
+            <div class="rounds flex align-items-center p-3">
+              <div class="flex-rounds col-12 md:col-2">
+                <i class="ri-star-line"></i>
+                <span class="text-success">83</span>
+              </div>
+              <div class="col-12 md:col-8">
+                <div
+                  class="flex justify-content-between align-items-center"
+                  style="font-size: 13px"
+                >
+                  <div class="flex align-items-center">
+                    <div class="box-team">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
+                        alt="Manchester City"
+                        width="18"
+                        height="18"
+                      />
+                    </div>
+                    <span class="ml-2">Manchester City</span>
                   </div>
-                  <span class="ml-2">Manchester City</span>
-                </div>
-                <span class="badge-phill px-2">1 : 0</span>
-                <div class="flex align-items-center">
-                  <span class="mr-2">Arsenal</span>
-                  <div class="box-team">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
-                      alt="Arsenal"
-                      width="18"
-                      height="18"
-                    />
+                  <span class="badge-phill px-2">1 : 0</span>
+                  <div class="flex align-items-center">
+                    <span class="mr-2">Arsenal</span>
+                    <div class="box-team">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
+                        alt="Arsenal"
+                        width="18"
+                        height="18"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="flex-rounds col-12 md:col-2">
+                <i class="ri-eye-line"></i>
+                <i class="ri-file-list-line"></i>
+              </div>
             </div>
-            <div class="flex-rounds col-12 md:col-2">
-              <i class="ri-eye-line"></i>
-              <i class="ri-file-list-line"></i>
-            </div>
-          </div>
 
-          <div class="rounds flex align-items-center p-3">
-            <div class="flex-rounds col-12 md:col-2">
-              <i class="ri-star-line"></i>
-              <span class="text-success">83</span>
-            </div>
-            <div class="col-12 md:col-8">
-              <div
-                class="flex justify-content-between align-items-center"
-                style="font-size: 13px"
-              >
-                <div class="flex align-items-center">
-                  <div class="box-team">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
-                      alt="Manchester City"
-                      width="18"
-                      height="18"
-                    />
+            <div class="rounds flex align-items-center p-3">
+              <div class="flex-rounds col-12 md:col-2">
+                <i class="ri-star-line"></i>
+                <span class="text-success">83</span>
+              </div>
+              <div class="col-12 md:col-8">
+                <div
+                  class="flex justify-content-between align-items-center"
+                  style="font-size: 13px"
+                >
+                  <div class="flex align-items-center">
+                    <div class="box-team">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
+                        alt="Manchester City"
+                        width="18"
+                        height="18"
+                      />
+                    </div>
+                    <span class="ml-2">Manchester City</span>
                   </div>
-                  <span class="ml-2">Manchester City</span>
-                </div>
-                <span class="badge-phill px-2">1 : 0</span>
-                <div class="flex align-items-center">
-                  <span class="mr-2">Arsenal</span>
-                  <div class="box-team">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
-                      alt="Arsenal"
-                      width="18"
-                      height="18"
-                    />
+                  <span class="badge-phill px-2">1 : 0</span>
+                  <div class="flex align-items-center">
+                    <span class="mr-2">Arsenal</span>
+                    <div class="box-team">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
+                        alt="Arsenal"
+                        width="18"
+                        height="18"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="flex-rounds col-12 md:col-2">
-              <i class="ri-eye-line"></i>
-              <i class="ri-file-list-line"></i>
+              <div class="flex-rounds col-12 md:col-2">
+                <i class="ri-eye-line"></i>
+                <i class="ri-file-list-line"></i>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
-    <div class="col-12 md:col-6 lg:col-4">
-      <p-card>
-        <p class="m-0">Lorem ipsum dolor sit amet...</p>
-      </p-card>
+        </section>
+      </div>
+      <div class="col-12 md:col-6 lg:col-4">
+        <p-card>
+          <p class="m-0">Lorem ipsum dolor sit amet...</p>
+        </p-card>
+      </div>
     </div>
   </div>
 </div>

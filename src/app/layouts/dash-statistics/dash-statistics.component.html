@@ -1,0 +1,16 @@
+<div class="card-statistics shadow-5">
+  <div class="flex justify-content-between">
+    <div class="flex-column flex">
+      <p class="sub-title">{{ data.label }}</p>
+      <p class="statistic-info" [ngClass]="data.redux ? 'redux' : 'noredux'">
+        {{ data.value }}
+      </p>
+    </div>
+
+    <div>
+      @if (data.icon !== "") {
+        <img [src]="data.icon" class="statistic-image" alt="Chart" />
+      }
+    </div>
+  </div>
+</div>

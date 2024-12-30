@@ -1,0 +1,21 @@
+<!-- <p-panelmenu [model]="items" styleClass="px-2 pt-4" /> -->
+<ul>
+  @for (item of items; track $index) {
+    <li>
+      <p-button
+        icon="pi-folder"
+        [label]="item.name"
+        [link]="true"
+        class="folder"
+        (click)="toggleMenu(item)"
+      />
+      <ul class="nested" [ngClass]="{ open: item.isOpen }">
+        @for (child of item.children; track $index) {
+          <li class="file">
+            <a [href]="child.link">{{ child.icon }} {{ child.name }}</a>
+          </li>
+        }
+      </ul>
+    </li>
+  }
+</ul>

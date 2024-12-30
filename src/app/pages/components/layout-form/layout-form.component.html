@@ -1,7 +1,7 @@
 <div class="card custom-stepper-content">
   <p-stepper orientation="vertical">
     @for (item of stepsForm; track $index; let last = $last) {
-      <p-stepperPanel [header]="item.label">
+      <!-- <p-stepperPanel [header]="item.label">
         <ng-template
           pTemplate="content"
           let-index="index"
@@ -52,7 +52,7 @@
             }
           </div>
         </ng-template>
-      </p-stepperPanel>
+      </p-stepperPanel> -->
     }
   </p-stepper>
 </div>

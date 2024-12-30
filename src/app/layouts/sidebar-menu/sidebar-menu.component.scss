@@ -1,0 +1,112 @@
+a {
+  text-decoration: none;
+}
+
+ul {
+  // color: #888;
+  list-style: none;
+}
+
+ul span.folder {
+  color: #ccc;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+ul span.folder:hover,
+ul span.folder:hover::before,
+ul span.folder:hover + ul.nested > li,
+ul span.folder:hover + ul.nested::before,
+ul span.folder:hover + ul.nested li::after,
+ul span.folder:hover + ul.nested ul.nested::before {
+  color: crimson;
+  border-color: crimson;
+}
+
+ul span.folder::before,
+li.file-html::before,
+li.file-css::before,
+li.chart::before,
+li.key::before,
+li.img::before {
+  display: inline-block;
+  margin-right: 0.4rem;
+  font-size: 1.8rem;
+  transition: 0.2s ease-in-out;
+}
+
+ul.nested {
+  position: relative;
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.4s ease-in-out;
+}
+
+ul.nested::before {
+  content: "";
+  position: absolute;
+  left: 7.2%;
+  width: 1.5rem;
+  height: 100%;
+  border-left: 1.3px solid #00ff2a;
+  transition: 0.2s ease-in-out;
+}
+
+ul.nested li {
+  position: relative;
+  padding-left: 3rem;
+  transition: 0.2s ease-in-out;
+}
+
+ul.nested li::after {
+  content: "";
+  position: absolute;
+  left: 7.5%;
+  top: 0.32rem;
+  width: 1.5rem;
+  height: 1rem;
+  border-bottom: 1.3px solid #00ff2a;
+
+  transition: 0.2s ease-in-out;
+}
+
+ul span.folder::before {
+  content: "🗀";
+  color: #00ff2a;
+}
+
+ul span.folder.active::before {
+  content: "🗁";
+}
+
+li.file-html::before {
+  content: "🖹";
+  color: #caec0e;
+}
+
+li.file-css::before {
+  content: "🗅";
+  color: #f800ff;
+}
+
+li.img::before {
+  content: "🖻";
+  color: #004993;
+}
+
+li.chart::before {
+  content: "🗠";
+  color: #caec0e;
+}
+
+li.key::before {
+  content: "🗝";
+  color: #caec0e;
+  transform: rotate(30deg) scaleX(-1);
+}
+
+.grid-reccos {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}

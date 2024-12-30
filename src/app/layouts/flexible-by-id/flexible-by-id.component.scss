@@ -3,13 +3,10 @@
 }
 
 .match-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  background-color: purple;
+  background-color: #ced0f8;
   height: 210px;
-  color: #fff;
+  color: #636ae8;
 }
 
 .match-details {
@@ -88,4 +85,24 @@
 .rounds {
   background-color: #fff;
   margin-bottom: 0.3rem;
+}
+
+.match-sub-title {
+  font-size: 12px;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+.profile-photo {
+  border-radius: 50%;
+  margin: 0 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.box-header {
+  height: 64px;
+  background-color: #fff;
 }
