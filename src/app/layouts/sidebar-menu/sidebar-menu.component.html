@@ -1,21 +1,23 @@
-<!-- <p-panelmenu [model]="items" styleClass="px-2 pt-4" /> -->
-<ul>
-  @for (item of items; track $index) {
-    <li>
-      <p-button
-        icon="pi-folder"
-        [label]="item.name"
-        [link]="true"
-        class="folder"
-        (click)="toggleMenu(item)"
-      />
-      <ul class="nested" [ngClass]="{ open: item.isOpen }">
-        @for (child of item.children; track $index) {
-          <li class="file">
-            <a [href]="child.link">{{ child.icon }} {{ child.name }}</a>
-          </li>
-        }
-      </ul>
-    </li>
-  }
-</ul>
+<aside [class.active]="isOpen" class="sidebar">
+  <div class="sidebar-header">
+    <h2>Liga Manager</h2>
+  </div>
+  <nav class="sidebar-nav">
+    <a routerLink="/dashboard" routerLinkActive="active">
+      <i class="ri-dashboard-horizontal-line"></i>
+      <span>Dashboard</span>
+    </a>
+    <a routerLink="/leagues" routerLinkActive="active">
+      <i class="ri-trophy-line"></i>
+      <span>Ligas</span>
+    </a>
+    <a routerLink="/teams" routerLinkActive="active">
+      <i class="ri-user-line"></i>
+      <span>Times</span>
+    </a>
+    <a routerLink="/settings" routerLinkActive="active">
+      <i class="ri-settings-4-line"></i>
+      <span>Configurações</span>
+    </a>
+  </nav>
+</aside>

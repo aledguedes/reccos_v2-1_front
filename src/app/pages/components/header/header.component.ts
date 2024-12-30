@@ -1,4 +1,11 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 import { DataRxjsService } from '../../../services/data-rxjs.service';
 import { Subscription } from 'rxjs';
@@ -18,6 +25,7 @@ const modules = [Toolbar, AvatarModule, ButtonModule];
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  @Output() toggleSidebar = new EventEmitter<boolean>();
   private rxjs = inject(DataRxjsService);
   private subscription: Subscription = new Subscription();
   section: IMenuDashboard = {

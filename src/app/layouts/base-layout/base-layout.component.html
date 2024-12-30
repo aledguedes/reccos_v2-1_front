@@ -1,0 +1,9 @@
+<div class="layout">
+  <app-sidebar-menu [isOpen]="isSidebarOpen" />
+  <div class="main-content">
+    <app-header (toggleSidebar)="toggleSidebar()" />
+    <main class="content">
+      <router-outlet />
+    </main>
+  </div>
+</div>
