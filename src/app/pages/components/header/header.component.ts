@@ -1,18 +1,31 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ToolbarModule } from 'primeng/toolbar';
-import { AvatarModule } from 'primeng/avatar';
+import {
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+
 import { DataRxjsService } from '../../../services/data-rxjs.service';
 import { Subscription } from 'rxjs';
 import { IMenuDashboard } from '../../../models/generals/MenuDashboard';
 
+import { Toolbar } from 'primeng/toolbar';
+import { AvatarModule } from 'primeng/avatar';
+import { ButtonModule } from 'primeng/button';
+
+const modules = [Toolbar, AvatarModule, ButtonModule];
+
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ToolbarModule, AvatarModule],
+  imports: [...modules],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  @Output() toggleSidebar = new EventEmitter<boolean>();
   private rxjs = inject(DataRxjsService);
   private subscription: Subscription = new Subscription();
   section: IMenuDashboard = {

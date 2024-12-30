@@ -1,0 +1,42 @@
+.card-statistics {
+  height: 130px;
+  background: #ffffffff;
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+
+.sub-title {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 700;
+  color: #9095a0ff;
+  margin: 0;
+}
+
+.statistic-info {
+  line-height: 56px;
+  font-weight: 700;
+  color: #636ae8;
+  margin: 0;
+}
+
+.statistic-image {
+  width: 80px;
+}
+
+.text-ellipsis {
+  max-width: 99%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.redux {
+  font-size: 25px;
+  @extend .text-ellipsis;
+}
+
+.noredux {
+  font-size: 50px;
+  @extend .statistic-info;
+}
