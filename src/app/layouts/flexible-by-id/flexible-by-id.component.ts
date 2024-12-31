@@ -5,11 +5,10 @@ import { DashStatisticsComponent } from '../dash-statistics/dash-statistics.comp
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { DividerModule } from 'primeng/divider';
-import { HeaderComponent } from '../../pages/components/header/header.component';
 
 const modules = [CardModule, ButtonModule, MessageModule, DividerModule];
 
-const components = [HeaderComponent, DashStatisticsComponent];
+const components = [DashStatisticsComponent];
 
 @Component({
   selector: 'app-flexible-by-id',
