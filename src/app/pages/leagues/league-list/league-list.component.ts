@@ -1,23 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
-import { RouterLink } from '@angular/router';
 import { ILeagueResponse } from '../../../models/entities/LeagueModel';
 import { IListCads } from '../../../models/generals/ListCardModel';
 import { LeagueService } from '../../../services/leagues/league.service';
-// import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
 import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
 import { ButtonModule } from 'primeng/button';
-import { FlexibleViewComponent } from '../../../layouts/flexible-view/flexible-view.component';
+import { TableModule } from 'primeng/table';
+import { DashStatisticsComponent } from '../../../layouts/dash-statistics/dash-statistics.component';
+import { RouterLink } from '@angular/router';
+
+const components = [DashStatisticsComponent, TableModule, ButtonModule];
+const modules = [RouterLink];
+
+interface IStatisticsCards {
+  label: string;
+  value: string;
+  icon: string;
+  redux: boolean;
+}
+
+interface Column {
+  field: string;
+  header: string;
+}
 
 @Component({
   selector: 'app-league-list',
   standalone: true,
-  imports: [
-    BreadcrumbComponent,
-    RouterLink,
-    FlexibleViewComponent,
-    ButtonModule,
-  ],
+  imports: [...components, ...modules],
   templateUrl: './league-list.component.html',
   styleUrl: './league-list.component.scss',
 })
@@ -33,6 +42,35 @@ export class LeagueListComponent implements OnInit {
   breadcrumb: Partial<IBreadcrumb>[] = [
     { icon: 'pi pi-home', route: '/dashboard' },
     { label: 'Ligas' },
+  ];
+
+  statsCards: IStatisticsCards[] = [
+    {
+      label: 'Total Leagues',
+      icon: 'ri-trophy-line',
+      redux: false,
+      value: '12',
+    },
+    {
+      label: 'Active Teams',
+      icon: 'ri-user-line',
+      redux: false,
+      value: '286',
+    },
+    {
+      label: 'Upcoming Matches',
+      icon: 'ri-calendar-line',
+      redux: false,
+      value: '24',
+    },
+  ];
+
+  cols: Column[] = [
+    { field: 'id', header: 'Code' },
+    { field: 'name', header: 'Nome Liga' },
+    { field: 'format', header: 'Formato' },
+    { field: 'status', header: 'Status' },
+    { field: 'action', header: 'Ação' },
   ];
 
   constructor(private leagueService: LeagueService) {}
