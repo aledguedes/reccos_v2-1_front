@@ -3,10 +3,12 @@ import { IListCads } from '../../models/generals/ListCardModel';
 import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
 
+const modules = [RouterLink];
+const components = [ButtonModule];
 @Component({
   selector: 'app-flexible-view',
   standalone: true,
-  imports: [RouterLink, ButtonModule],
+  imports: [...modules, ...components],
   templateUrl: './flexible-view.component.html',
   styleUrl: './flexible-view.component.scss',
 })

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../src/app/styles/default.scss";
+@import "primeicons/primeicons.css";
 
 :root {
   --main-color: #4258ff;
@@ -20,7 +21,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #f0f0f0;
+  background-color: #f9fafb;
   font-family: "Nunito", sans-serif;
 }
 

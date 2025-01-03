@@ -7,8 +7,16 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DashStatisticsComponent } from '../../../layouts/dash-statistics/dash-statistics.component';
 import { RouterLink } from '@angular/router';
+import { CardModule } from 'primeng/card';
+import { TagModule } from 'primeng/tag';
 
-const components = [DashStatisticsComponent, TableModule, ButtonModule];
+const components = [
+  DashStatisticsComponent,
+  TableModule,
+  ButtonModule,
+  CardModule,
+  TagModule,
+];
 const modules = [RouterLink];
 
 interface IStatisticsCards {
@@ -16,6 +24,7 @@ interface IStatisticsCards {
   value: string;
   icon: string;
   redux: boolean;
+  isImage: boolean;
 }
 
 interface Column {
@@ -50,18 +59,21 @@ export class LeagueListComponent implements OnInit {
       icon: 'ri-trophy-line',
       redux: false,
       value: '12',
+      isImage: false,
     },
     {
       label: 'Active Teams',
       icon: 'ri-user-line',
       redux: false,
       value: '286',
+      isImage: false,
     },
     {
       label: 'Upcoming Matches',
       icon: 'ri-calendar-line',
       redux: false,
       value: '24',
+      isImage: false,
     },
   ];
 
@@ -83,7 +95,7 @@ export class LeagueListComponent implements OnInit {
     this.leagueService.getAllLeagues(this.page, this.perPage).subscribe({
       next: (data) => {
         this.leagues = data;
-        console.log('LEAGUES ALL', this.leagues);
+        // console.log('LEAGUES ALL', this.leagues);
       },
       error: (err) => {
         console.log('LEAGUES ALL ERR', err);
