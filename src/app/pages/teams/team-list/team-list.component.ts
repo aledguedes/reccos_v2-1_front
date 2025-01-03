@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TeamService } from '../../../services/teams/team.service';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
-import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
 import { IListCads } from '../../../models/generals/ListCardModel';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
+import { ListCardsComponent } from '../../../layouts/list-cards/list-cards.component';
 
 interface ITeam {
   id?: number;

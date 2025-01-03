@@ -6,11 +6,19 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
 import { ButtonModule } from 'primeng/button';
 import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
 import { CardModule } from 'primeng/card';
+import { IListCads } from '../../../models/generals/ListCardModel';
+import { ListCardsComponent } from '../../../layouts/list-cards/list-cards.component';
 
 @Component({
   selector: 'app-player-list',
   standalone: true,
-  imports: [RouterLink, BreadcrumbComponent, ButtonModule, CardModule],
+  imports: [
+    RouterLink,
+    BreadcrumbComponent,
+    ButtonModule,
+    CardModule,
+    ListCardsComponent,
+  ],
   templateUrl: './player-list.component.html',
   styleUrl: './player-list.component.scss',
 })
@@ -25,6 +33,10 @@ export class PlayerListComponent implements OnInit {
     { icon: 'pi pi-home', route: '/dashboard' },
     { label: 'Atletas' },
   ];
+  cardFlags: IListCads = {
+    flag: 'players',
+    router: 'player-edit',
+  };
 
   constructor(private playerService: PlayerService) {}
 

@@ -8,17 +8,15 @@ import { inputsFieldTeam } from '../../../utils/form-inputs/form-input-team';
 import { DataRxjsService } from '../../../services/data-rxjs.service';
 import { generalInputsAddress } from '../../../utils/form-inputs/form-input-address';
 import { IToForm } from '../../../models/generals/GeneralForms';
-import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { inputsFieldFederation } from '../../../utils/form-inputs/form-input-federations';
 import { inputsFieldRefree } from '../../../utils/form-inputs/form-input-refrees';
 import { inputsFieldLeagues } from '../../../utils/form-inputs/form-input-leagues';
 import { FormsModule } from '@angular/forms';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-form-edit',
   standalone: true,
-  imports: [LayoutFormComponent, BreadcrumbComponent, FormsModule, NgClass],
+  imports: [LayoutFormComponent, FormsModule],
   templateUrl: './form-edit.component.html',
   styleUrl: './form-edit.component.scss',
 })

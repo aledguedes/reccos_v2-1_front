@@ -1,0 +1,50 @@
+.sub-title {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 700;
+  color: #9095a0ff;
+  margin: 0;
+}
+
+.statistic-info {
+  line-height: 2rem;
+  font-weight: 700;
+  color: #636ae8;
+  margin: 0;
+}
+
+.statistic-image {
+  width: 80px;
+}
+
+.text-ellipsis {
+  max-width: 99%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.redux {
+  font-size: 25px;
+  @extend .text-ellipsis;
+}
+
+.noredux {
+  font-size: 1.8rem;
+  @extend .statistic-info;
+}
+
+.statistic-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eff6ff;
+}
+
+.icon {
+  font-size: 28px;
+  color: #636ae8;
+}

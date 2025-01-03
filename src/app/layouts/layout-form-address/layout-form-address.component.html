@@ -1,5 +1,5 @@
 <form [formGroup]="addressForm">
-  <div class="row">
+  <div class="grid">
     @for (field of addressData; track $index) {
       @if (field.typeComponent === "input") {
         <div [ngClass]="field.colClass">

@@ -1,0 +1,119 @@
+.h-container {
+  height: calc(100vh - 120px);
+}
+
+.match-content {
+  width: 100%;
+  background-color: #ced0f8;
+  height: 210px;
+  color: #636ae8;
+}
+
+.match-details {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.match-details h4 {
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+}
+
+.match-details .sub-title {
+  margin: 8px 0;
+}
+
+.match-escudos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.escudos {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  right: 50px;
+}
+
+.escudo {
+  width: 80px;
+  position: absolute;
+}
+
+.escudo-left {
+  left: 0;
+  z-index: 1;
+  top: -15px;
+}
+
+.escudo-right {
+  left: 50px;
+  z-index: 2;
+}
+
+.box-team {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  background-color: #afacac;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.flex-rounds {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 16px;
+}
+
+.bottom-border {
+  border-bottom: 1px solid #aaaaaa62;
+}
+
+.rounds {
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.rounds {
+  background-color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.match-sub-title {
+  font-size: 12px;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+.profile-photo {
+  border-radius: 50%;
+  margin: 0 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.box-header {
+  height: 64px;
+  background-color: #fff;
+}
+
+.list-teams-images img {
+  height: 50px;
+}
+
+.name-team {
+  color: #636ae8;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 2rem;
+}

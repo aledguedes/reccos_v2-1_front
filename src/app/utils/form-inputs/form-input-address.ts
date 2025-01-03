@@ -10,7 +10,7 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: 'Ex: 01000-000',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12',
+    colClass: 'col-12 md:col-3',
   },
   {
     typeComponent: 'input',
@@ -20,7 +20,7 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: 'Ex: Rua das Palmeiras',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-9 col-sm-12',
+    colClass: 'col-12 md:col-7 sm:col-12',
   },
   {
     typeComponent: 'input',
@@ -30,7 +30,7 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: '123',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-3 col-sm-12',
+    colClass: 'col-12 md:col-2 col-sm-12',
   },
   {
     typeComponent: 'input',
@@ -40,7 +40,7 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: 'Vila Capanema',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12',
+    colClass: 'col-12 md:col-5',
   },
   {
     typeComponent: 'input',
@@ -50,7 +50,7 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: 'São Paulo',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-9 col-sm-12',
+    colClass: 'col-12 md:col-5',
   },
   {
     typeComponent: 'input',
@@ -60,6 +60,6 @@ export const generalInputsAddress: IGeneralFields[] = [
     placeholder: 'SP',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12 col-md-3 col-sm-12',
+    colClass: 'col-12 md:col-2 sm:col-12',
   },
 ];

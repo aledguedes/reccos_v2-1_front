@@ -10,21 +10,20 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { InputFormsComponent } from '../input-forms/input-forms.component';
-import { SelectFormsComponent } from '../select-forms/select-forms.component';
-import { RouterLink } from '@angular/router';
 import { DataRxjsService } from '../../../services/data-rxjs.service';
 import { Subscription } from 'rxjs';
 import { FlagMap } from '../../../services/interfaces-map/interfaces-map';
 import { GenericsUpdatedsService } from '../../../services/generics/generics-updateds.service';
 import { IToForm } from '../../../models/generals/GeneralForms';
-import { LayoutFormAddressComponent } from '../layout-form-address/layout-form-address.component';
-import { LayoutFormPersonalComponent } from '../layout-form-personal/layout-form-personal.component';
 import { FormUploadComponent } from '../form-upload/form-upload.component';
 import {
   statusForms,
   stepForms,
 } from '../../../utils/step-layout-forms/step-forms';
+import { StepperModule } from 'primeng/stepper';
+import { ButtonModule } from 'primeng/button';
+import { LayoutFormAddressComponent } from '../../../layouts/layout-form-address/layout-form-address.component';
+import { LayoutFormPersonalComponent } from '../../../layouts/layout-form-personal/layout-form-personal.component';
 
 interface IStepsComponent {
   label: string;
@@ -44,12 +43,11 @@ interface IStatusFormValidate {
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    InputFormsComponent,
-    SelectFormsComponent,
-    RouterLink,
     LayoutFormAddressComponent,
     LayoutFormPersonalComponent,
     FormUploadComponent,
+    StepperModule,
+    ButtonModule,
   ],
   templateUrl: './layout-form.component.html',
   styleUrl: './layout-form.component.scss',

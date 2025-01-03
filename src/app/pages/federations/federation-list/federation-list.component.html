@@ -3,7 +3,7 @@
     class="flex flex-column md:flex-row justify-content-center md:justify-content-between align-items-center my-4"
   >
     <app-breadcrumb ngSkipHydration [items]="breadcrumb" />
-    <div class="buttons w-sm-buttons">
+    <div class="w-sm-buttons">
       <p-button
         label="Adicionar Federação"
         [routerLink]="['federation-edit']"
@@ -13,7 +13,9 @@
     </div>
   </div>
 
-  <div class="grid">
+  <div
+    class="grid row-gap-4 md:row-gap-0 md:justify-content-start justify-content-center"
+  >
     @if (federations.length > 0) {
       @for (federation of federations; track $index) {
         <div class="lg:col-3 md:col-6 sm:col-12">

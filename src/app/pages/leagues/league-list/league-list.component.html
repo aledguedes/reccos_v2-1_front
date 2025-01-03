@@ -1,29 +1,106 @@
-<div class="container py-3">
-  <div
-    class="flex flex-column md:flex-row justify-content-center md:justify-content-between align-items-center my-4"
-  >
-    <app-breadcrumb ngSkipHydration [items]="breadcrumb" />
-    <div class="buttons w-sm-buttons">
+<div class="container">
+  <div class="flex justify-content-between align-items-center mb-4">
+    <h3 class="p-text-muted text-3xl">Welcome back, John! 👋</h3>
+    <div class="md:w-auto">
       <p-button
         label="Adicionar Liga"
         [routerLink]="['league-edit']"
         [queryParams]="{ action: 'create', f: 'leagues' }"
         icon="pi pi-plus"
+        styleClass="w-full"
       />
     </div>
   </div>
 
-  <div class="grid">
-    @if (leagues.length > 0) {
-      @for (league of leagues; track $index) {
-        <div class="lg:col-3 md:col-6 sm:col-12">
-          <app-list-cards [data]="league" [toQueries]="cardFlags" />
-        </div>
-      }
-    } @else {
-      <div class="notification is-link is-light">
-        O sistema ainda não possui ligas cadastradas!!
+  <div class="grid cards">
+    @for (item of statsCards; track $index) {
+      <div class="col-12 md:col-4 mb-4">
+        <app-dash-statistics [data]="item" />
       </div>
     }
   </div>
+
+  <div class="grid">
+    @for (league of leagues; track $index) {
+      <div class="col-12 md:col-3 sm:col-12">
+        <p-card class="shadow-5">
+          <div class="flex justify-content-between align-items-center py-2">
+            <div>
+              <p class="m-0">{{ league.name }}</p>
+              <p class="my-1">
+                <i class="ri-group-line mr-1"></i>
+                {{ $index + 5 + ($index % 2 === 0 ? 2 : 3) * 2 }} times
+              </p>
+            </div>
+            <i
+              class="ri-trophy-line"
+              style="font-size: 48px; color: var(--p-tag-success-color)"
+            ></i>
+          </div>
+          <div class="flex justify-content-between">
+            <p-tag
+              [severity]="$index % 2 === 0 ? 'success' : 'danger'"
+              [value]="league.status"
+              [rounded]="true"
+            />
+            <p-button
+              [routerLink]="['/leagues', league.id]"
+              icon="pi pi-arrow-right"
+              [rounded]="true"
+              [text]="true"
+            />
+          </div>
+        </p-card>
+      </div>
+    }
+  </div>
+
+  <!-- <p-table
+    [columns]="cols"
+    [value]="leagues"
+    [tableStyle]="{ 'min-width': '100%' }"
+  >
+    <ng-template #header let-columns>
+      <tr>
+        @for (col of columns; track $index) {
+          <th>
+            {{ col.header }}
+          </th>
+        }
+      </tr>
+    </ng-template>
+    <ng-template #body let-rowData let-columns="columns">
+      <tr>
+        @for (col of columns; track $index) {
+          @if (col.field === "name") {
+            <th>
+              <div class="flex align-items-center justify-content-around">
+                <img
+                  [src]="rowData['img_perfil']"
+                  [alt]="rowData['img_perfil']"
+                  height="50"
+                />
+                {{ rowData[col.field] }}
+              </div>
+            </th>
+          } @else if (col.field === "action") {
+            <th class="flex justify-content-around align-items-center p-3">
+              <p-button label="Remover" variant="outlined" size="small" />
+              <p-button label="Editar" variant="outlined" size="small" />
+              <p-button
+                [routerLink]="['/leagues', col.field]"
+                label="Ver"
+                variant="outlined"
+                size="small"
+              />
+            </th>
+          } @else {
+            <th>
+              {{ rowData[col.field] }}
+            </th>
+          }
+        }
+      </tr>
+    </ng-template>
+  </p-table> -->
 </div>

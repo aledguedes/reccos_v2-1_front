@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IListCads } from '../../../models/generals/ListCardModel';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { IListCads } from '../../models/generals/ListCardModel';
 
 @Component({
   selector: 'app-list-cards',
@@ -18,4 +18,7 @@ export class ListCardsComponent {
     flag: '',
     router: '',
   };
+
+  img01 = 'https://primefaces.org/cdn/primeng/images/card-ng.jpg';
+  img02 = 'https://bulma.io/assets/images/placeholders/96x96.png';
 }

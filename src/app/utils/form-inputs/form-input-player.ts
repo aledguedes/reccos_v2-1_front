@@ -10,7 +10,7 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     placeholder: 'Ex: João da Silva',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12',
+    colClass: 'col-12 md:col-8',
   },
   {
     typeComponent: 'input',
@@ -20,7 +20,7 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     placeholder: 'Ex: Joãozinho',
     validators: [],
     initialValues: '',
-    colClass: 'col-12',
+    colClass: 'col-12 md:col-4',
   },
   {
     typeComponent: 'input',
@@ -30,7 +30,7 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     placeholder: 'Ex: user@reccos.com',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12',
+    colClass: 'col-12 md:col-4 sm:col-12',
   },
   {
     typeComponent: 'input',
@@ -40,7 +40,7 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     placeholder: '000.000.000-00',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12',
+    colClass: 'col-12 md:col-4',
   },
   {
     typeComponent: 'input',
@@ -50,7 +50,7 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     placeholder: '00.000.000-0',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12',
+    colClass: 'col-12 md:col-4',
   },
   {
     typeComponent: 'input',
@@ -60,7 +60,7 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     placeholder: 'Ex: (11) 99999-9999',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12',
+    colClass: 'col-12 md:col-6',
   },
   {
     typeComponent: 'input',
@@ -69,7 +69,7 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     inputType: 'date',
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12',
+    colClass: 'col-12 md:col-6',
   },
   {
     typeComponent: 'select',
@@ -89,7 +89,8 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     ],
     validators: [Validators.required],
     initialValues: '',
-    colClass: 'col-12',
+    colClass:
+      "update ? 'col-12 lg:col-3 md:col-3 sm:col-12' : 'col-12 lg:col-6 md:col-6'",
   },
   {
     typeComponent: 'select',
@@ -102,7 +103,8 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     ],
     validators: [Validators.required],
     initialValues: '',
-    colClass: "update ? 'col-12 col-lg-6 col-md-6' : 'col-12'",
+    colClass:
+      "update ? 'col-12 lg:col-3 md:col-3 sm:col-12' : 'col-12 lg:col-6 md:col-6'",
   },
   {
     typeComponent: 'select',
@@ -117,6 +119,6 @@ export const inputsFieldPlayer: IGeneralFields[] = [
     ],
     validators: [Validators.required],
     initialValues: 'active',
-    colClass: "update ? 'col-12 col-lg-6 col-md-6' : 'col-12'",
+    colClass: "update ? 'col-12' : 'col-12 lg:col-6 md:col-6'",
   },
 ];

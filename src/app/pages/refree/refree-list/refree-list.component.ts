@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
 import { RouterLink } from '@angular/router';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { IListCads } from '../../../models/generals/ListCardModel';
@@ -7,6 +6,7 @@ import { RefreeService } from '../../../services/refrees/refree.service';
 import { IRefreeRequest } from '../../../models/entities/RefreeModel';
 import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
 import { ButtonModule } from 'primeng/button';
+import { ListCardsComponent } from '../../../layouts/list-cards/list-cards.component';
 
 @Component({
   selector: 'app-refree-list',

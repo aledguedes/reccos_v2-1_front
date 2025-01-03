@@ -1,0 +1,14 @@
+:host ::ng-deep {
+  .p-card .p-card-title {
+    height: auto;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .p-card .p-card-footer,
+  .p-card .p-card-content {
+    padding: 0;
+  }
+}

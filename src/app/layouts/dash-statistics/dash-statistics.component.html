@@ -1,0 +1,20 @@
+<p-card>
+  <div class="flex justify-content-between align-items-center">
+    <div class="flex-column flex">
+      <p class="sub-title pb-2">{{ data.label }}</p>
+      <p class="statistic-info" [ngClass]="data.redux ? 'redux' : 'noredux'">
+        {{ data.value }}
+      </p>
+    </div>
+
+    <div>
+      @if (data.isImage) {
+        <img [src]="data.icon" class="statistic-image" alt="Chart" />
+      } @else {
+        <div class="statistic-icon">
+          <i [class]="data.icon" class="icon"></i>
+        </div>
+      }
+    </div>
+  </div>
+</p-card>
