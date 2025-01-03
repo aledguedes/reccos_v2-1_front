@@ -7,6 +7,7 @@ interface IStatisticsCards {
   value: string;
   icon: string;
   redux: boolean;
+  isImage: boolean;
 }
 
 @Component({
@@ -22,5 +23,6 @@ export class DashStatisticsComponent {
     value: '',
     icon: '',
     redux: false,
+    isImage: false,
   };
 }

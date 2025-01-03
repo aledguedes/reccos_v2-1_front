@@ -8,8 +8,10 @@
     </div>
 
     <div>
-      @if (data.icon !== "") {
+      @if (data.isImage) {
         <img [src]="data.icon" class="statistic-image" alt="Chart" />
+      } @else {
+        <i [class]="data.icon"></i>
       }
     </div>
   </div>

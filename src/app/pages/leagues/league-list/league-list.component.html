@@ -20,8 +20,42 @@
     }
   </div>
 
-  <!-- Leagues Section - Full width on mobile, 75% on desktop -->
-  <p-table
+  <div class="grid">
+    @for (league of leagues; track $index) {
+      <div class="col-12 md:col-3 sm:col-12">
+        <p-card class="shadow-5">
+          <div class="flex justify-content-between align-items-center py-2">
+            <div>
+              <p class="m-0">{{ league.name }}</p>
+              <p class="my-1">
+                <i class="ri-group-line mr-1"></i>
+                {{ $index + 5 + ($index % 2 === 0 ? 2 : 3) * 2 }} times
+              </p>
+            </div>
+            <i
+              class="ri-trophy-line"
+              style="font-size: 48px; color: var(--p-tag-success-color)"
+            ></i>
+          </div>
+          <div class="flex justify-content-between">
+            <p-tag
+              [severity]="$index % 2 === 0 ? 'success' : 'danger'"
+              [value]="league.status"
+              [rounded]="true"
+            />
+            <p-button
+              [routerLink]="['/leagues', league.id]"
+              icon="pi pi-arrow-right"
+              [rounded]="true"
+              [text]="true"
+            />
+          </div>
+        </p-card>
+      </div>
+    }
+  </div>
+
+  <!-- <p-table
     [columns]="cols"
     [value]="leagues"
     [tableStyle]="{ 'min-width': '100%' }"
@@ -68,5 +102,5 @@
         }
       </tr>
     </ng-template>
-  </p-table>
+  </p-table> -->
 </div>

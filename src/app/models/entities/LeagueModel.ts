@@ -1,4 +1,5 @@
 export interface ILeagueResponse {
+  id: number;
   name: string;
   dt_start: Date;
   dt_end: Date;
@@ -19,7 +20,6 @@ export interface ILeagueResponse {
   scores_id: number;
 }
 export interface ILeagueRequest {
-  id: number;
   name: string;
   dt_start: Date;
   dt_end: Date;
