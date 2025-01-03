@@ -9,11 +9,12 @@ interface IStatisticsCards {
   redux: boolean;
   isImage: boolean;
 }
-
+const components = [CardModule, CardModule];
+const modules = [NgClass];
 @Component({
   selector: 'app-dash-statistics',
   standalone: true,
-  imports: [CardModule, NgClass],
+  imports: [...components, ...modules],
   templateUrl: './dash-statistics.component.html',
   styleUrl: './dash-statistics.component.scss',
 })
