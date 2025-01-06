@@ -5,7 +5,7 @@
   </div>
   <div class="grid">
     @for (item of statistics; track $index) {
-      <div class="col-12 md:col-3">
+      <div class="col-12 lg:col-3 md:col-6 sm:col-6">
         <app-dash-statistics [data]="item" />
       </div>
     }
@@ -65,7 +65,7 @@
 
   <!-- ULTIMAS PARTIDAS -->
   <div class="grid mb-2">
-    <div class="col-6">
+    <div class="col-12 md:col-6 sm:col-12">
       <div class="rounds flex align-items-center p-3">
         <div class="col">
           <div
@@ -100,7 +100,7 @@
       </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-12 md:col-6 sm:col-12">
       <div class="rounds flex align-items-center p-3">
         <div class="col">
           <div
@@ -137,9 +137,9 @@
   </div>
 
   <!-- RANKING -->
-  <div class="grid mb-2 gap-2">
+  <div class="grid mb-2">
     @for (item of rankings; track $index) {
-      <div class="col">
+      <div class="col-12 md:col-4 sm:col-12">
         <p-card>
           <h3>
             <strong>{{ item.label }}</strong>
