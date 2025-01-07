@@ -24,10 +24,12 @@ import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
 import { LayoutFormAddressComponent } from '../../../layouts/layout-form-address/layout-form-address.component';
 import { LayoutFormPersonalComponent } from '../../../layouts/layout-form-personal/layout-form-personal.component';
+import { CardModule } from 'primeng/card';
 
 interface IStepsComponent {
   label: string;
   enable: boolean;
+  step: number;
 }
 
 interface IStatusFormValidate {
@@ -37,18 +39,19 @@ interface IStatusFormValidate {
   personal: boolean;
 }
 
+const components = [
+  LayoutFormAddressComponent,
+  LayoutFormPersonalComponent,
+  FormUploadComponent,
+];
+const primeNg = [StepperModule, ButtonModule, CardModule];
+
+const modules = [ReactiveFormsModule, CommonModule];
+
 @Component({
   selector: 'app-layout-form',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-    LayoutFormAddressComponent,
-    LayoutFormPersonalComponent,
-    FormUploadComponent,
-    StepperModule,
-    ButtonModule,
-  ],
+  imports: [...components, ...primeNg, ...modules],
   templateUrl: './layout-form.component.html',
   styleUrl: './layout-form.component.scss',
 })
@@ -56,14 +59,14 @@ export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
   @Input() update = false;
   @Input() address = false;
   @Output() statusForm = new EventEmitter<boolean>();
+
   private subscription: Subscription = new Subscription();
+
   edit: IToForm = {
     flag: '',
     update: false,
     data_id: 0,
   };
-
-  step = 1;
 
   control = false;
   allFormsCompleted = false;
@@ -71,6 +74,7 @@ export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
   stepsForm: IStepsComponent[] = stepForms;
   statusValidation: IStatusFormValidate = statusForms;
 
+  stepControl = 1;
   currentStep = 1;
 
   constructor(
@@ -85,14 +89,7 @@ export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
         this.loadFlagData(form.flag as keyof FlagMap, form.data_id);
       }
     });
-
-    const personalFormsValue = this.rxjs.valuePersonalForm$.subscribe(
-      (personal: FlagMap[keyof FlagMap] | null) => {
-        console.log('Values FORM PERSONAL', personal);
-      },
-    );
     this.subscription.add(dataSubscription);
-    this.subscription.add(personalFormsValue);
   }
 
   ngOnDestroy(): void {
@@ -131,14 +128,22 @@ export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
+  // Função para verificar se a etapa está habilitada
+  isStepEnabled(step: number): boolean {
+    const stepConfig = this.stepsForm.find((s) => s.step === step);
+    return stepConfig ? stepConfig.enable : false;
+  }
+
+  // Função para avançar para a próxima etapa
   nextStep() {
-    if (this.currentStep < 4) {
+    if (this.currentStep < 4 && this.isStepEnabled(this.currentStep + 1)) {
       this.currentStep++;
     }
   }
 
+  // Função para voltar para a etapa anterior
   prevStep() {
-    if (this.currentStep > 1) {
+    if (this.currentStep > 1 && this.isStepEnabled(this.currentStep - 1)) {
       this.currentStep--;
     }
   }

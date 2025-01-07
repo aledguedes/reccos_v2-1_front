@@ -1,19 +1,23 @@
 export const stepForms = [
   {
-    label: 'Dados Pessoais',
+    label: 'Informações básicas',
     enable: true,
+    step: 1,
   },
   {
-    label: 'Endereço',
+    label: 'Datas',
     enable: false,
+    step: 2,
   },
   {
-    label: 'Upload',
+    label: 'Sistema',
     enable: true,
+    step: 3,
   },
   {
-    label: 'Confirmação dos Dados',
+    label: 'Configuração',
     enable: true,
+    step: 4,
   },
 ];
 

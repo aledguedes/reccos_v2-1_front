@@ -20,8 +20,8 @@
     }
   </div>
 
+  <h2>Ligas cadastradas!</h2>
   <div class="grid">
-    <h3>Ligas cadastradas!</h3>
     @for (league of leagues; track $index) {
       <div class="col-12 lg:col-4 md:col-6 sm:col-6">
         <p-card class="shadow-5">
@@ -55,53 +55,4 @@
       </div>
     }
   </div>
-
-  <!-- <p-table
-    [columns]="cols"
-    [value]="leagues"
-    [tableStyle]="{ 'min-width': '100%' }"
-  >
-    <ng-template #header let-columns>
-      <tr>
-        @for (col of columns; track $index) {
-          <th>
-            {{ col.header }}
-          </th>
-        }
-      </tr>
-    </ng-template>
-    <ng-template #body let-rowData let-columns="columns">
-      <tr>
-        @for (col of columns; track $index) {
-          @if (col.field === "name") {
-            <th>
-              <div class="flex align-items-center justify-content-around">
-                <img
-                  [src]="rowData['img_perfil']"
-                  [alt]="rowData['img_perfil']"
-                  height="50"
-                />
-                {{ rowData[col.field] }}
-              </div>
-            </th>
-          } @else if (col.field === "action") {
-            <th class="flex justify-content-around align-items-center p-3">
-              <p-button label="Remover" variant="outlined" size="small" />
-              <p-button label="Editar" variant="outlined" size="small" />
-              <p-button
-                [routerLink]="['/leagues', col.field]"
-                label="Ver"
-                variant="outlined"
-                size="small"
-              />
-            </th>
-          } @else {
-            <th>
-              {{ rowData[col.field] }}
-            </th>
-          }
-        }
-      </tr>
-    </ng-template>
-  </p-table> -->
 </div>
