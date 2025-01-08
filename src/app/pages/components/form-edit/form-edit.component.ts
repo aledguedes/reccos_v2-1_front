@@ -2,16 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LayoutFormComponent } from '../layout-form/layout-form.component';
 import { Router } from '@angular/router';
-import { IGeneralFields } from '../../../models/generals/GeneralFieldsInputs';
 import { inputsFieldPlayer } from '../../../utils/form-inputs/form-input-player';
 import { inputsFieldTeam } from '../../../utils/form-inputs/form-input-team';
 import { DataRxjsService } from '../../../services/data-rxjs.service';
-import { generalInputsAddress } from '../../../utils/form-inputs/form-input-address';
 import { IToForm } from '../../../models/generals/GeneralForms';
 import { inputsFieldFederation } from '../../../utils/form-inputs/form-input-federations';
 import { inputsFieldRefree } from '../../../utils/form-inputs/form-input-refrees';
 import { inputsFieldLeagues } from '../../../utils/form-inputs/form-input-leagues';
 import { FormsModule } from '@angular/forms';
+import { IGroupedFields } from '../../../models/generals/GeneralFieldsInputs';
 
 @Component({
   selector: 'app-form-edit',
@@ -21,7 +20,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './form-edit.component.scss',
 })
 export class FormEditComponent implements OnInit {
-  private flagMappings: Record<string, IGeneralFields[]> = {
+  private flagMappings: Record<string, IGroupedFields> = {
     teams: inputsFieldTeam,
     players: inputsFieldPlayer,
     refrees: inputsFieldRefree,
@@ -57,16 +56,17 @@ export class FormEditComponent implements OnInit {
       };
 
       const fields = this.getFieldsByFlag(flag);
-      this.rxjs.sendPersonalForm(fields.person);
+      console.log('ESTAMOS VENDO AQUI COMO VER', fields);
+      // this.rxjs.sendPersonalForm(fields);
 
-      const haveAddress = ['players', 'teams'];
-      this.formAddress = haveAddress.includes(flag);
-      if (haveAddress.includes(flag)) {
-        this.rxjs.sendAddressForm(generalInputsAddress);
-      } else {
-        this.rxjs.validateWithNoAddress(!haveAddress.includes(flag));
-      }
-      this.rxjs.sendDataForm(this.edit);
+      // const haveAddress = ['players', 'teams'];
+      // this.formAddress = haveAddress.includes(flag);
+      // if (haveAddress.includes(flag)) {
+      //   this.rxjs.sendAddressForm(generalInputsAddress);
+      // } else {
+      //   this.rxjs.validateWithNoAddress(!haveAddress.includes(flag));
+      // }
+      // this.rxjs.sendDataForm(this.edit);
     });
   }
 
@@ -89,9 +89,9 @@ export class FormEditComponent implements OnInit {
     this.router.navigate([`/${baseRoute}`]);
   }
 
-  getFieldsByFlag(flag: string): { person: IGeneralFields[] } {
+  getFieldsByFlag(flag: string) {
     const personFields = this.flagMappings[flag] || this.flagMappings['teams'];
-    return { person: personFields };
+    return { personFields };
   }
 
   resetForms() {

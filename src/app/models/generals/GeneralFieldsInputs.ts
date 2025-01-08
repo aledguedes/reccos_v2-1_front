@@ -27,3 +27,10 @@ export interface IOptions {
   value: string;
   label: string;
 }
+
+export interface IGroupedFields {
+  dates: IGeneralFields[];
+  settings: IGeneralFields[];
+  leagueData: IGeneralFields[];
+  personalInfo: IGeneralFields[];
+}
