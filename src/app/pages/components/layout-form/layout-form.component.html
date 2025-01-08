@@ -1,58 +1,55 @@
-<div class="card custom-stepper-content">
-  <p-stepper orientation="vertical">
-    @for (item of stepsForm; track $index; let last = $last) {
-      <!-- <p-stepperPanel [header]="item.label">
-        <ng-template
-          pTemplate="content"
-          let-index="index"
-          let-nextCallback="nextCallback"
-          let-prevCallback="prevCallback"
-        >
-          <div class="custom-step-content">
-            <div>
-              @switch ($index) {
-                @case (0) {
-                  <app-layout-form-personal
-                    (statusFormPersonal)="updateStatus($event)"
-                    [update]="update"
-                  />
-                }
-
-                @case (1) {
-                  <app-layout-form-address
-                    (statusFormAddress)="updateStatus($event)"
-                    [update]="update"
-                    ngSkipHydration
-                  />
-                }
-
-                @case (2) {
-                  <app-form-upload (statusFormUpload)="updateStatus($event)" />
-                }
-
-                @default {
-                  <h2>Confirmação dos dados</h2>
-                  <p>Confirme as informações fornecidos para finalizar</p>
-                }
+<p-card>
+  <p-stepper [value]="1" [linear]="false">
+    <p-step-list>
+      @for (spetList of stepsForm; track $index; let last = $last) {
+        @if (isStepEnabled(spetList.step)) {
+          <p-step [value]="$index + 1"> {{ spetList.label }} </p-step>
+        }
+      }
+    </p-step-list>
+    <p-step-panels>
+      @for (step of stepsForm; track $index) {
+        <p-step-panel [value]="step.step">
+          <ng-template #content let-activateCallback="activateCallback">
+            <ng-container [ngSwitch]="step.step">
+              <app-layout-form-personal
+                *ngSwitchCase="1"
+                (statusFormPersonal)="updateStatus($event)"
+                [update]="update"
+              />
+              @if (isStepEnabled(step.step)) {
+                <app-layout-form-address
+                  *ngSwitchCase="2"
+                  (statusFormAddress)="updateStatus($event)"
+                  [update]="update"
+                  ngSkipHydration
+                />
               }
-            </div>
-          </div>
-          <div class="flex py-4 gap-2">
-            @if ($index === 0) {
-              <p-button label="Next" (onClick)="nextCallback.emit()" />
-            } @else {
+              <app-form-upload
+                *ngSwitchCase="3"
+                (statusFormUpload)="updateStatus($event)"
+              />
+            </ng-container>
+            <div class="flex pt-6 justify-between">
+              <!-- Botões "Back" e "Next" -->
               <p-button
+                *ngIf="step.step > 1"
                 label="Back"
                 severity="secondary"
-                (onClick)="prevCallback.emit()"
+                icon="pi pi-arrow-left"
+                (onClick)="activateCallback(step.step - 1)"
               />
-              @if (!last) {
-                <p-button label="Next" (onClick)="nextCallback.emit()" />
-              }
-            }
-          </div>
-        </ng-template>
-      </p-stepperPanel> -->
-    }
+              <p-button
+                *ngIf="step.step < stepsForm.length"
+                label="Next"
+                icon="pi pi-arrow-right"
+                iconPos="right"
+                (onClick)="activateCallback(step.step + 1)"
+              />
+            </div>
+          </ng-template>
+        </p-step-panel>
+      }
+    </p-step-panels>
   </p-stepper>
-</div>
+</p-card>

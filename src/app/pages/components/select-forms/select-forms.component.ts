@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DropdownChangeEvent, DropdownModule } from 'primeng/dropdown';
+import { Select, SelectChangeEvent } from 'primeng/select';
 
 @Component({
   selector: 'app-select-forms',
   standalone: true,
-  imports: [CommonModule, DropdownModule],
+  imports: [CommonModule, Select],
   templateUrl: './select-forms.component.html',
   styleUrl: './select-forms.component.scss',
   providers: [
@@ -47,7 +47,7 @@ export class SelectFormsComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  updateValue(event: DropdownChangeEvent): void {
+  updateValue(event: SelectChangeEvent): void {
     const input = event.value;
     this.value = input.value;
     this.onChange(this.value);
