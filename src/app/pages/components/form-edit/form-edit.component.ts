@@ -28,7 +28,6 @@ export class FormEditComponent implements OnInit {
     federations: inputsFieldFederation,
   };
   titlePage = '';
-  formAddress = false;
   completdForm = false;
 
   edit: IToForm = {
@@ -56,17 +55,7 @@ export class FormEditComponent implements OnInit {
       };
 
       const fields = this.getFieldsByFlag(flag);
-      console.log('ESTAMOS VENDO AQUI COMO VER', fields);
-      // this.rxjs.sendPersonalForm(fields);
-
-      // const haveAddress = ['players', 'teams'];
-      // this.formAddress = haveAddress.includes(flag);
-      // if (haveAddress.includes(flag)) {
-      //   this.rxjs.sendAddressForm(generalInputsAddress);
-      // } else {
-      //   this.rxjs.validateWithNoAddress(!haveAddress.includes(flag));
-      // }
-      // this.rxjs.sendDataForm(this.edit);
+      this.rxjs.sendPersonalForm(fields);
     });
   }
 
@@ -90,13 +79,12 @@ export class FormEditComponent implements OnInit {
   }
 
   getFieldsByFlag(flag: string) {
-    const personFields = this.flagMappings[flag] || this.flagMappings['teams'];
-    return { personFields };
+    return this.flagMappings[flag] || this.flagMappings['teams'];
   }
 
   resetForms() {
     this.rxjs.sendAddressForm([]);
-    this.rxjs.sendPersonalForm([]);
+    // this.rxjs.sendPersonalForm([]);
     this.edit = { flag: '', update: false, data_id: 0 };
   }
 

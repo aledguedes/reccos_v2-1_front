@@ -41,22 +41,6 @@ export class LayoutFormPersonalComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const dataSubscription = this.rxjs.personDataForm$.subscribe(
-      (form: IGeneralFields[]) => {
-        this.personalData = form;
-        this.personalForm = this.fb.group(
-          this.createFormGroup(this.personalData),
-        );
-
-        this.personalForm.statusChanges.subscribe((newStaus) => {
-          this.statusFormPersonal.emit({
-            form: 'personal',
-            status: newStaus === 'VALID',
-          });
-        });
-      },
-    );
-
     const personalSubscription = this.rxjs.updateFormPersonalId$.subscribe(
       (personal: FlagMap[keyof FlagMap] | null) => {
         if (personal && this.update) {
@@ -72,7 +56,6 @@ export class LayoutFormPersonalComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.subscription.add(dataSubscription);
     this.subscription.add(personalSubscription);
   }
 
