@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IGeneralFields } from '../models/generals/GeneralFieldsInputs';
+import {
+  IGeneralFields,
+  IGroupedFields,
+} from '../models/generals/GeneralFieldsInputs';
 import { IToForm } from '../models/generals/GeneralForms';
 import { IAddress } from '../models/generals/Address';
 import { FlagMap } from './interfaces-map/interfaces-map';
@@ -21,10 +24,15 @@ export class DataRxjsService {
     this.dataForm.next(data);
   }
 
-  personDataForm = new BehaviorSubject<IGeneralFields[]>([]);
+  personDataForm = new BehaviorSubject<IGroupedFields>({
+    field1: [],
+    field2: [],
+    field4: [],
+    field3: [],
+  });
   personDataForm$ = this.personDataForm.asObservable();
 
-  sendPersonalForm(data: IGeneralFields[]) {
+  sendPersonalForm(data: IGroupedFields) {
     this.personDataForm.next(data);
   }
 

@@ -3,11 +3,9 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit,
   Output,
-  SimpleChanges,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DataRxjsService } from '../../../services/data-rxjs.service';
@@ -15,21 +13,20 @@ import { Subscription } from 'rxjs';
 import { FlagMap } from '../../../services/interfaces-map/interfaces-map';
 import { GenericsUpdatedsService } from '../../../services/generics/generics-updateds.service';
 import { IToForm } from '../../../models/generals/GeneralForms';
-import { FormUploadComponent } from '../form-upload/form-upload.component';
-import {
-  statusForms,
-  stepForms,
-} from '../../../utils/step-layout-forms/step-forms';
 import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
-import { LayoutFormAddressComponent } from '../../../layouts/layout-form-address/layout-form-address.component';
-import { LayoutFormPersonalComponent } from '../../../layouts/layout-form-personal/layout-form-personal.component';
 import { CardModule } from 'primeng/card';
+import { LayoutFormDynamicComponent } from '../../../layouts/layout-form-dynamic/layout-form-dynamic.component';
+import {
+  IGeneralFields,
+  IGroupedFields,
+} from '../../../models/generals/GeneralFieldsInputs';
 
 interface IStepsComponent {
+  step: number;
   label: string;
   enable: boolean;
-  step: number;
+  data: IGeneralFields[];
 }
 
 interface IStatusFormValidate {
@@ -39,11 +36,7 @@ interface IStatusFormValidate {
   personal: boolean;
 }
 
-const components = [
-  LayoutFormAddressComponent,
-  LayoutFormPersonalComponent,
-  FormUploadComponent,
-];
+const components = [LayoutFormDynamicComponent];
 const primeNg = [StepperModule, ButtonModule, CardModule];
 
 const modules = [ReactiveFormsModule, CommonModule];
@@ -55,25 +48,20 @@ const modules = [ReactiveFormsModule, CommonModule];
   templateUrl: './layout-form.component.html',
   styleUrl: './layout-form.component.scss',
 })
-export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
-  @Input() update = false;
-  @Input() address = false;
+export class LayoutFormComponent implements OnInit, OnDestroy {
+  @Input() crtlFormUpdate: IToForm = {
+    update: false,
+    data_id: 0,
+  };
   @Output() statusForm = new EventEmitter<boolean>();
 
   private subscription: Subscription = new Subscription();
 
-  edit: IToForm = {
-    flag: '',
-    update: false,
-    data_id: 0,
-  };
-
   control = false;
   allFormsCompleted = false;
 
-  stepsForm: IStepsComponent[] = stepForms;
-  statusValidation: IStatusFormValidate = statusForms;
-
+  stepsForm: IStepsComponent[] = [];
+  statusValidation!: IStatusFormValidate;
   stepControl = 1;
   currentStep = 1;
 
@@ -83,31 +71,29 @@ export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    const dataSubscription = this.rxjs.dataForm$.subscribe((form: IToForm) => {
-      this.edit = form;
-      if (form.update) {
-        this.loadFlagData(form.flag as keyof FlagMap, form.data_id);
-      }
-    });
-    this.subscription.add(dataSubscription);
+    const fieldsSubscription = this.rxjs.personDataForm$.subscribe(
+      (form: IGroupedFields) => {
+        this.stepsForm = Object.keys(form).map((key, index) => ({
+          label: key,
+          enable: true,
+          step: index + 1,
+          data: form[key as keyof IGroupedFields],
+        }));
+      },
+    );
+    console.log('crtlFormUpdate', this.stepsForm);
+
+    this.subscription.add(fieldsSubscription);
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (!changes['address'].currentValue) {
-      this.updateStatus({
-        form: 'address',
-        status: !changes['address'].currentValue,
-      });
-    }
-  }
-
   loadFlagData(iFlag: keyof FlagMap, id: number) {
     this.generalService.getById(iFlag, id).subscribe({
       next: (data: FlagMap[typeof iFlag]) => {
+        console.log('loadFlagData SERVIE', data);
         this.rxjs.updatePersonalId(data);
       },
       error: (err) => {
@@ -128,20 +114,20 @@ export class LayoutFormComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  // Função para verificar se a etapa está habilitada
   isStepEnabled(step: number): boolean {
     const stepConfig = this.stepsForm.find((s) => s.step === step);
     return stepConfig ? stepConfig.enable : false;
   }
 
-  // Função para avançar para a próxima etapa
   nextStep() {
-    if (this.currentStep < 4 && this.isStepEnabled(this.currentStep + 1)) {
+    if (
+      this.currentStep < this.stepsForm.length &&
+      this.isStepEnabled(this.currentStep + 1)
+    ) {
       this.currentStep++;
     }
   }
 
-  // Função para voltar para a etapa anterior
   prevStep() {
     if (this.currentStep > 1 && this.isStepEnabled(this.currentStep - 1)) {
       this.currentStep--;

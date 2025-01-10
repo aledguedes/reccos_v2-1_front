@@ -11,25 +11,10 @@
       @for (step of stepsForm; track $index) {
         <p-step-panel [value]="step.step">
           <ng-template #content let-activateCallback="activateCallback">
-            <ng-container [ngSwitch]="step.step">
-              <app-layout-form-personal
-                *ngSwitchCase="1"
-                (statusFormPersonal)="updateStatus($event)"
-                [update]="update"
-              />
-              @if (isStepEnabled(step.step)) {
-                <app-layout-form-address
-                  *ngSwitchCase="2"
-                  (statusFormAddress)="updateStatus($event)"
-                  [update]="update"
-                  ngSkipHydration
-                />
-              }
-              <app-form-upload
-                *ngSwitchCase="3"
-                (statusFormUpload)="updateStatus($event)"
-              />
-            </ng-container>
+            <app-layout-form-dynamic
+              [update]="crtlFormUpdate.update"
+              [personalData]="step.data"
+            />
             <div class="flex pt-6 justify-between">
               <!-- Botões "Back" e "Next" -->
               <p-button

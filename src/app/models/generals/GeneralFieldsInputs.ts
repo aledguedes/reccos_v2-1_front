@@ -27,3 +27,10 @@ export interface IOptions {
   value: string;
   label: string;
 }
+
+export interface IGroupedFields {
+  field1: IGeneralFields[];
+  field2: IGeneralFields[];
+  field3: IGeneralFields[];
+  field4: IGeneralFields[];
+}
