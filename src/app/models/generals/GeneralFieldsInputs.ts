@@ -29,8 +29,8 @@ export interface IOptions {
 }
 
 export interface IGroupedFields {
-  dates: IGeneralFields[];
-  settings: IGeneralFields[];
-  leagueData: IGeneralFields[];
-  personalInfo: IGeneralFields[];
+  field1: IGeneralFields[];
+  field2: IGeneralFields[];
+  field3: IGeneralFields[];
+  field4: IGeneralFields[];
 }

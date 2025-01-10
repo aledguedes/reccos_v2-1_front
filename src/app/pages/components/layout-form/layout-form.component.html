@@ -12,7 +12,7 @@
         <p-step-panel [value]="step.step">
           <ng-template #content let-activateCallback="activateCallback">
             <app-layout-form-dynamic
-              [update]="update"
+              [update]="crtlFormUpdate.update"
               [personalData]="step.data"
             />
             <div class="flex pt-6 justify-between">

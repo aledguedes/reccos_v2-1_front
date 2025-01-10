@@ -11,6 +11,8 @@ import { inputsFieldRefree } from '../../../utils/form-inputs/form-input-refrees
 import { inputsFieldLeagues } from '../../../utils/form-inputs/form-input-leagues';
 import { FormsModule } from '@angular/forms';
 import { IGroupedFields } from '../../../models/generals/GeneralFieldsInputs';
+import { FlagMap } from '../../../services/interfaces-map/interfaces-map';
+import { GenericsUpdatedsService } from '../../../services/generics/generics-updateds.service';
 
 @Component({
   selector: 'app-form-edit',
@@ -39,24 +41,59 @@ export class FormEditComponent implements OnInit {
     private router: Router,
     private rxjs: DataRxjsService,
     private actvRouter: ActivatedRoute,
+    private generalService: GenericsUpdatedsService,
   ) {}
 
   ngOnInit(): void {
     this.actvRouter.queryParams.subscribe((data) => {
       this.resetForms();
+      const id = +data['p'];
       const flag = data['f'];
 
       this.titlePage = this.createName(flag, data['action'] === 'update');
 
       this.edit = {
         flag: flag,
-        data_id: data['action'] === 'update' ? +data['p'] : 0,
         update: data['action'] === 'update',
+        data_id: data['action'] === 'update' ? +data['p'] : 0,
       };
 
       const fields = this.getFieldsByFlag(flag);
       this.rxjs.sendPersonalForm(fields);
+
+      if (data['action'] === 'update') {
+        this.loadFlagData(flag as keyof FlagMap, id, fields);
+      }
     });
+  }
+
+  loadFlagData(iFlag: keyof FlagMap, id: number, fields: IGroupedFields) {
+    this.generalService.getById(iFlag, id).subscribe({
+      next: (data: FlagMap[typeof iFlag]) => {
+        console.log('loadFlagData SERVIE', data);
+        this.updateFormValues(fields, data);
+      },
+      error: (err) => {
+        console.error('Erro ao carregar dados', err);
+      },
+    });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  updateFormValues(fields: IGroupedFields, data: Record<string, any>): void {
+    Object.keys(fields).forEach((fieldKey) => {
+      const key = fieldKey as keyof IGroupedFields;
+
+      fields[key].forEach((inputField) => {
+        const fieldName = inputField.inputFieldName;
+
+        if (data[fieldName] !== undefined) {
+          inputField.initialValues = data[fieldName];
+        }
+      });
+    });
+
+    this.rxjs.sendPersonalForm(fields);
   }
 
   createName(flag: string, update: boolean) {

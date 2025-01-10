@@ -1,5 +1,8 @@
 <div class="container">
   <div class="box m-auto w-sm-card media-cards-form">
-    <app-layout-form (statusForm)="statusForm($event)" [update]="edit.update" />
+    <app-layout-form
+      (statusForm)="statusForm($event)"
+      [crtlFormUpdate]="edit"
+    />
   </div>
 </div>

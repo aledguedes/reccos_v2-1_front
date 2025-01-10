@@ -1,20 +1,17 @@
-<p-card
-  [header]="data.surname ?? data.name"
-  [subheader]="data.name"
-  [style]="{ width: '100%' }"
->
-  <ng-template pTemplate="header">
-    <img class="border-round" [alt]="data.name" [src]="img01" />
+<p-card class="shadow-8" [style]="{ width: '100%', overflow: 'hidden' }">
+  <ng-template #header>
+    <img alt="Card" class="w-full" [src]="img02" />
   </ng-template>
-  <ng-template pTemplate="footer">
-    <div class="flex justify-content-center gap-1 mt-1">
+  <ng-template #title> {{ data.surname ?? data.name }} </ng-template>
+  <ng-template #subtitle> {{ data.name }} </ng-template>
+  <ng-template #footer>
+    <div class="flex gap-4 mt-1">
       <p-button
         label="Remover"
         severity="secondary"
         class="w-full"
+        [outlined]="true"
         styleClass="w-full"
-        icon="pi pi-trash"
-        size="small"
       />
       <p-button
         label="Editar"
@@ -24,10 +21,9 @@
           f: toQueries.flag,
           p: data.id,
         }"
-        icon="pi pi-pencil"
         class="w-full"
         styleClass="w-full"
-        size="small"
+        icon="pi pi-pencil"
       />
     </div>
   </ng-template>

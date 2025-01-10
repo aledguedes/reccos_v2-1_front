@@ -2,7 +2,7 @@ import { Validators } from '@angular/forms';
 import { IGroupedFields } from '../../models/generals/GeneralFieldsInputs';
 
 export const inputsFieldTeam: IGroupedFields = {
-  personalInfo: [
+  field1: [
     {
       typeComponent: 'input',
       label: 'Nome Oficial do Time:',
@@ -34,7 +34,7 @@ export const inputsFieldTeam: IGroupedFields = {
       colClass: 'col-12',
     },
   ],
-  dates: [],
-  leagueData: [],
-  settings: [],
+  field2: [],
+  field3: [],
+  field4: [],
 };

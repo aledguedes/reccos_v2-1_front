@@ -49,16 +49,13 @@ const modules = [ReactiveFormsModule, CommonModule];
   styleUrl: './layout-form.component.scss',
 })
 export class LayoutFormComponent implements OnInit, OnDestroy {
-  @Input() update = false;
-  @Output() statusForm = new EventEmitter<boolean>();
-
-  private subscription: Subscription = new Subscription();
-
-  edit: IToForm = {
-    flag: '',
+  @Input() crtlFormUpdate: IToForm = {
     update: false,
     data_id: 0,
   };
+  @Output() statusForm = new EventEmitter<boolean>();
+
+  private subscription: Subscription = new Subscription();
 
   control = false;
   allFormsCompleted = false;
@@ -76,7 +73,6 @@ export class LayoutFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const fieldsSubscription = this.rxjs.personDataForm$.subscribe(
       (form: IGroupedFields) => {
-        // Organize os dados em steps (categorias)
         this.stepsForm = Object.keys(form).map((key, index) => ({
           label: key,
           enable: true,
@@ -85,18 +81,9 @@ export class LayoutFormComponent implements OnInit, OnDestroy {
         }));
       },
     );
+    console.log('crtlFormUpdate', this.stepsForm);
 
-    const dataSubscription = this.rxjs.dataForm$.subscribe((form: IToForm) => {
-      this.edit = form;
-      if (form.update) {
-        this.loadFlagData(form.flag as keyof FlagMap, form.data_id);
-      }
-    });
-    this.subscription.add(dataSubscription);
     this.subscription.add(fieldsSubscription);
-
-    // Atribuindo os dados para as etapas do formulário
-    // this.stepsForm = this.getStepsForForm();
   }
 
   ngOnDestroy(): void {
@@ -106,6 +93,7 @@ export class LayoutFormComponent implements OnInit, OnDestroy {
   loadFlagData(iFlag: keyof FlagMap, id: number) {
     this.generalService.getById(iFlag, id).subscribe({
       next: (data: FlagMap[typeof iFlag]) => {
+        console.log('loadFlagData SERVIE', data);
         this.rxjs.updatePersonalId(data);
       },
       error: (err) => {
@@ -126,13 +114,11 @@ export class LayoutFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Função para verificar se a etapa está habilitada
   isStepEnabled(step: number): boolean {
     const stepConfig = this.stepsForm.find((s) => s.step === step);
     return stepConfig ? stepConfig.enable : false;
   }
 
-  // Função para avançar para a próxima etapa
   nextStep() {
     if (
       this.currentStep < this.stepsForm.length &&
@@ -142,21 +128,9 @@ export class LayoutFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Função para voltar para a etapa anterior
   prevStep() {
     if (this.currentStep > 1 && this.isStepEnabled(this.currentStep - 1)) {
       this.currentStep--;
     }
   }
-
-  // Função para dividir os dados em etapas
-  // getStepsForForm(): IStepsComponent[] {
-  //   // const groupedFields = this.rxjs.getGroupedFields(); // Suponha que essa função retorna os dados de groupedFields
-  //   return Object.keys(groupedFields).map((key, index) => ({
-  //     step: index + 1,
-  //     label: `Etapa ${index + 1}`,
-  //     fields: groupedFields[key], // Associa os campos a cada etapa
-  //     enable: true, // Adicione lógica para habilitar ou desabilitar etapas
-  //   }));
-  // }
 }

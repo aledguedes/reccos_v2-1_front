@@ -25,10 +25,10 @@ export class DataRxjsService {
   }
 
   personDataForm = new BehaviorSubject<IGroupedFields>({
-    dates: [],
-    settings: [],
-    leagueData: [],
-    personalInfo: [],
+    field1: [],
+    field2: [],
+    field4: [],
+    field3: [],
   });
   personDataForm$ = this.personDataForm.asObservable();
 

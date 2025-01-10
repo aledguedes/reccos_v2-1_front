@@ -2,7 +2,7 @@ import { Validators } from '@angular/forms';
 import { IGroupedFields } from '../../models/generals/GeneralFieldsInputs';
 
 export const inputsFieldLeagues: IGroupedFields = {
-  personalInfo: [
+  field1: [
     {
       typeComponent: 'input',
       label: 'League Name:',
@@ -24,7 +24,7 @@ export const inputsFieldLeagues: IGroupedFields = {
       colClass: 'col-12 md:col-4',
     },
   ],
-  dates: [
+  field2: [
     {
       typeComponent: 'input',
       label: 'Start Date:',
@@ -62,7 +62,7 @@ export const inputsFieldLeagues: IGroupedFields = {
       colClass: 'col-12 md:col-6',
     },
   ],
-  leagueData: [
+  field3: [
     {
       typeComponent: 'select',
       label: 'Tournament Format:',
@@ -104,7 +104,7 @@ export const inputsFieldLeagues: IGroupedFields = {
       colClass: 'col-12 md:col-6',
     },
   ],
-  settings: [
+  field4: [
     {
       typeComponent: 'input',
       label: 'Number of Teams:',

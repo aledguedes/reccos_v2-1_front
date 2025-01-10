@@ -13,19 +13,17 @@
     </div>
   </div>
 
-  <div
-    class="grid row-gap-4 md:row-gap-0 md:justify-content-start justify-content-center"
-  >
-    @if (federations.length > 0) {
+  @if (federations.length > 0) {
+    <div class="grid">
       @for (federation of federations; track $index) {
-        <div class="lg:col-3 md:col-6 sm:col-12">
+        <div class="col-12 sm:col-12 md:col-6 lg:col-3">
           <app-list-cards [data]="federation" [toQueries]="cardFlags" />
         </div>
       }
-    } @else {
-      <div class="notification is-link is-light">
-        O sistema ainda não possui atletas cadastrados!!
-      </div>
-    }
-  </div>
+    </div>
+  } @else {
+    <div class="notification is-link is-light">
+      O sistema ainda não possui atletas cadastrados!!
+    </div>
+  }
 </div>
