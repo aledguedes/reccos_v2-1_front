@@ -9,34 +9,15 @@
         <app-dash-statistics [data]="item" />
       </div>
     }
+  </div>
 
-    <!-- LISTAGEM TIMES -->
-    <div class="col-12">
-      <p-card>
-        <div class="flex list-teams-images">
-          <div
-            class="flex justify-content-center align-items-center flex-column"
-            style="width: 120px"
-          >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png"
-              alt="Manchester City"
-            />
-            <span class="name-team"> Manchester City </span>
-          </div>
-          <div
-            class="flex justify-content-center align-items-center flex-column"
-            style="width: 120px"
-          >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png"
-              alt="Arsenal"
-            />
-            <span class="name-team">Arsenal</span>
-          </div>
-        </div>
-      </p-card>
-    </div>
+  <!-- LISTAGEM TIMES -->
+
+  <div class="mb-2">
+    <p-card>
+      <h3>Times cadastrados</h3>
+      <app-layout-form-address [teams]="teams" />
+    </p-card>
   </div>
 
   <!-- GRÁFICOS -->
