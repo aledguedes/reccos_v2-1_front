@@ -5,6 +5,7 @@ import { DashStatisticsComponent } from '../dash-statistics/dash-statistics.comp
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { DividerModule } from 'primeng/divider';
+import { LayoutFormAddressComponent } from '../layout-form-address/layout-form-address.component';
 
 interface IStatisticsCards {
   label: string;
@@ -16,7 +17,7 @@ interface IStatisticsCards {
 
 const modules = [CardModule, ButtonModule, MessageModule, DividerModule];
 
-const components = [DashStatisticsComponent];
+const components = [DashStatisticsComponent, LayoutFormAddressComponent];
 
 @Component({
   selector: 'app-flexible-by-id',
@@ -57,7 +58,10 @@ export class FlexibleByIdComponent {
     },
   ];
 
-  teams = [
+  teams: {
+    name: string;
+    logo: string;
+  }[] = [
     {
       name: 'Palmeiras',
       logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Palmeiras_logo.svg/180px-Palmeiras_logo.svg.png',
@@ -73,6 +77,38 @@ export class FlexibleByIdComponent {
     {
       name: 'Manchester City',
       logo: 'https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png',
+    },
+    {
+      name: 'Chelsea',
+      logo: 'https://upload.wikimedia.org/wikipedia/pt/thumb/c/cc/Chelsea_FC.svg/1200px-Chelsea_FC.svg.png',
+    },
+    {
+      name: 'Liverpool',
+      logo: 'https://upload.wikimedia.org/wikipedia/pt/thumb/0/0c/Liverpool_FC.svg/800px-Liverpool_FC.svg.png',
+    },
+    {
+      name: 'Manchester United',
+      logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png',
+    },
+    {
+      name: 'Tottenham Hotspur',
+      logo: 'https://upload.wikimedia.org/wikipedia/pt/6/6d/Tottenham_Hotspur.png',
+    },
+    {
+      name: 'Barcelona',
+      logo: 'https://upload.wikimedia.org/wikipedia/pt/thumb/4/43/FCBarcelona.svg/800px-FCBarcelona.svg.png',
+    },
+    {
+      name: 'Real Madrid',
+      logo: 'https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png',
+    },
+    {
+      name: 'Juventus',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/7/72/Juventus_FC_2017_logo.svg',
+    },
+    {
+      name: 'Bayern Munich',
+      logo: 'https://image-service.onefootball.com/transform?w=256&dpr=2&image=https://images.onefootball.com/icons/teams/164/17.png',
     },
   ];
 

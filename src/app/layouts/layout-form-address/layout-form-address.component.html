@@ -1,25 +1,8 @@
-<form [formGroup]="addressForm">
-  <div class="grid">
-    @for (field of addressData; track $index) {
-      @if (field.typeComponent === "input") {
-        <div [ngClass]="field.colClass">
-          <app-input-forms
-            [id]="field.inputFieldName"
-            [label]="field.label"
-            [formControlName]="field.inputFieldName"
-            [type]="field.inputType ?? 'text'"
-            [placeholder]="field.placeholder ?? ''"
-            [step]="field.step"
-            [accept]="field.accept"
-            [isInvalid]="
-              (addressForm.get('address.' + field.inputFieldName)?.invalid &&
-                (addressForm.get('address.' + field.inputFieldName)?.touched ||
-                  addressForm.get('address.' + field.inputFieldName)?.dirty)) ??
-              false
-            "
-          ></app-input-forms>
-        </div>
-      }
-    }
-  </div>
-</form>
+<div class="grid-images">
+  @for (item of teams; track $index) {
+    <div class="flex flex-column align-items-center justify-content-center p-2">
+      <img class="logo-img" [src]="item.logo" [alt]="item.name" />
+      <span class="name-team text-center mt-2">{{ item.name }}</span>
+    </div>
+  }
+</div>
