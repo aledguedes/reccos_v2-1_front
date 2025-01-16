@@ -1,9 +1,11 @@
 <div class="container">
   <div class="mb-6 bg-gray-50">
-    <h1 class="m-0">Dashboard Liga Brasileira</h1>
-    <p class="mt-0">Temporada 2024</p>
+    <h1 class="m-0 section-title">Dashboard Liga Brasileira</h1>
+    <p class="mt-0 section-subtitle">Temporada 2024</p>
   </div>
-  <div class="grid">
+
+  <!-- CARDS STATISTICOS -->
+  <div class="grid mb-2">
     @for (item of statistics; track $index) {
       <div class="col-12 lg:col-3 md:col-6 sm:col-6">
         <app-dash-statistics [data]="item" />
@@ -12,11 +14,14 @@
   </div>
 
   <!-- LISTAGEM TIMES -->
-
-  <div class="mb-2">
+  <div class="mb-3">
     <p-card>
-      <h3>Times cadastrados</h3>
-      <app-layout-form-address [teams]="teams" />
+      <h3 style="color: var(--main-color)">Times cadastrados</h3>
+      <div class="grid-images">
+        @for (item of teams; track $index) {
+          <app-layout-form-address [team]="item" />
+        }
+      </div>
     </p-card>
   </div>
 

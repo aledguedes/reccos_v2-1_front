@@ -107,9 +107,8 @@ h1 {
   background-color: #fff;
 }
 
-.name-team {
-  color: #636ae8;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 2rem;
+.grid-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 20px;
 }

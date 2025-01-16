@@ -104,11 +104,11 @@ export class FlexibleByIdComponent {
     },
     {
       name: 'Juventus',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/7/72/Juventus_FC_2017_logo.svg',
+      logo: 'https://image-service.onefootball.com/transform?w=256&dpr=2&image=https://images.onefootball.com/icons/teams/164/17.png',
     },
     {
       name: 'Bayern Munich',
-      logo: 'https://image-service.onefootball.com/transform?w=256&dpr=2&image=https://images.onefootball.com/icons/teams/164/17.png',
+      logo: 'https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/132.png',
     },
   ];
 
