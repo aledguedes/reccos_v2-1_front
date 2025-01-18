@@ -10,8 +10,11 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './layout-form-address.component.scss',
 })
 export class LayoutFormAddressComponent {
-  @Input() teams: {
+  @Input() team: {
     name: string;
     logo: string;
-  }[] = [];
+  } = {
+    name: '',
+    logo: '',
+  };
 }
