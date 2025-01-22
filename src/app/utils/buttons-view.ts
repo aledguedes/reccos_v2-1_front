@@ -1,11 +1,12 @@
 export const changeViewCards: IButtonView[] = [
   {
-    icon: 'ri-align-justify',
-    control: 'table',
-    severity: 'info',
+    icon: 'ri-layout-grid-line',
+    control: 'landscape',
+    severity: 'success',
     size: 'large',
     rounded: true,
     text: true,
+    tooltip: 'Card Horizontal',
   },
   {
     icon: 'ri-function-line',
@@ -14,14 +15,16 @@ export const changeViewCards: IButtonView[] = [
     size: 'large',
     rounded: true,
     text: true,
+    tooltip: 'Card Vertical',
   },
   {
-    icon: 'ri-layout-grid-line',
-    control: 'landscape',
-    severity: 'success',
+    icon: 'ri-align-justify',
+    control: 'table',
+    severity: 'info',
     size: 'large',
     rounded: true,
     text: true,
+    tooltip: 'Tabela',
   },
 ];
 
@@ -42,4 +45,5 @@ export interface IButtonView {
   size: 'small' | 'large' | undefined;
   rounded: boolean;
   text: boolean;
+  tooltip: string;
 }

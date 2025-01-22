@@ -1,0 +1,38 @@
+button.icon-button {
+  background: none;
+  border: 2px solid transparent;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.icon-button:not(:first-child, :last-child) {
+  margin: 0 0.5rem;
+}
+
+button.icon-button i {
+  font-size: 18px;
+  color: #333;
+}
+
+button.icon-button.active {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+button.icon-button.active i {
+  color: white;
+}
+
+button.icon-button:hover {
+  background-color: #007bff2e;
+  border-color: #007bff2e;
+}
