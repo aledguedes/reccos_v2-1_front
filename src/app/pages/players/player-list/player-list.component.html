@@ -20,7 +20,7 @@
     @if (players.length > 0) {
       @for (player of players; track $index) {
         <div class="lg:col-3 md:col-6 sm:col-12">
-          <app-list-cards [data]="player" [toQueries]="cardFlags" />
+          <app-list-cards-portrait [data]="player" [toQueries]="cardFlags" />
         </div>
       }
     } @else {

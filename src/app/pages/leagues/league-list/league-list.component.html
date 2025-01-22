@@ -1,6 +1,9 @@
 <div class="container">
   <div class="flex justify-content-between align-items-center mb-4">
-    <h3 class="p-text-muted text-3xl">Welcome back, John! 👋</h3>
+    <div class="bg-gray-50">
+      <h1 class="m-0 section-title">Dashboard Liga Brasileira</h1>
+      <p class="mt-0 section-subtitle">Temporada 2024</p>
+    </div>
     <div class="md:w-auto">
       <p-button
         label="Adicionar Liga"
@@ -20,39 +23,15 @@
     }
   </div>
 
-  <h2>Ligas cadastradas!</h2>
+  <div class="flex justify-content-between align-items-center">
+    <h2 class="section-title">Ligas cadastradas!</h2>
+    <app-list-cards-views-buttons (viewChange)="visualization($event)" />
+  </div>
   <div class="grid">
-    @for (league of leagues; track $index) {
-      <div class="col-12 lg:col-4 md:col-6 sm:col-6">
-        <p-card class="shadow-5">
-          <div class="flex justify-content-between align-items-center py-2">
-            <div>
-              <p class="m-0">{{ league.name }}</p>
-              <p class="my-1">
-                <i class="ri-group-line mr-1"></i>
-                {{ $index + 5 + ($index % 2 === 0 ? 2 : 3) * 2 }} times
-              </p>
-            </div>
-            <i
-              class="ri-trophy-line"
-              style="font-size: 48px; color: var(--p-tag-success-color)"
-            ></i>
-          </div>
-          <div class="flex justify-content-between">
-            <p-tag
-              [severity]="$index % 2 === 0 ? 'success' : 'danger'"
-              [value]="league.status"
-              [rounded]="true"
-            />
-            <p-button
-              [routerLink]="['/leagues', league.id]"
-              icon="pi pi-arrow-right"
-              [rounded]="true"
-              [text]="true"
-            />
-          </div>
-        </p-card>
-      </div>
-    }
+    <app-list-cards-views
+      [interable]="leagues"
+      [view]="view"
+      [flagsControl]="cardFlags"
+    />
   </div>
 </div>

@@ -1,0 +1,15 @@
+@if (view !== "table") {
+  <div class="grid">
+    @for (item of interable; track $index) {
+      <div class="col-12 lg:col-4 md:col-6 sm:col-6">
+        @if (view === "portrait") {
+          <app-list-cards-portrait [data]="item" [toQueries]="flagsControl" />
+        } @else if (view === "landscape") {
+          <app-list-cards-landscape [data]="item" [toQueries]="flagsControl" />
+        }
+      </div>
+    }
+  </div>
+} @else {
+  <app-list-cards-table />
+}

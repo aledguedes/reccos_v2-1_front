@@ -4,3 +4,7 @@
     height: 50px;
   }
 }
+
+.custom-size:not(:last-child, :first-child) {
+  margin: 0 1rem;
+}

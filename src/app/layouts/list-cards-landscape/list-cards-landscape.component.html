@@ -1,0 +1,45 @@
+<p-card class="shadow-5">
+  <div class="flex justify-content-between align-items-center py-2">
+    <div>
+      <p class="m-0">{{ data.name }}</p>
+      <p class="my-1">
+        <i class="ri-group-line mr-1"></i>
+        {{ data.id + 5 + (data.id % 2 === 0 ? 2 : 3) * 2 }} times
+      </p>
+    </div>
+    <img src="https://www.fplbot.app/logo.svg" height="35" alt="" />
+  </div>
+  <div class="flex justify-content-between">
+    <p-tag
+      [severity]="data.id % 2 === 0 ? 'success' : 'danger'"
+      [value]="data.status"
+      [rounded]="true"
+    />
+    <div>
+      <p-button
+        icon="pi pi-pencil"
+        [routerLink]="[toQueries.router]"
+        [queryParams]="{
+          action: 'update',
+          f: toQueries.flag,
+          p: data.id,
+        }"
+        [rounded]="true"
+        [text]="true"
+        severity="info"
+      />
+      <p-button
+        icon="pi pi-trash"
+        [rounded]="true"
+        [text]="true"
+        severity="danger"
+      />
+      <p-button
+        [routerLink]="['/leagues', data.id]"
+        icon="pi pi-eye"
+        [rounded]="true"
+        [text]="true"
+      />
+    </div>
+  </div>
+</p-card>

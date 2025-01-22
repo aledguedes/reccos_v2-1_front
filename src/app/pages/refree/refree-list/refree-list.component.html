@@ -19,7 +19,7 @@
     @if (refrees.length > 0) {
       @for (refree of refrees; track $index) {
         <div class="lg:col-3 md:col-6 sm:col-12">
-          <app-list-cards [data]="refree" [toQueries]="cardFlags" />
+          <app-list-cards-portrait [data]="refree" [toQueries]="cardFlags" />
         </div>
       }
     } @else {

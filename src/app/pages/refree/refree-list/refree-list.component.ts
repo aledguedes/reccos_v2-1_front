@@ -6,12 +6,17 @@ import { RefreeService } from '../../../services/refrees/refree.service';
 import { IRefreeRequest } from '../../../models/entities/RefreeModel';
 import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
 import { ButtonModule } from 'primeng/button';
-import { ListCardsComponent } from '../../../layouts/list-cards/list-cards.component';
+import { ListCardsPortraitComponent } from '../../../layouts/list-cards-portrait/list-cards-portrait.component';
 
 @Component({
   selector: 'app-refree-list',
   standalone: true,
-  imports: [BreadcrumbComponent, RouterLink, ListCardsComponent, ButtonModule],
+  imports: [
+    BreadcrumbComponent,
+    RouterLink,
+    ListCardsPortraitComponent,
+    ButtonModule,
+  ],
   templateUrl: './refree-list.component.html',
   styleUrl: './refree-list.component.scss',
 })

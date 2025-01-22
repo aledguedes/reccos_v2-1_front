@@ -6,7 +6,7 @@ import { IListCads } from '../../../models/generals/ListCardModel';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
-import { ListCardsComponent } from '../../../layouts/list-cards/list-cards.component';
+import { ListCardsPortraitComponent } from '../../../layouts/list-cards-portrait/list-cards-portrait.component';
 
 interface ITeam {
   id?: number;
@@ -19,7 +19,7 @@ interface ITeam {
   imports: [
     RouterLink,
     BreadcrumbComponent,
-    ListCardsComponent,
+    ListCardsPortraitComponent,
     CardModule,
     ButtonModule,
   ],

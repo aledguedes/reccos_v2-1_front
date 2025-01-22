@@ -1,0 +1,13 @@
+<div class="pr-3">
+  @for (btn of buttonsViews; track $index) {
+    <p-button
+      class="custom-size"
+      [icon]="btn.icon"
+      [rounded]="btn.rounded"
+      [text]="btn.text"
+      [severity]="btn.severity"
+      [size]="btn.size"
+      (click)="visualization(btn.control)"
+    />
+  }
+</div>
