@@ -17,7 +17,10 @@
     <div class="grid">
       @for (federation of federations; track $index) {
         <div class="col-12 sm:col-12 md:col-6 lg:col-3">
-          <app-list-cards [data]="federation" [toQueries]="cardFlags" />
+          <app-list-cards-portrait
+            [data]="federation"
+            [toQueries]="cardFlags"
+          />
         </div>
       }
     </div>

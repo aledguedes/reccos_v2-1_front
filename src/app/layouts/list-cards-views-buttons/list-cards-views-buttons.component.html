@@ -1,0 +1,13 @@
+<div class="flex pr-3">
+  @for (btn of buttonsViews; track $index) {
+    <button
+      class="icon-button"
+      [class.active]="btn.control === activeButton"
+      (click)="visualization(btn.control)"
+      [pTooltip]="btn.tooltip"
+      tooltipPosition="top"
+    >
+      <i [class]="btn.icon"></i>
+    </button>
+  }
+</div>

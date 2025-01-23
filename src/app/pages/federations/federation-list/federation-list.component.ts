@@ -6,13 +6,18 @@ import { FederationService } from '../../../services/federations/federation.serv
 import { ButtonModule } from 'primeng/button';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
-import { ListCardsComponent } from '../../../layouts/list-cards/list-cards.component';
+import { ListCardsPortraitComponent } from '../../../layouts/list-cards-portrait/list-cards-portrait.component';
 // import { ListCardsComponent } from '../../components/list-cards/list-cards.component';
 
 @Component({
   selector: 'app-federation-list',
   standalone: true,
-  imports: [RouterLink, ListCardsComponent, ButtonModule, BreadcrumbComponent],
+  imports: [
+    RouterLink,
+    ListCardsPortraitComponent,
+    ButtonModule,
+    BreadcrumbComponent,
+  ],
   templateUrl: './federation-list.component.html',
   styleUrl: './federation-list.component.scss',
 })

@@ -5,19 +5,25 @@ import { LeagueService } from '../../../services/leagues/league.service';
 import { IBreadcrumb } from '../../../models/generals/BreadcrumbModels';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { DashStatisticsComponent } from '../../../layouts/dash-statistics/dash-statistics.component';
 import { RouterLink } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
+import { changeViewCards, IButtonView } from '../../../utils/buttons-view';
+import { DashStatisticsComponent } from '../../../layouts/dash-statistics/dash-statistics.component';
+import { ListCardsViewsComponent } from '../../../layouts/list-cards-views/list-cards-views.component';
+import { ListCardsViewsButtonsComponent } from '../../../layouts/list-cards-views-buttons/list-cards-views-buttons.component';
 
 const components = [
   DashStatisticsComponent,
+  ListCardsViewsButtonsComponent,
   TableModule,
   ButtonModule,
   CardModule,
   TagModule,
 ];
 const modules = [RouterLink];
+
+const prime = [ListCardsViewsComponent];
 
 interface IStatisticsCards {
   label: string;
@@ -35,7 +41,7 @@ interface Column {
 @Component({
   selector: 'app-league-list',
   standalone: true,
-  imports: [...components, ...modules],
+  imports: [...components, ...modules, ...prime],
   templateUrl: './league-list.component.html',
   styleUrl: './league-list.component.scss',
 })
@@ -85,6 +91,9 @@ export class LeagueListComponent implements OnInit {
     { field: 'action', header: 'Ação' },
   ];
 
+  view: 'landscape' | 'portrait' | 'table' = 'landscape';
+  buttonsViews: IButtonView[] = changeViewCards;
+
   constructor(private leagueService: LeagueService) {}
 
   ngOnInit(): void {
@@ -105,5 +114,9 @@ export class LeagueListComponent implements OnInit {
 
   removeLeague(league_id: number) {
     console.log('league remove', league_id);
+  }
+
+  visualization(view: 'landscape' | 'portrait' | 'table') {
+    this.view = view;
   }
 }

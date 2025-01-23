@@ -20,7 +20,7 @@
       </div> -->
       @for (team of teams; track $index) {
         <div class="lg:col-3 md:col-6 sm:col-12">
-          <app-list-cards [data]="team" [toQueries]="cardFlags" />
+          <app-list-cards-portrait [data]="team" [toQueries]="cardFlags" />
         </div>
       }
     } @else {
